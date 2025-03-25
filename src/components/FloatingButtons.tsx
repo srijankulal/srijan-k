@@ -17,7 +17,7 @@ export default function FloatButtons({ whereAt = "" }: BackGroundProps) {
         if (whereAt === page) {
             // Highlighted state - darker shade and border
             switch (page) {
-                case "Home": return ` bg-white border-2 border-white ${baseClass}`;
+                case "Home": return `  border-green-600 ${baseClass}`;
                 case "Projects": return `bg-white border-2 border-white ${baseClass}`;
                 case "About": return `bg-white  border-2 border-white ${baseClass}`;
                 case "Contact": return `bg-white border-2 border-white ${baseClass}`;
@@ -41,12 +41,12 @@ export default function FloatButtons({ whereAt = "" }: BackGroundProps) {
                 {/* Minecraft-style inventory slots */}
                 <div className="relative">
                     <button 
-                        className={`${getButtonClass("Home")} relative w-14 h-14 bg-[#8b8b8b] border-t-2 border-l-2 border-[#ffffff] border-r-2 border-b-2 border-[#373737] p-0 flex items-center justify-center`}
+                        className={`${getButtonClass("Home")} relative w-14 h-14  border-t-2 border-l-2 border-[#ffffff] border-r-2 border-b-2  p-0 flex items-center justify-center`}
                         onClick={() => window.location.href = "/"}
                         onMouseEnter={() => setHoveredButton("Home")}
                         onMouseLeave={() => setHoveredButton(null)}
                     >
-                        <div className="absolute inset-1 bg-[#555555] flex items-center justify-center">
+                        <div className="absolute inset-1  flex items-center justify-center">
                             {/* Home icon - pixelated house */}
                             <svg className="w-10 h-10 text-white hover:bg-gray-500" viewBox="0 0 16 16" fill="currentColor" style={{imageRendering: 'pixelated'}}>
                                 <rect x="7" y="3" width="2" height="2" />
@@ -60,7 +60,12 @@ export default function FloatButtons({ whereAt = "" }: BackGroundProps) {
                         </div>
                     </button>
                     {hoveredButton === "Home" && (
-                         <motion.div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-opacity-75 text-white px-2 py-1 rounded text-sm whitespace-nowrap">
+                        <motion.div 
+                            className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-opacity-75 text-white px-2 py-1 rounded text-lg whitespace-nowrap"
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
                             Home
                         </motion.div>
                     )}
@@ -68,12 +73,12 @@ export default function FloatButtons({ whereAt = "" }: BackGroundProps) {
 
                 <div className="relative">
                     <button 
-                        className={`${getButtonClass("Projects")} relative w-14 h-14 bg-[#8b8b8b] border-t-2 border-l-2 border-[#ffffff] border-r-2 border-b-2 border-[#373737] p-0 flex items-center justify-center`}
+                        className={`${getButtonClass("Projects")} relative w-14 h-14  border-t-2 border-l-2 border-[#ffffff] border-r-2 border-b-2 p-0 flex items-center justify-center`}
                         onClick={() => window.location.href = "/Projects"}
                         onMouseEnter={() => setHoveredButton("Projects")}
                         onMouseLeave={() => setHoveredButton(null)}
                     >
-                        <div className="absolute inset-1 bg-[#555555] flex items-center justify-center">
+                        <div className="absolute inset-1  flex items-center justify-center">
                             {/* Projects icon - pixelated document/folder */}
                             <svg className="w-10 h-10 text-white hover:bg-gray-500 " viewBox="0 0 16 16" fill="currentColor" style={{imageRendering: 'pixelated'}}>
                                 <rect x="3" y="3" width="10" height="2" />
@@ -86,7 +91,12 @@ export default function FloatButtons({ whereAt = "" }: BackGroundProps) {
                         </div>
                     </button>
                     {hoveredButton === "Projects" && (
-                         <motion.div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-opacity-75 text-white px-2 py-1 rounded text-sm whitespace-nowrap">
+                         <motion.div 
+                         className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-opacity-75 text-white px-2 py-1 rounded text-lg whitespace-nowrap"
+                         initial={{ opacity: 0, x: 10 }}
+                         animate={{ opacity: 1, x: 0 }}
+                         transition={{ duration: 0.3, ease: "easeInOut" }}
+                     >
                             Projects
                         </motion.div>
                     )}
@@ -94,12 +104,12 @@ export default function FloatButtons({ whereAt = "" }: BackGroundProps) {
                 
                 <div className="relative">
                     <button 
-                        className={`${getButtonClass("About")} relative w-14 h-14 bg-[#8b8b8b] border-t-2 border-l-2 border-[#ffffff] border-r-2 border-b-2 border-[#373737] p-0 flex items-center justify-center`}
+                        className={`${getButtonClass("About")} relative w-14 h-14  border-t-3 border-l-2  border-r-2 border-b-2  p-0 flex items-center justify-center`}
                         onClick={() => window.location.href = "/decrypt"}
                         onMouseEnter={() => setHoveredButton("About")}
                         onMouseLeave={() => setHoveredButton(null)}
                     >
-                        <div className="absolute inset-1 bg-[#555555] flex items-center justify-center">
+                        <div className="absolute inset-1  flex items-center justify-center">
                             {/* About icon - pixelated information */}
                            
                             <svg className="w-10 h-10 text-white hover:bg-gray-500" viewBox="0 0 16 16" fill="currentColor" style={{imageRendering: 'pixelated'}}>
@@ -114,7 +124,12 @@ export default function FloatButtons({ whereAt = "" }: BackGroundProps) {
                         </div>
                     </button>
                     {hoveredButton === "About" && (
-                         <motion.div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-opacity-75 text-white px-2 py-1 rounded text-sm whitespace-nowrap">
+                         <motion.div 
+                         className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-opacity-75 text-white px-2 py-1 rounded text-lg whitespace-nowrap"
+                         initial={{ opacity: 0, x: 10 }}
+                         animate={{ opacity: 1, x: 0 }}
+                         transition={{ duration: 0.3, ease: "easeInOut" }}
+                     >
                             About
                         </motion.div>
                     )}
@@ -122,12 +137,12 @@ export default function FloatButtons({ whereAt = "" }: BackGroundProps) {
 
                 <div className="relative">
                     <button 
-                        className={`${getButtonClass("Contact")} relative w-14 h-14 bg-[#8b8b8b] border-t-2 border-l-2 border-[#ffffff] border-r-2 border-b-2 border-[#373737] p-0 flex items-center justify-center`}
+                        className={`${getButtonClass("Contact")} relative w-14 h-14  border-t-2 border-l-2 border-[#ffffff] border-r-2 border-b-2  p-0 flex items-center justify-center`}
                         onClick={() => window.location.href = "/projects"}
                         onMouseEnter={() => setHoveredButton("Contact")}
                         onMouseLeave={() => setHoveredButton(null)}
                     >
-                        <div className="absolute inset-1 bg-[#555555] flex items-center justify-center">
+                        <div className="absolute inset-1  flex items-center justify-center">
                             {/* Projects icon - pixelated chest */}
                             <svg className="w-10 h-10 text-white hover:bg-gray-500" viewBox="0 0 16 16" fill="currentColor" style={{imageRendering: 'pixelated'}}>
                                 {/* Pixelated projects/chest icon */}
@@ -141,7 +156,12 @@ export default function FloatButtons({ whereAt = "" }: BackGroundProps) {
                         </div>
                     </button>
                     {hoveredButton === "Contact" && (
-                        <motion.div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-opacity-75 text-white px-2 py-1 rounded text-sm whitespace-nowrap">
+                        <motion.div 
+                        className="absolute text-lg right-16 top-1/2 transform -translate-y-1/2 bg-opacity-75 text-white px-2 py-1 rounded  whitespace-nowrap"
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
                             Contact
                         </motion.div>
                     )}

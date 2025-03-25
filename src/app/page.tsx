@@ -1,6 +1,7 @@
 // import Contact from "@/components/contact"
 import FloatButtons from "@/components/FloatingButtons";
 import Header from "@/components/Header";
+import { Button } from "@/components/ui/button";
 
 // import Hero from "@/components/hero";
 // import Projects from "@/components/Projects";
@@ -25,11 +26,16 @@ export default function Home() {
                 <p className="text-xl mb-4 text-left">
                 Crafting modern web experiences with security, efficiency, and scalability in mind.
                 </p>
+
+               <div className="text-left">
+                  <Button variant="outline" className="mt-2 py-2 text-lg font-medium h-12 px-8">Projects</Button>
                 </div>
                 </div>
+                </div>
+                
             </div>
     
-  <FloatButtons />
+  <FloatButtons whereAt="Home" />
   </div>
       </>
   );
