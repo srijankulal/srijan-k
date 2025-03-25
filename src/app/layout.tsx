@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins,VT323  } from "next/font/google";
 import "./globals.css";
 
 
-const poppins = Poppins({
-  weight: ["700"],
-  variable: "--font-poppins", 
+// const poppins = Poppins({
+//   weight: ["700"],
+//   variable: "--font-poppins", 
+// });
+
+const vt323 = VT323({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-vt323",
 });
 
 
@@ -23,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} antialiased bg-neutral-900 text-neutral-100`}
+        className={`${vt323.className} antialiased bg-neutral-900 text-neutral-100`}
       >
         {children}
       </body>
