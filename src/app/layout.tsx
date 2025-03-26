@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins,VT323  } from "next/font/google";
+import { VT323  } from "next/font/google";
 import "./globals.css";
 
 
