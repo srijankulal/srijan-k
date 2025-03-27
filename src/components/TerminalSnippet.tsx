@@ -1,5 +1,7 @@
 export default function TerminalSnippet() {
     return (
+        <div className="flex flex-col justify-center items-center w-full snap-start sm:snap-align-none ">
+          
         <div className="bg-[#1E1E1E] text-white rounded-lg shadow-lg overflow-hidden max-w-xl mx-auto border border-gray-700">
             {/* VS Code title bar */}
             <div className="bg-[#333333] px-4 py-2 flex justify-between items-center">
@@ -23,7 +25,7 @@ export default function TerminalSnippet() {
                 </div>
                 
                 <pre className="text-sm">
-                    <span className="text-[#569CD6]">PS C:\Users\SrijanK&gt;</span> cat developer.py<br/>
+                    <span className="text-[#569CD6]">PS C:\Users\Srijan_K&gt;</span> cat developer.py<br/>
                     <span className="text-[#C586C0]">class</span> <span className="text-[#4EC9B0]">Developer</span>:
                     <br />
                     &nbsp;&nbsp;<span className="text-[#569CD6]">def</span> <span className="text-[#DCDCAA]">__init__</span>
@@ -44,9 +46,10 @@ export default function TerminalSnippet() {
                     &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#9CDCFE]">self</span>.
                     specialty = <span className="text-[#CE9178]">&apos;Backend Development&apos;</span>
                     <br />
-                    <span className="text-[#569CD6]">PS C:\Users\SrijanK&gt;</span> <span className="animate-pulse">_</span>
+                    <span className="text-[#569CD6]">PS C:\Users\Srijan_K&gt;</span> <span className="animate-pulse">_</span>
                 </pre>
             </div>
+        </div>
         </div>
     );
 }
