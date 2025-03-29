@@ -1,5 +1,6 @@
 // import Contact from "@/components/contact"
 import Header from "@/components/Header";
+import ProjectCard from "@/components/ProjectsCard";
 import  TerminalSnippet  from "@/components/TerminalSnippet"; // Adjusted to match named export
 import { Button } from "@/components/ui/button";
 
@@ -9,10 +10,11 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <><div className="border border-gray-300 p-4 my-4">
+    <>
+  <div className="border border-gray-300 p-4 my-4">
     <Header />
     <div className="py-8 text-center border-b border-gray-300">
-      <div className="flex flex-col justify-center items-center w-full ">
+       <div className="flex flex-col justify-center items-center w-full ">
             <div className="flex flex-col justify-center items-center w-full snap-start sm:snap-align-none pt-40 pb-54">
         
                 <div className="text-left">
@@ -81,15 +83,48 @@ export default function Home() {
                         </ul>
                       </div>
                     </div>
-                      </div>
+                  </div>
                       <div className="  text-left pr-36">
                       <TerminalSnippet />
                       </div>
-                      </div>
-            
-                    </div>
-                
+            </div>         
             </div>
+            <div className="w-full mt-16 mb-8 pt-12">
+              <h2 className="text-5xl font-bold mb-8 text-left pl-30">Projects</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8 max-w-7xl mx-auto">
+                <ProjectCard 
+                  title="Project 1" 
+                  description="First project description goes here. This is what the project does." 
+                  technologies={["React", "TypeScript", "CSS"]} 
+                  link="#" 
+                  imageUrl="https://placehold.co/100"
+                />
+                <ProjectCard 
+                  title="Project 2" 
+                  description="Second project description goes here. This is what the project does." 
+                  technologies={["Next.js", "Tailwind", "API"]} 
+                  link="#" 
+                />
+                <ProjectCard 
+                  title="Project 3" 
+                  description="Third project description goes here. This is what the project does." 
+                  technologies={["Flutter", "Firebase", "Dart"]} 
+                  link="#" 
+                />
+                <ProjectCard 
+                  title="Project 4" 
+                  description="Fourth project description goes here. This is what the project does." 
+                  technologies={["Python", "Flask", "PostgreSQL"]} 
+                  link="#" 
+                />
+              </div>
+            </div>
+                
+                
+            
+         
+                
+    </div>
     
   
   </div>

@@ -4,8 +4,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
-import { Button } from "./ui/button"
+
 
 export default function Header() {
     const NavLinks = () => (
@@ -57,7 +56,7 @@ export default function Header() {
     );
     const NavMenu=()=>{
         return(
-            <nav className="fixed bottom-0 left-0 right-0 bg-gray-900 p-4 border-t border-gray-700">
+            <nav className="fixed bottom-0 left-0 right-0 bg-neutral-800 p-4 border-t border-gray-700">
                 <div className="flex justify-around items-center max-w-md mx-auto">
                     <TooltipProvider>
                         <Tooltip>
