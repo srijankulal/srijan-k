@@ -55,6 +55,69 @@ export default function Header() {
             </TooltipProvider>
         </nav>
     );
+    const NavMenu=()=>{
+        return(
+            <nav className="fixed bottom-0 left-0 right-0 bg-gray-900 p-4 border-t border-gray-700">
+                <div className="flex justify-around items-center max-w-md mx-auto">
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <a href="#about" className="flex flex-col items-center text-white">
+                                    <span className="text-amber-600 text-xl">&#62;_</span>
+                                    <span className="text-sm">About</span>
+                                </a>
+                            </TooltipTrigger>
+                            <TooltipContent side="top">
+                                <p>Says about me!!</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <a href="#projects" className="flex flex-col items-center text-white">
+                                    <span className="text-amber-600 text-xl">{`{}`}</span>
+                                    <span className="text-sm">Projects</span>
+                                </a>
+                            </TooltipTrigger>
+                            <TooltipContent side="top">
+                                <p>Projects Made!!</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <a href="#skills" className="flex flex-col items-center text-white">
+                                    <span className="text-amber-600 text-xl">&#47;&#92;</span>
+                                    <span className="text-sm">Skills</span>
+                                </a>
+                            </TooltipTrigger>
+                            <TooltipContent side="top">
+                                <p>About my skills</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <a href="#contact" className="flex flex-col items-center text-white">
+                                    <span className="text-amber-600 text-xl">@_</span>
+                                    <span className="text-sm">Contact</span>
+                                </a>
+                            </TooltipTrigger>
+                            <TooltipContent side="top">
+                                <p>Say hello to me!!</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                </div>
+            </nav>
+        )
+    }
 
     return (
         <header className="border-b border-gray-300 py-2 pb-4">
@@ -80,33 +143,9 @@ export default function Header() {
 
                 {/* Mobile Navigation */}
                 <div className="md:hidden ml-auto pr-4" >
-                    <Sheet>
-                        <SheetTrigger asChild>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className=" text-amber-600 border border-white"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M4 6h16M4 12h16m-7 6h7"
-                                    />
-                                </svg>
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side="left" className="sm:max-w-xs">
-                            <NavLinks />
-                        </SheetContent>
-                    </Sheet>
+                    
+                            <NavMenu />
+            
                 </div>
                 
                 <h1 className="text-4xl font-bold"> |</h1>
