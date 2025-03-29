@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 
 interface ProjectCardProps {
   title: string
@@ -20,7 +21,7 @@ export default function ProjectCard({ title, description, technologies, link, im
 
   return (
     <div
-      className={`project-card relative p-5 transition-all duration-300 bg-white border border-gray-200 rounded-sm ${
+      className={`project-card  relative p-5 transition-all duration-300 bg-neutral-700 border border-gray-200 rounded-sm ${
         isHovered ? "shadow-md transform -translate-y-1" : ""
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -34,12 +35,14 @@ export default function ProjectCard({ title, description, technologies, link, im
       </div>
 
       {/* Content */}
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col ">
         {imageUrl && (
           <div className="mb-4 overflow-hidden">
-            <img
+            <Image
               src={imageUrl || "/placeholder.svg"}
               alt={title}
+              width={300}
+              height={200}
               className="object-cover w-full h-32 grayscale hover:grayscale-0 transition-all duration-500"
             />
           </div>

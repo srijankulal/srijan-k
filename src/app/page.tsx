@@ -1,6 +1,6 @@
 // import Contact from "@/components/contact"
 import Header from "@/components/Header";
-import ProjectGrid from "@/components/project-grid";
+
 import ProjectCard from "@/components/ProjectsCard";
 import  TerminalSnippet  from "@/components/TerminalSnippet"; // Adjusted to match named export
 import { Button } from "@/components/ui/button";
@@ -120,7 +120,7 @@ export default function Home() {
             </div>
             <div className="w-full mt-16 mb-8 pt-12">
               <h2 className="text-5xl font-bold mb-8 text-left pl-30">Projects</h2>
-              <div className="w-full mt-16 mb-8 pt-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
           <ProjectCard
             key={index}
@@ -128,7 +128,7 @@ export default function Home() {
             description={project.description}
             technologies={project.technologies}
             link={project.link}
-            imageUrl={project.imageUrl}
+            imageUrl="https://placehold.co/400"
           />
         ))}
           </div>
