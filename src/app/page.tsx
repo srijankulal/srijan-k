@@ -1,5 +1,6 @@
 // import Contact from "@/components/contact"
 import Header from "@/components/Header";
+import ProjectGrid from "@/components/project-grid";
 import ProjectCard from "@/components/ProjectsCard";
 import  TerminalSnippet  from "@/components/TerminalSnippet"; // Adjusted to match named export
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,35 @@ import { Button } from "@/components/ui/button";
 
 
 export default function Home() {
+  const projects = [
+    {
+      title: "ASCII Chat",
+      description: "A real-time chat application with retro ASCII art interface and encryption.",
+      technologies: ["React", "TypeScript", "WebSockets"],
+      link: "#",
+      imageUrl: "/placeholder.svg?height=100&width=100",
+    },
+    {
+      title: "RetroVault",
+      description: "Code snippet manager with ASCII art visualization and sharing capabilities.",
+      technologies: ["Next.js", "Tailwind", "PostgreSQL"],
+      link: "#",
+    },
+    {
+      title: "Pixel Dashboard",
+      description: "Monitoring tool with retro-inspired UI for tracking system metrics.",
+      technologies: ["Flutter", "Firebase", "GraphQL"],
+      link: "#",
+    },
+    {
+      title: "TextMode API",
+      description: "API gateway with ASCII visualization of data flow and analytics.",
+      technologies: ["Python", "Flask", "Redis"],
+      link: "#",
+    },
+  ]
   return (
+    
     <>
   <div className="border border-gray-300 p-4 my-4">
     <Header />
@@ -91,33 +120,19 @@ export default function Home() {
             </div>
             <div className="w-full mt-16 mb-8 pt-12">
               <h2 className="text-5xl font-bold mb-8 text-left pl-30">Projects</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8 max-w-7xl mx-auto">
-                <ProjectCard 
-                  title="Project 1" 
-                  description="First project description goes here. This is what the project does." 
-                  technologies={["React", "TypeScript", "CSS"]} 
-                  link="#" 
-                  imageUrl="https://placehold.co/100"
-                />
-                <ProjectCard 
-                  title="Project 2" 
-                  description="Second project description goes here. This is what the project does." 
-                  technologies={["Next.js", "Tailwind", "API"]} 
-                  link="#" 
-                />
-                <ProjectCard 
-                  title="Project 3" 
-                  description="Third project description goes here. This is what the project does." 
-                  technologies={["Flutter", "Firebase", "Dart"]} 
-                  link="#" 
-                />
-                <ProjectCard 
-                  title="Project 4" 
-                  description="Fourth project description goes here. This is what the project does." 
-                  technologies={["Python", "Flask", "PostgreSQL"]} 
-                  link="#" 
-                />
-              </div>
+              <div className="w-full mt-16 mb-8 pt-12">
+              {projects.map((project, index) => (
+          <ProjectCard
+            key={index}
+            title={project.title}
+            description={project.description}
+            technologies={project.technologies}
+            link={project.link}
+            imageUrl={project.imageUrl}
+          />
+        ))}
+          </div>
+              
             </div>
                 
                 
