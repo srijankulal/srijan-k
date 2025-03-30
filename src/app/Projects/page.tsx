@@ -2,47 +2,11 @@
 import Header from "@/components/Header";
 import ProjectCard from "@/components/ProjectsCard"
 import Link from "next/link"
+import {siteConfig} from "../../../config/site"
 
 export default function Projects() {
     // Removed the selectedProject state since we'll show all details
-    
-    const projects = [
-       
-          {
-            "title": "ByteSize",
-            "description": "AI-powered flashcard generation app",
-            "technologies": ["Next.js", "React", "Tailwind CSS", "AI API", "Local Storage"],
-            "live": "https://byte-size-six.vercel.app",
-            "link":"https://github.com/Nash504/ByteSize",
-            "imageUrl": "https://wqvndanjead1tl5k.public.blob.vercel-storage.com/Porject%20Picture/ByteSize-jLbZGZBZxhIC1G9fxLvBaV216hAGyr.png",
-             "details": "Developed collaboratively with a friend, ByteSize transforms study materials into interactive flashcards using AI. Features include topic categorization, card animations, document import/export, and local storage for saved decks. The app uses a Duolingo-inspired UI with custom components and animations to create an engaging learning experience."
-          }, 
-          {
-            "title": "PlaylistCrafter",
-            "description": "Spotify playlist creation tool",
-            "technologies": ["Python", "Flask", "Spotify API", "OAuth 2.0", "JavaScript"],
-            "link": "https://github.com/srijankulal/PlaylistCrafter",
-            "live": "https://playlistcrafter.vercel.app",
-            "imageUrl": "https://wqvndanjead1tl5k.public.blob.vercel-storage.com/Porject%20Picture/playlistCrafter-N78sA8O21nr65K0BBRGl00tVgDRCJt.png",
-            "details": "A web application leveraging the Spotify API that helps users discover new music through features like Song Sync (creating playlists based on a favorite track) and Playlist Blend (combining two playlists into a unique mix). Built with Flask backend and integrated with OAuth for seamless Spotify account connection."
-          },
-        {
-          title: "RetroVault",
-          description: "Code snippet manager with ASCII art visualization and sharing capabilities.",
-          technologies: ["Next.js", "Tailwind", "PostgreSQL"],
-          link: "",
-          imageUrl: "/placeholder.svg?height=100&width=100",
-          details: "A developer tool designed for storing and organizing code snippets with unique ASCII visualization features and secure sharing options."
-        },
-        {
-          title: "Pixel Dashboard",
-          description: "Monitoring tool with retro-inspired UI for tracking system metrics.",
-          technologies: ["Flutter", "Firebase", "GraphQL"],
-          link: "",
-          imageUrl: "/placeholder.svg?height=100&width=100",
-          details: "Cross-platform monitoring solution with real-time data visualization, custom alerts, and a nostalgic pixel art interface."
-        },
-      ]
+    const projects= siteConfig.projects
     
     return (
         <div className="border border-gray-300 p-4 my-4">
