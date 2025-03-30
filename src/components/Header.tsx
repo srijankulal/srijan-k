@@ -54,7 +54,7 @@ export default function Header({ whereAt }: { whereAt: string }) {
             
             {/* Mobile Navigation */}
           
-            <nav className="md:w-[4rem] h-[4rem] z-40   bottom-0 bg-[#232323]  w-screen fixed md:h-screen border-t-[0.01px] md:border-t-0 md:border-r-[0.01px] border-neutral-700 ">
+            <nav className="md:hidden h-[4rem] z-40   bottom-0 bg-[#232323]  w-screen fixed  border-t-[0.01px]  border-neutral-700 ">
             <div className="flex md:hidden bottom-0">
             
          
