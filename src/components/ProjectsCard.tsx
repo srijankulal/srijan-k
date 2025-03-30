@@ -9,6 +9,8 @@ interface ProjectCardProps {
   technologies: string[]
   link: string
   imageUrl?: string
+  onClick?: () => void
+  details?: string
 }
 
 export default function ProjectCard({ title, description, technologies, link, imageUrl }: ProjectCardProps) {
@@ -21,14 +23,14 @@ export default function ProjectCard({ title, description, technologies, link, im
 
   return (
     <div
-      className={`project-card  relative p-5 transition-all duration-300 bg-neutral-700  border-black border   ${
+      className={`project-card  relative p-5 transition-all duration-300 bg-background border border-dashed border-white ${
         isHovered ? "shadow-md transform -translate-y-1" : ""
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Top ASCII decoration */}
-      <div className="ascii-decoration text-gray-400 mb-3 font-mono text-sm">
+      <div className="ascii-decoration text-white mb-3 font-mono text-sm">
         {corner}
         {horizontalLine} {title} {horizontalLine}
         {corner}
@@ -48,9 +50,9 @@ export default function ProjectCard({ title, description, technologies, link, im
           </div>
         )}
 
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
+        <h3 className="text-xl font-bold mb-2"><u>{title}</u></h3>
 
-        <p className="text-gray-600 mb-4 flex-grow text-sm">{description}</p>
+        <p className="text-foreground mb-4 flex-grow text-sm">{description}</p>
 
         <div className="tech-stack mb-4">
           <div className="flex flex-wrap gap-1.5">
@@ -69,7 +71,7 @@ export default function ProjectCard({ title, description, technologies, link, im
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="view-link text-gray-800 hover:text-black font-mono text-sm flex items-center group"
+            className="view-link text-white hover:text-amber-600 font-mono text-sm flex items-center group"
           >
             <span className="mr-2 transition-all duration-300 group-hover:mr-3">project</span>
             <span className="text-gray-400 group-hover:text-black transition-colors duration-300">→</span>

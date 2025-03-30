@@ -51,8 +51,10 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #171717 ;
-  --foreground: oklch(0.141 0.005 285.823);
+  --background: #171717; /* This is already neutral-900 */
+  --foreground: #ffffff; /* Changed to white */
+  --border: theme('colors.neutral.800');
+  --ring: theme('colors.neutral.700');
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
@@ -85,8 +87,8 @@
 }
 
 .dark {
-  --background: #171717;
-  --foreground: oklch(0.985 0 0);
+  --background: #171717; /* This is already neutral-900 */
+  --foreground: #ffffff; 
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
@@ -120,9 +122,12 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline-color: var(--ring);
+    outline-width: 0;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }
