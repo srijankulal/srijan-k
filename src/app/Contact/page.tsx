@@ -3,7 +3,9 @@
 import { sendEmail } from "../../../server_actions/sendEmail";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import toast, { LoaderIcon, Toaster } from "react-hot-toast";
+import { toast} from "sonner";
+import { LoaderIcon } from "lucide-react";
+
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -129,7 +131,7 @@ export default function Contact() {
                     <div className="text-sm opacity-80 mt-2">
                         {loading && "Processing request... Please wait..."}
                     </div>
-                    <Toaster />
+                    
                 </form>
             </div>
             </div>

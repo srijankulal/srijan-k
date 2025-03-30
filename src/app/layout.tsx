@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { VT323  } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 
 // const poppins = Poppins({
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${vt323.className} antialiased bg-neutral-900 text-neutral-100`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

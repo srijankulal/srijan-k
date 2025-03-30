@@ -2,25 +2,35 @@
 import Header from "@/components/Header";
 import ProjectCard from "@/components/ProjectsCard"
 import Link from "next/link"
-import { useState } from "react"
 
 export default function Projects() {
-    const [selectedProject, setSelectedProject] = useState<number | null>(null);
+    // Removed the selectedProject state since we'll show all details
     
     const projects = [
-        {
-          title: "ASCII Chat",
-          description: "A real-time chat application with retro ASCII art interface and encryption.",
-          technologies: ["React", "TypeScript", "WebSockets"],
-          link: "#",
-          imageUrl: "/placeholder.svg?height=100&width=100",
-          details: "Built with modern web technologies to create a unique chat experience featuring real-time messaging, end-to-end encryption, and customizable ASCII art avatars."
-        },
+       
+          {
+            "title": "ByteSize",
+            "description": "AI-powered flashcard generation app",
+            "technologies": ["Next.js", "React", "Tailwind CSS", "AI API", "Local Storage"],
+            "live": "https://byte-size-six.vercel.app",
+            "link":"https://github.com/Nash504/ByteSize",
+            "imageUrl": "https://wqvndanjead1tl5k.public.blob.vercel-storage.com/Porject%20Picture/ByteSize-jLbZGZBZxhIC1G9fxLvBaV216hAGyr.png",
+             "details": "Developed collaboratively with a friend, ByteSize transforms study materials into interactive flashcards using AI. Features include topic categorization, card animations, document import/export, and local storage for saved decks. The app uses a Duolingo-inspired UI with custom components and animations to create an engaging learning experience."
+          }, 
+          {
+            "title": "PlaylistCrafter",
+            "description": "Spotify playlist creation tool",
+            "technologies": ["Python", "Flask", "Spotify API", "OAuth 2.0", "JavaScript"],
+            "link": "https://github.com/srijankulal/PlaylistCrafter",
+            "live": "https://playlistcrafter.vercel.app",
+            "imageUrl": "https://wqvndanjead1tl5k.public.blob.vercel-storage.com/Porject%20Picture/playlistCrafter-N78sA8O21nr65K0BBRGl00tVgDRCJt.png",
+            "details": "A web application leveraging the Spotify API that helps users discover new music through features like Song Sync (creating playlists based on a favorite track) and Playlist Blend (combining two playlists into a unique mix). Built with Flask backend and integrated with OAuth for seamless Spotify account connection."
+          },
         {
           title: "RetroVault",
           description: "Code snippet manager with ASCII art visualization and sharing capabilities.",
           technologies: ["Next.js", "Tailwind", "PostgreSQL"],
-          link: "#",
+          link: "",
           imageUrl: "/placeholder.svg?height=100&width=100",
           details: "A developer tool designed for storing and organizing code snippets with unique ASCII visualization features and secure sharing options."
         },
@@ -28,16 +38,11 @@ export default function Projects() {
           title: "Pixel Dashboard",
           description: "Monitoring tool with retro-inspired UI for tracking system metrics.",
           technologies: ["Flutter", "Firebase", "GraphQL"],
-          link: "#",
+          link: "",
           imageUrl: "/placeholder.svg?height=100&width=100",
           details: "Cross-platform monitoring solution with real-time data visualization, custom alerts, and a nostalgic pixel art interface."
         },
-
       ]
-    
-    const viewProjectDetails = (index:number):void => {
-        setSelectedProject(selectedProject === index ? null : index);
-    }
     
     return (
         <div className="border border-gray-300 p-4 my-4">
@@ -46,35 +51,28 @@ export default function Projects() {
             <div className="text-left">
                 <h2 className="text-6xl font-bold mb-2 text-left pl-5">
                     <span className="inline-block">&#62;</span>PROJECTS
-                </h2>
-                <h2 className="text-6xl font-bold mb-4 text-left pl-11 flex items-center">
-                    <u className="mx-1"> Srijan</u>&nbsp;<u>K</u> !
+                
                     <span className="ml-1 inline-block w-4 h-8 animate-caret-blink">_</span>
                 </h2>
             </div>
-            <div className="flex flex-wrap gap-4 justify-center mt-8">
-                {projects.map((project, index) => (
-                    <div key={index} className="transition-all duration-300">
-                        <ProjectCard {...project} onClick={() => viewProjectDetails(index)} />
-                        {selectedProject === index && (
-                            <div className="mt-4 p-6 bg-black/40 backdrop-blur-sm border border-gray-600 rounded-lg max-w-lg">
-                                <h3 className="text-xl font-bold mb-2">{project.title} - Details</h3>
-                                <p className="mb-4">{project.details}</p>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.technologies.map((tech, i) => (
-                                        <span key={i} className="px-2 py-1 text-xs bg-gray-800 rounded-md">
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
-                                <Link href={project.link} className="text-blue-400 hover:underline">
-                                    View Project &rarr;
-                                </Link>
-                            </div>
-                        )}
-                    </div>
-                ))}
+            <div className="flex flex-col w-full gap-8 mt-8">
+    {projects.map((project, index) => (
+        <div key={index} className="transition-all duration-300 w-full max-w-4xl mx-auto">
+            <ProjectCard {...project} live={project.live} />
+            <div className="mt-4 p-6 bg-background backdrop-blur-sm border border-amber-600">
+                <h3 className="text-xl font-bold mb-2">{project.title} - Details</h3>
+                <p className="mb-4">{project.details}</p>
+                
+                {project.link && (
+                    <Link href={project.link} className="text-blue-400 hover:underline">
+                        View Project Code &rarr;
+                    </Link>
+                )}
             </div>
+        </div>
+    ))}
+</div>
+
         </div>
         </div>
     )
