@@ -1,30 +1,30 @@
 export default function TerminalSnippet() {
     return (
-        <div className="flex flex-col justify-center items-center w-full snap-start sm:snap-align-none ">
+        <div className="flex flex-col justify-center items-center w-full snap-start sm:snap-align-none p-4">
           
-        <div className="bg-[#1E1E1E] text-white rounded-lg shadow-lg overflow-hidden max-w-xl mx-auto border border-gray-700">
+        <div className="bg-[#1E1E1E] text-white rounded-lg shadow-lg overflow-hidden w-full max-w-xl mx-auto border border-gray-700">
             {/* VS Code title bar */}
-            <div className="bg-[#333333] px-4 py-2 flex justify-between items-center">
+            <div className="bg-[#333333] px-2 sm:px-4 py-2 flex justify-between items-center">
                 <div className="flex items-center space-x-2">
                     <span className="bg-[#1E1E1E] text-[#75BEFF] text-xs px-2 py-0.5 rounded">PYTHON</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                    <svg className="h-4 w-4 text-gray-400 hover:text-white cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400 hover:text-white cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
             </div>
             
             {/* VS Code terminal content */}
-            <div className="p-4 font-mono bg-[#1E1E1E] border-t border-gray-700">
-                <div className="flex items-center mb-2 text-xs text-gray-400">
+            <div className="p-2 sm:p-4 font-mono bg-[#1E1E1E] border-t border-gray-700">
+                <div className="flex items-center mb-2 text-[10px] sm:text-xs text-gray-400 overflow-x-auto whitespace-nowrap">
                     <span className="mr-2">PROBLEMS</span>
                     <span className="mr-2">OUTPUT</span>
                     <span className="mr-2">DEBUG CONSOLE</span>
                     <span className="text-white border-b-2 border-blue-500 pb-1">TERMINAL</span>
                 </div>
                 
-                <pre className="text-sm">
+                <pre className="text-xs sm:text-sm overflow-x-auto">
                     <span className="text-[#569CD6]">PS C:\Users\Srijan_K&gt;</span> cat developer.py<br/>
                     <span className="text-[#C586C0]">class</span> <span className="text-[#4EC9B0]">Developer</span>:
                     <br />

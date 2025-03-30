@@ -1,6 +1,8 @@
-export default function Contact() {
+export default function Contact({id}: {id: string}) {
+
+
     return (
-      <div className="w-full mt-16 mb-8 pt-22">
+      <div className="w-full mt-16 mb-8 pt-22" id={id}>
                 <h2 className="text-5xl font-bold mb-8 text-left lg:pl-30">Contact</h2>
                 <div className="flex flex-col justify-center items-center w-full pt-10">
                 <div className="terminal-style-contact w-full max-w-3xl p-6 border-2 border-white bg-back bg-opacity-80 text-left">
@@ -16,7 +18,7 @@ export default function Contact() {
                       <span className="text-blue-400 font-mono"> ~/contacts</span><br></br>
                         <span className="text-white font-mono">$ ls -la contacts/</span>
                         </div>
-                        
+                        <div className="mb-4 border-b border-gray-700 pb-2">
                         <div className="font-mono mt-4 pl-4">
                           <div className="mb-3 text-green-500 text-lg">total 4</div>
                           <div className="grid grid-cols-3 gap-3 mb-3">
@@ -59,14 +61,21 @@ export default function Contact() {
                             </a>
                           </div>
                           </div>
+                          </div>
                           
                         </div>
                       
-                  
-                  <div className="mt-6 pt-4 border-t border-gray-700">
-                  <span className="text-amber-600 font-mono">$ </span>
-                  <span className="animate-caret-blink">_</span>
-                  </div>
+                    <div className="mt-6 ">
+                      <span className="text-amber-600 font-mono">$ </span>
+                      contact
+                     
+                      <a href="/Contact" className="text-gray-400  hover:text-green-600"> [<u className="text-blue-400 hover:text-green-600">click to send mail</u>]
+                      </a>
+                      <span className="animate-caret-blink"> _</span>
+
+                    </div>
+                    
+                    
                 </div>
                 </div>
                 </div>

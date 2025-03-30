@@ -1,4 +1,5 @@
 'use client'
+import Header from "@/components/Header";
 import ProjectCard from "@/components/ProjectsCard"
 import Link from "next/link"
 import { useState } from "react"
@@ -39,6 +40,8 @@ export default function Projects() {
     }
     
     return (
+        <div className="border border-gray-300 p-4 my-4">
+            <Header whereAt="projects" />
         <div className="flex flex-col justify-center items-center w-full snap-start sm:snap-align-none pt-40 pb-54">
             <div className="text-left">
                 <h2 className="text-6xl font-bold mb-2 text-left pl-5">
@@ -72,6 +75,7 @@ export default function Projects() {
                     </div>
                 ))}
             </div>
+        </div>
         </div>
     )
 }
