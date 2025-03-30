@@ -8,7 +8,7 @@ export default function About() {
         <h2 className="text-5xl font-bold mb-2 text-left pl-30" >About Me</h2>
         
            <div className="flex flex-col justify-center items-center w-full md:flex-row">
-             <div className="flex flex-row justify-center items-center w-full pl-20 ">
+             <div className="flex flex-row justify-center items-center w-full md:pl-20 ">
            <div className="terminal-style-about p-4 text-left border-l-2 border-white">
              <div className="mb-4">
                <span className="text-amber-600 ">$ whoami</span>
