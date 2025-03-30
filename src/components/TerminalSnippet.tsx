@@ -42,7 +42,7 @@ export default function TerminalSnippet() {
                         <span className="text-[#CE9178]">&apos;Flutter&apos;</span>,{' '}
                     <span className="text-[#CE9178]">&apos;Next js&apos;</span>,{' '}
                     <span className="text-[#CE9178]">&apos;AI&apos;</span>]
-                    <br />
+                    <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#9CDCFE]">self</span>.
                     specialty = <span className="text-[#CE9178]">&apos;Backend Development&apos;</span>
                     <br />

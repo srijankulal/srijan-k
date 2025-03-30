@@ -21,7 +21,7 @@ export default function ProjectCard({ title, description, technologies, link, im
 
   return (
     <div
-      className={`project-card  relative p-5 transition-all duration-300 bg-neutral-700 border border-gray-200 rounded-sm ${
+      className={`project-card  relative p-5 transition-all duration-300 bg-neutral-700  border-black border   ${
         isHovered ? "shadow-md transform -translate-y-1" : ""
       }`}
       onMouseEnter={() => setIsHovered(true)}

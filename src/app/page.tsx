@@ -84,15 +84,15 @@ export default function Home() {
                         <span className="text-green-400 ">$ whoami</span>
                         <ul className="list-none pl-4 pt-2">
                           <li className="flex items-start mb-2">
-                            <span className="text-[#9CDCFE] mr-2">▶</span> 
+                            <span className=" mr-2">▶</span> 
                             <span>Backend-focused developer skilled in Python (Flask), Next.js, Flutter</span>
                           </li>
                           <li className="flex items-start mb-2">
-                            <span className="text-[#9CDCFE]">▶</span> 
+                            <span className="">▶</span> 
                             <span>Experienced with PostgreSQL, MySQL and database optimization</span>
                           </li>
                           <li className="flex items-start mb-2">
-                            <span className="text-[#9CDCFE] mr-2">▶</span> 
+                            <span className=" mr-2">▶</span> 
                             <span>Specializing in secure, scalable applications with real-time features</span>
                           </li>
                         </ul>
@@ -102,11 +102,11 @@ export default function Home() {
                         <span className="text-green-400">$ education</span>
                         <ul className="list-none pl-4 pt-2">
                           <li className="flex items-start mb-2">
-                            <span className="text-[#9CDCFE] mr-2">▶</span> 
+                            <span className=" mr-2">▶</span> 
                             <span>B.C.A at St. Aloysius University (2023-2026)</span>
                           </li>
                           <li className="flex items-start mb-2">
-                            <span className="text-[#9CDCFE] mr-2">▶</span> 
+                            <span className=" mr-2">▶</span> 
                             <span>Constantly learning and seeking new challenges</span>
                           </li>
                         </ul>
@@ -118,9 +118,10 @@ export default function Home() {
                       </div>
             </div>         
             </div>
-            <div className="w-full mt-16 mb-8 pt-12">
+            <div className="w-full mt-16 mb-8 pt-22">
               <h2 className="text-5xl font-bold mb-8 text-left pl-30">Projects</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full pl-34 pr-34 ">
               {projects.map((project, index) => (
           <ProjectCard
             key={index}
@@ -132,6 +133,7 @@ export default function Home() {
           />
         ))}
           </div>
+
               
             </div>
                 
