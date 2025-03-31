@@ -7,7 +7,7 @@ export default function Project() {
     const projects = siteConfig.projects
     return (
         <div id="projects" className="w-full mt-8 sm:mt-12 md:mt-16 mb-6 sm:mb-8 pt-6 sm:pt-8 md:pt-12 px-1 sm:px-4">
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 md:mb-8 text-left">Projects</h2>
+            <h2 className="text-4xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 md:mb-8 text-left">Projects</h2>
       
             <div className="grid grid-cols-1 sm:grid-cols-2 pt-4 sm:pt-6 md:pt-10 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6 w-full">
               {projects.slice(0, 4).map((project, index) => (

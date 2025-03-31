@@ -6,8 +6,8 @@ import Image from "next/image";
 export default function Hero() {
     return (
         <div className="flex flex-col justify-center items-center w-full">
-            <div className="flex flex-col md:flex-row justify-between items-center w-full  sm:pt-16 md:pt-40 pb-8 sm:pb-16 md:pb-54 gap-8">
-                <div className="text-left w-full md:w-3/5 px-2 sm:px-4 md:px-8 lg:px-12 lg:pb-54">
+            <div className="flex flex-col md:flex-row justify-between items-center w-full  sm:pt-16 md:pt-18 pb-8 sm:pb-20   md:pb-54 gap-8">
+                <div className="text-left w-full md:w-3/5 pb-24 px-2 sm:px-4 md:px-8 lg:px-12 lg:pb-34  lg:pt-20">
                     <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-2 text-left pl-1 md:pl-5">
                         <span className="inline-block">&#62;</span>HI
                     </h2>
@@ -31,7 +31,7 @@ export default function Hero() {
                         </Link>
                     </div>
                 </div>
-                <div className="w-full lg:w-2/5 flex items-center justify-center px-4">
+                <div className="hidden w-full lg:w-2/5 lg:flex items-center justify-center px-4">
     <Image
         src={me.src} 
         alt="Srijan K ASCII Art" 

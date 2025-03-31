@@ -43,7 +43,7 @@ export default function About() {
              </div>
            </div>
          </div>
-             <div className="  text-left pr-36 pl-36 pt-8">
+             <div className="  text-left lg:pr-36 lg:pl-36 pt-8">
                  <TerminalSnippet />
              </div>
             </div>

@@ -18,7 +18,7 @@ export default function Home() {
         
         <div className="py-4 sm:py-8 text-center border-b  border-gray-300 w-full overflow-hidden">
           {/* Hero Section */}
-          <div className="border-b border-gray-300 pb-4 ">
+          <div className="border-b border-gray-300 ">
           <Hero/>
           </div>
   
@@ -33,7 +33,7 @@ export default function Home() {
             </div>
   
           {/* Skills Section */}
-          <div className="pt-24 border-b border-gray-300">
+          <div className="lg:pt-20 lg:pb-24 border-b border-gray-300">
           <Skills />
           </div>
           {/* Contact Section */}
