@@ -80,7 +80,7 @@ export default function Skills() {
             variants={cardVariants}
             className="bg-background border border-white p-4 transition-all duration-300 hover:border-2 hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.7)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
           >
-            <h3 className="text-xl font-medium mb-4 text-gray-200 flex items-center">
+            <h3 className="text-2xl font-medium mb-4 text-gray-200 flex items-center">
               <motion.span
                 whileHover="hover"
                 initial="initial"

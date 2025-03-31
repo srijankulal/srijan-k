@@ -48,7 +48,7 @@ export default function About() {
                     className="flex items-start mb-2"
                   >
                     <span className="mr-2">▶</span> 
-                    <span>{text}</span>
+                    <span className="text-2xl">{text}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -65,7 +65,7 @@ export default function About() {
                     className="flex items-start mb-2"
                   >
                     <span className="mr-2">▶</span> 
-                    <span>{text}</span>
+                    <span  className="text-2xl">{text}</span>
                   </motion.li>
                 ))}
               </ul>

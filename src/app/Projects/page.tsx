@@ -38,11 +38,11 @@ export default function Projects() {
                     }}>
                     <ProjectCard {...project} live={project.live} />
                     <div className="mt-4 p-6 bg-background backdrop-blur-sm border border-amber-600 transition-all duration-500 overflow-hidden"
-                         style={{
-                             maxHeight: isVisible ? '1000px' : '0px',
-                             opacity: isVisible ? 1 : 0,
+                        style={{
+                            maxHeight: isVisible ? '1000px' : '0px',
+                            opacity: isVisible ? 1 : 0,
                              transitionDelay: `${(index * 200) + 300}ms`
-                         }}>
+                        }}>
                         <h3 className="text-xl font-bold mb-2">{project.title} - Details</h3>
                         <p className="mb-4">{project.details}</p>
                         
