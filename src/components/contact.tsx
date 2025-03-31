@@ -2,7 +2,7 @@ export default function Contact({id}: {id: string}) {
 
 
     return (
-      <div className="w-full mt-16 mb-8 pt-22" id={id}>
+      <div className="w-full mt-16 mb-8 pt-10" id={id}>
                 <h2 className="text-5xl font-bold mb-8 text-left lg:pl-30">Contact</h2>
                 <div className="flex flex-col justify-center items-center w-full pt-10">
                 <div className="terminal-style-contact w-full max-w-3xl p-6 border-2 border-white bg-back bg-opacity-80 text-left">

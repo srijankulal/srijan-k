@@ -13,27 +13,31 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden w-full">
       <main className="border border-gray-300 p-2 sm:p-4 my-4 w-full max-w-full overflow-x-hidden">
+        
         <Header whereAt="home" />
-        <div className="py-4 sm:py-8 text-center border-b border-gray-300 w-full overflow-hidden">
+        
+        <div className="py-4 sm:py-8 text-center border-b  border-gray-300 w-full overflow-hidden">
           {/* Hero Section */}
+          <div className="border-b border-gray-300 pb-4 ">
           <Hero/>
+          </div>
   
           {/* About Section */}
-          <div className="pt-14">
+          <div className="pt-14 border-b border-gray-300 pb-24">
           <About />
           </div>
   
           {/* Projects Section */}
-          <div className="pt-24 ">
+          <div className="pt-10 border-b border-gray-300 pb-24 ">
             <Project />
             </div>
   
           {/* Skills Section */}
-          <div className="pt-24">
+          <div className="pt-24 border-b border-gray-300">
           <Skills />
           </div>
           {/* Contact Section */}
-          <div className="pt-24">
+          <div className="pb-14 ">
           <Contact id="contact" />
           </div>
         </div>
