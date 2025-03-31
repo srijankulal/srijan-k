@@ -10,14 +10,15 @@ export default function Footer() {
       transition={{ duration: 0.5 }}
     >
     <div className="container mx-auto px-2 sm:px-4">
-      <div className="flex flex-col md:flex-row justify-between items-center">
+      <div className="flex flex-row  justify-between items-center">
       <motion.div 
         className="mb-4 md:mb-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
       >
-        <p className="text-xs sm:text-sm">© {new Date().getFullYear()} Srijan K. All rights reserved.</p>
+        <p className="text-xs sm:text-sm ">© {new Date().getFullYear()} Srijan K. All rights reserved.</p>
+        <p className="text-xs sm:text-sm mt-1">Mangalore, India</p>
       </motion.div>
       <div className="flex space-x-4 sm:space-x-6">
         {[
