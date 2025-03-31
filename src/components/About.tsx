@@ -37,7 +37,7 @@ export default function About() {
         <div className="flex flex-row justify-center items-center w-full md:pl-20">
           <motion.div variants={itemVariants} className="terminal-style-about p-4 text-left border-l-2 border-white">
             <div className="mb-4">
-              <motion.span variants={itemVariants} className="text-amber-600">$ whoami</motion.span>
+              <motion.span variants={itemVariants} className="text-amber-600 text-2xl">$ whoami</motion.span>
               <ul className="list-none pl-4 pt-2">
                 {["Backend-focused developer skilled in Python (Flask), Next.js, Flutter", 
                   "Experienced with PostgreSQL, MySQL and database optimization",
@@ -55,7 +55,7 @@ export default function About() {
             </div>
             
             <div className="mb-2">
-              <motion.span variants={itemVariants} className="text-amber-600">$ education</motion.span>
+              <motion.span variants={itemVariants} className="text-amber-600 text-2xl">$ education</motion.span>
               <ul className="list-none pl-4 pt-2">
                 {["B.C.A at St. Aloysius University (2023-2026)", 
                   "Constantly learning and seeking new challenges"].map((text, index) => (
