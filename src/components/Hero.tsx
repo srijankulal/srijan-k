@@ -31,13 +31,13 @@ export default function Hero() {
                         </Link>
                     </div>
                 </div>
-                <div className="hidden w-full lg:w-2/5 lg:flex items-center justify-center px-4">
+                <div className="hidden w-full lg:w-2/5 lg:flex items-center  justify-center px-4">
     <Image
         src={me.src} 
         alt="Srijan K ASCII Art" 
         width={600}
         height={600}
-        className="max-w-full h-auto w-auto object-contain opacity-90 filter contrast-125"
+        className="max-w-full h-auto w-auto object-contain rounded-sm opacity-90 filter contrast-125"
         priority
     />
 </div>
