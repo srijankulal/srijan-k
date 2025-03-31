@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast} from "sonner";
 import { LoaderIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -59,11 +60,39 @@ export default function Contact() {
         reset();
     }
     
+    // Animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: { 
+            opacity: 1,
+            transition: { 
+                duration: 0.6,
+                when: "beforeChildren",
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 0.4 } }
+    };
+    
     return (
-        <div className="border border-gray-300 p-4 my-4">
-            <Header  whereAt='contact'/>
+        <motion.div 
+            className="border border-gray-300 p-4 my-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
+            <Header whereAt='contact'/>
             <div className="text-center mb-6">
-                <pre className="  text-xs lg:text-lg text-white ">
+                <motion.pre 
+                    className="text-xs lg:text-lg text-white"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.7, type: "spring" }}
+                >
                     {`
    _____            _             _   
   / ____|          | |           | |  
@@ -75,24 +104,35 @@ export default function Contact() {
                                        
                                                   
                     `}
-                </pre>
-                <h2 className=" text-xl font-bold text-white">[CONTACT FORM]</h2>
+                </motion.pre>
+                <motion.h2 
+                    className="text-xl font-bold text-white"
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                >[CONTACT FORM]</motion.h2>
             </div>
-            <div className="flex justify-center items-center w-full snap-start sm:snap-align-none  pb-54">
+            <div className="flex justify-center items-center w-full snap-start sm:snap-align-none pb-54">
             
-            <div className="bg-background text-white p-4 border-2 border-white  shadow-lg w-full md:w-1/2">
-                
-                
+            <motion.div 
+                className="bg-background text-white p-4 border-2 border-white shadow-lg w-full md:w-1/2"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
                 <form
-                    className="flex flex-col w-full gap-3 "
+                    className="flex flex-col w-full gap-3"
                     onSubmit={handleSubmit(onSubmit)}
                 >
-                    <div className="flex flex-col items-start justify-start w-full gap-2 md:flex-row">
+                    <motion.div 
+                        variants={itemVariants}
+                        className="flex flex-col items-start justify-start w-full gap-2 md:flex-row"
+                    >
                         <div className="w-full md:w-1/2">
                             <label className="block mb-1 text-lg">&gt; name:</label>
                             <Input
                                 placeholder="Nash Dan"
-                                className="w-full  bg-background border-white text-white focus:border-white"
+                                className="w-full bg-background border-white text-white focus:border-white"
                                 required
                                 {...register("name")}
                             />
@@ -108,8 +148,8 @@ export default function Contact() {
                                 {...register("email")}
                             />
                         </div>
-                    </div>
-                    <div>
+                    </motion.div>
+                    <motion.div variants={itemVariants}>
                         <label className="block mb-1 text-lg">&gt; message:</label>
                         <Textarea
                             placeholder="Hello there!"
@@ -118,8 +158,12 @@ export default function Contact() {
                             rows={5}
                             {...register("message")}
                         />
-                    </div>
-                    <div>
+                    </motion.div>
+                    <motion.div 
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
                         <Button
                             disabled={loading || isSubmitting}
                             type="submit"
@@ -127,15 +171,17 @@ export default function Contact() {
                         >
                             {loading ? <LoaderIcon className="animate-spin" /> : "> EXECUTE SEND_MESSAGE.sh"}
                         </Button>
-                    </div>
-                    <div className="text-sm opacity-80 mt-2">
+                    </motion.div>
+                    <motion.div 
+                        className="text-sm opacity-80 mt-2"
+                        animate={{ opacity: loading ? 1 : 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
                         {loading && "Processing request... Please wait..."}
-                    </div>
-                    
+                    </motion.div>
                 </form>
+            </motion.div>
             </div>
-            </div>
-        </div>
+        </motion.div>
     );
 }
-

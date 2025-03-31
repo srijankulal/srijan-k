@@ -1,55 +1,83 @@
 import TerminalSnippet from "./TerminalSnippet";
+import { motion } from "framer-motion";
 
 export default function About() {
-    return (
-        <>
-        <div className="flex justify-center items-center w-full  " id="about">
-        <div className="flex flex-col  w-full snap-start sm:snap-align-none ">
-        <h2 className="text-5xl font-bold mb-2 text-left pl-30" >About Me</h2>
-        
-           <div className="flex flex-col justify-center items-center w-full md:flex-row">
-             <div className="flex flex-row justify-center items-center w-full md:pl-20 ">
-           <div className="terminal-style-about p-4 text-left border-l-2 border-white">
-             <div className="mb-4">
-               <span className="text-amber-600 ">$ whoami</span>
-               <ul className="list-none pl-4 pt-2">
-                 <li className="flex items-start mb-2">
-                   <span className=" mr-2">▶</span> 
-                   <span>Backend-focused developer skilled in Python (Flask), Next.js, Flutter</span>
-                 </li>
-                 <li className="flex items-start mb-2">
-                   <span className="">▶</span> 
-                   <span>Experienced with PostgreSQL, MySQL and database optimization</span>
-                 </li>
-                 <li className="flex items-start mb-2">
-                   <span className=" mr-2">▶</span> 
-                   <span>Specializing in secure, scalable applications with real-time features</span>
-                 </li>
-               </ul>
-             </div>
-             
-             <div className="mb-2">
-               <span className="text-amber-600">$ education</span>
-               <ul className="list-none pl-4 pt-2">
-                 <li className="flex items-start mb-2">
-                   <span className=" mr-2">▶</span> 
-                   <span>B.C.A at St. Aloysius University (2023-2026)</span>
-                 </li>
-                 <li className="flex items-start mb-2">
-                   <span className=" mr-2">▶</span> 
-                   <span>Constantly learning and seeking new challenges</span>
-                 </li>
-               </ul>
-             </div>
-           </div>
-         </div>
-             <div className="  text-left lg:pr-36 lg:pl-36 pt-8">
-                 <TerminalSnippet />
-             </div>
-            </div>
-            </div>
-            </div>
-            </>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.3 
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { duration: 0.5 }
+    }
+  };
 
-    );
+  return (
+    <>
+    <div className="flex justify-center items-center w-full" id="about">
+    <motion.div 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+      className="flex flex-col w-full snap-start sm:snap-align-none"
+    >
+      <motion.h2 variants={itemVariants} className="text-5xl font-bold mb-2 text-left pl-30">About Me</motion.h2>
+      
+      <div className="flex flex-col justify-center items-center w-full md:flex-row">
+        <div className="flex flex-row justify-center items-center w-full md:pl-20">
+          <motion.div variants={itemVariants} className="terminal-style-about p-4 text-left border-l-2 border-white">
+            <div className="mb-4">
+              <motion.span variants={itemVariants} className="text-amber-600">$ whoami</motion.span>
+              <ul className="list-none pl-4 pt-2">
+                {["Backend-focused developer skilled in Python (Flask), Next.js, Flutter", 
+                  "Experienced with PostgreSQL, MySQL and database optimization",
+                  "Specializing in secure, scalable applications with real-time features"].map((text, index) => (
+                  <motion.li 
+                    key={index}
+                    variants={itemVariants} 
+                    className="flex items-start mb-2"
+                  >
+                    <span className="mr-2">▶</span> 
+                    <span>{text}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="mb-2">
+              <motion.span variants={itemVariants} className="text-amber-600">$ education</motion.span>
+              <ul className="list-none pl-4 pt-2">
+                {["B.C.A at St. Aloysius University (2023-2026)", 
+                  "Constantly learning and seeking new challenges"].map((text, index) => (
+                  <motion.li 
+                    key={index}
+                    variants={itemVariants} 
+                    className="flex items-start mb-2"
+                  >
+                    <span className="mr-2">▶</span> 
+                    <span>{text}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        </div>
+        <motion.div variants={itemVariants} className="text-left lg:pr-36 lg:pl-36 pt-8">
+          <TerminalSnippet />
+        </motion.div>
+      </div>
+    </motion.div>
+    </div>
+    </>
+  );
 }
