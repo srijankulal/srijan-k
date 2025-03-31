@@ -45,6 +45,13 @@ export const siteConfig = {
           "live": "https://github.com/srijankulal/Syntix/",
           "imageUrl": "https://wqvndanjead1tl5k.public.blob.vercel-storage.com/blob-2025-03-30%20at%202.24.02%20AM-gmSUHwwexbIByEUEpwW0OEvb3q1YdV.png",
           "details": "SyntiX is a multi-platform application that allows users to control their computer's volume and brightness directly from their mobile device. The desktop component is built with Python while the mobile interface is developed using Flutter. The system creates a seamless connection between devices, enabling remote adjustment of system settings through an intuitive mobile interface."
+        },{
+          "title": "LED Display Library",
+          "description": "Arduino library for controlling 7-segment LED displays",
+          "technologies": ["C++", "Arduino", "PlatformIO"],
+          "link": "https://github.com/srijankulal/LED_Displayy",
+          "imageUrl": "https://placehold.co/400",
+          "details": "A versatile Arduino library that simplifies controlling 7-segment LED displays. The library supports displaying digits (0-9), the entire English alphabet (A-Z), and special characters. It features an intuitive API that allows developers to easily initialize and control the display with just a few lines of code. Built using object-oriented principles for clean implementation and memory efficiency."
         }
     ]
   
