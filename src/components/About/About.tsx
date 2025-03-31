@@ -1,4 +1,4 @@
-import TerminalSnippet from "./TerminalSnippet";
+import TerminalSnippet from "../TerminalSnippet";
 import { motion } from "framer-motion";
 
 export default function About() {

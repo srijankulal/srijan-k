@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/Header";
+import Header from "@/components/HeaderFooter/Header";
 
 const ContactFormSchema = z.object({
     name: z.string().min(2).max(50),

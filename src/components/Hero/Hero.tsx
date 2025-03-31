@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import me from "@/public/ascii-art.png"
 import Image from "next/image";
 import { useEffect, useState } from "react";

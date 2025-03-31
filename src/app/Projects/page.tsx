@@ -1,6 +1,6 @@
 'use client'
-import Header from "@/components/Header";
-import ProjectCard from "@/components/ProjectsCard"
+import Header from "@/components/HeaderFooter/Header";
+import ProjectCard from "@/components/Project/ProjectsCard"
 import Link from "next/link"
 import {siteConfig} from "../../../config/site"
 import { useEffect, useState } from "react"

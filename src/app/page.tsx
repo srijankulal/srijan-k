@@ -1,11 +1,11 @@
 "use client";
-import About from "@/components/About";
-import Contact from "@/components/contact";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Project from "@/components/Project";
-import Skills from "@/components/Skills";
+import About from "@/components/About/About";
+import Contact from "@/components/Contact/contact";
+import Footer from "@/components/HeaderFooter/Footer";
+import Header from "@/components/HeaderFooter/Header";
+import Hero from "@/components/Hero/Hero";
+import Project from "@/components/Project/Project";
+import Skills from "@/components/Skill/Skills";
 import { motion } from "motion/react"
 
 export default function Home() {

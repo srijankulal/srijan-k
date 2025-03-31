@@ -1,7 +1,7 @@
-import ProjectCard from "@/components/ProjectsCard";
+import ProjectCard from "@/components/Project/ProjectsCard";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "../../config/site";
+import { siteConfig } from "../../../config/site";
 
 export default function Project() {
     const projects = siteConfig.projects
