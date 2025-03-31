@@ -16,7 +16,7 @@ export default function Project() {
               title={project.title}
               description={project.description}
               technologies={project.technologies}
-              live={project.link}
+              live={project.live}
               link={project.link}
               imageUrl={project.imageUrl}
             />
