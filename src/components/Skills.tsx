@@ -7,28 +7,28 @@ export default function Skills() {
           <div className="terminal-style-skills w-full">
             <h3 className="text-lg sm:text-xl font-mono mb-2 text-amber-600">$ cat frontend.txt</h3>
             <pre className="text-base sm:text-xl lg:text-2xl overflow-x-auto">
-{`  ┌─────────────────────┐
-  │ Frontend            │
+      {`┌─────────────────────┐
+        │ Frontend            │
         ├─────────────────────┤      
-  │ >> React/Next.js    │
-  │ >> TypeScript       │
-  │ >> Tailwind CSS     │
-  │ >> Flutter          │
-  └─────────────────────┘`}
+        │ >> React/Next.js    │
+        │ >> TypeScript       │
+        │ >> Tailwind CSS     │
+        │ >> Flutter          │
+        └─────────────────────┘`}
             </pre>
           </div>
           
           <div className="terminal-style-skills w-full">
             <h3 className="text-lg sm:text-xl font-mono mb-2 text-amber-600">$ cat backend.txt</h3>
             <pre className="text-base sm:text-xl lg:text-2xl overflow-x-auto">
-{`┌─────────────────────┐
-│ Backend             │
-├─────────────────────┤
-│ >> Python/Flask     │
-│ >> Node.js          │
-│ >> PostgreSQL       │
-│ >> RESTful APIs     │
-└─────────────────────┘`}
+    {`  ┌─────────────────────┐
+        │ Backend             │
+        ├─────────────────────┤
+        │ >> Python/Flask     │
+        │ >> Node.js          │
+        │ >> PostgreSQL       │
+        │ >> RESTful APIs     │
+        └─────────────────────┘`}
             </pre>
           </div>
         </div>
