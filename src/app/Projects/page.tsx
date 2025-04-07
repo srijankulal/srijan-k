@@ -6,7 +6,7 @@ import {siteConfig} from "../../../config/site"
 import { useEffect, useState } from "react"
 
 export default function Projects() {
-    const projects = siteConfig.projects
+    const {projects} = siteConfig
     const [isVisible, setIsVisible] = useState(false)
     
     useEffect(() => {

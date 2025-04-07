@@ -29,6 +29,15 @@ export const siteConfig = {
           "details": "PixelCypher is a web application that allows users to securely encrypt text messages into images and decrypt them later. It features a user-friendly interface, mobile responsiveness, and secure processing using Vercel Blob Storage. The app ensures no data is stored on servers, providing a safe and private way to share sensitive information."
         },
         {
+          "title": "clickXtract",
+          "description": "A tool that automatically extracts compressed files by double-clicking them.",
+          "technologies": ["C#", "Windows"],
+          "link": "https://github.com/srijankulal/clickXtract",
+          "live":"https://github.com/srijankulal/clickXtract/blob/main/clickXtract_Setup.exe",
+          "imageUrl": "https://wqvndanjead1tl5k.public.blob.vercel-storage.com/Porject%20Picture/click.png",
+          "details": "clickXtract is a user-friendly tool designed to simplify the extraction of compressed files. It supports popular formats like `.rar`, `.zip`, and `.7z`. With clickXtract, users can extract files effortlessly by simply double-clicking on them. The tool automatically creates a folder and extracts the contents. It also provides an easy way to set file associations, ensuring compressed files open with clickXtract by default. Ideal for users seeking a seamless and efficient file extraction experience."
+        },
+        {
           "title": "PixelCypher API",
           "description": "Image steganography REST API",
           "technologies": ["Java", "Spring Boot", "ImageIO", "REST API", "Image Processing"],
@@ -53,6 +62,7 @@ export const siteConfig = {
           "imageUrl": "https://placehold.co/400",
           "details": "A versatile Arduino library that simplifies controlling 7-segment LED displays. The library supports displaying digits (0-9), the entire English alphabet (A-Z), and special characters. It features an intuitive API that allows developers to easily initialize and control the display with just a few lines of code. Built using object-oriented principles for clean implementation and memory efficiency."
         }
+        
     ]
   
 }
