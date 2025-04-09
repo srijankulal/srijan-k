@@ -16,7 +16,7 @@ export default function Home() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
+        ease: "easeInOut"
       }
     }
   };
@@ -38,6 +38,17 @@ export default function Home() {
           >
             <Hero/>
           </motion.div>
+
+          {/* Projects Section */}
+          <motion.div 
+            className="pt-10 border-b border-gray-300 pb-24"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={sectionVariants}
+          >
+            <Project />
+          </motion.div>
   
           {/* About Section */}
           <motion.div 
@@ -50,16 +61,7 @@ export default function Home() {
             <About />
           </motion.div>
   
-          {/* Projects Section */}
-          <motion.div 
-            className="pt-10 border-b border-gray-300 pb-24"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={sectionVariants}
-          >
-            <Project />
-          </motion.div>
+
   
           {/* Skills Section */}
           <motion.div 

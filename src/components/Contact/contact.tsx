@@ -54,12 +54,12 @@ export default function Contact({id}: {id: string}) {
   };
 
   return (
-    <div className="w-full mt-16 mb-8 pt-10" id={id}>
+    <div className="w-full my-16 px-4 sm:px-6 lg:px-8 pb-10" id={id}>
         <motion.h2 
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7 }}
-          className="text-5xl font-bold mb-8 text-left lg:pl-30"
+          className="text-5xl font-bold mb-8 text-left sm:pb-4"
         >
           Contact
         </motion.h2>
@@ -68,7 +68,7 @@ export default function Contact({id}: {id: string}) {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="terminal-style-contact w-full max-w-3xl p-6 border-2 border-white bg-back bg-opacity-80 text-left"
+          className="terminal-style-contact w-full max-w-6xl p-6 border-2 border-white bg-back bg-opacity-80 text-left"
         >
             <div className="mb-4 border-b border-gray-700 pb-2">
             <span className="text-amber-600 font-mono text-lg">srijan@portfolio</span>

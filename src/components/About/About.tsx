@@ -23,7 +23,7 @@ export default function About() {
 
   return (
     <>
-    <div className="flex justify-center items-center w-full" id="about">
+    <div className="w-full my-16 px-4 sm:px-6 lg:px-8 pb-10" id="about">
     <motion.div 
       initial="hidden"
       whileInView="visible"
@@ -31,7 +31,7 @@ export default function About() {
       variants={containerVariants}
       className="flex flex-col w-full snap-start sm:snap-align-none"
     >
-      <motion.h2 variants={itemVariants} className="text-5xl font-bold mb-2 text-left pl-30">About Me</motion.h2>
+      <motion.h2 variants={itemVariants} className="text-5xl font-bold mb-8 text-left sm:pb-4 ">About Me</motion.h2>
       
       <div className="flex flex-col justify-center items-center w-full md:flex-row">
         <div className="flex flex-row justify-center items-center w-full md:pl-20">

@@ -58,7 +58,7 @@ export default function Hero() {
                     </div>
                 </div>
                 <div 
-                    className={`hidden w-full lg:w-2/5 lg:flex items-center justify-center px-4
+                    className={`hidden w-full lg:w-2/5 lg:flex md:w-2/5 md:flex items-center justify-center px-4
                     transform transition-all duration-1000 ${isLoaded ? 'translate-x-0 opacity-90 rotate-0' : 'translate-x-10 opacity-0 rotate-6'}`}
                 >
                     <Image

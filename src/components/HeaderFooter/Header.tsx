@@ -49,8 +49,8 @@ export default function Header({ whereAt }: { whereAt: string }) {
                     <TooltipTrigger>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                             <Link href="/#about" className={`text-white text-2xl ${whereAt === 'about' ? 'font-bold' : ''}`}>
-                                <span className="text-amber-600"><u><b>A</b></u></span>
-                                <u className={whereAt === 'about' ? ' text-amber-600' : ''}>bout</u>
+                                {/* <span className="text-amber-600"><u><b>A</b></u></span> */}
+                                <u className={whereAt === 'about' ? ' text-amber-600' : ''}>About</u>
                             </Link>
                         </motion.div>
                     </TooltipTrigger>
@@ -66,8 +66,8 @@ export default function Header({ whereAt }: { whereAt: string }) {
                     <TooltipTrigger>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                             <Link href="/Projects" className={`text-white text-2xl ${whereAt === 'projects' ? 'font-bold' : ''}`}>
-                                <span className="text-amber-600"><u><b>P</b></u></span>
-                                <u className={whereAt === 'projects' ? 'text-amber-600' : ''}>rojects</u>
+                                {/* <span className="text-amber-600"><u><b>P</b></u></span> */}
+                                <u className={whereAt === 'projects' ? 'text-amber-600' : ''}>Projects</u>
                             </Link>
                         </motion.div>
                     </TooltipTrigger>
@@ -82,8 +82,8 @@ export default function Header({ whereAt }: { whereAt: string }) {
                     <TooltipTrigger>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                             <Link href="/#skills" className={`text-white text-2xl ${whereAt === 'skills' ? 'font-bold' : ''}`}>
-                                <span className="text-amber-600"><u><b>S</b></u></span>
-                                <u className={whereAt === 'skills' ? ' text-amber-600' : ''}>kills</u>
+                                {/* <span className="text-amber-600"><u><b>S</b></u></span> */}
+                                <u className={whereAt === 'skills' ? ' text-amber-600' : ''}>Skills</u>
                             </Link>
                         </motion.div>
                     </TooltipTrigger>
@@ -98,8 +98,8 @@ export default function Header({ whereAt }: { whereAt: string }) {
                     <TooltipTrigger>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
                             <Link href="/#contact" className={`text-white text-2xl ${whereAt === 'contact' ? 'font-bold' : ''}`}>
-                                <span className="text-amber-600"><u><b>C</b></u></span>
-                                <u className={whereAt === 'contact' ? '  text-amber-600' : ''}>ontact</u>
+                                {/* <span className="text-amber-600"><u><b>C</b></u></span> */}
+                                <u className={whereAt === 'contact' ? '  text-amber-600' : ''}>Contact</u>
                             </Link>
                         </motion.div>
                     </TooltipTrigger>
