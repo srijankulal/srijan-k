@@ -58,7 +58,7 @@ export const siteConfig = {
           "title": "LED Display Library",
           "description": "Arduino library for controlling 7-segment LED displays",
           "technologies": ["C++", "Arduino", "PlatformIO"],
-          "link": "https://github.com/srijankulal/LED_Displayy",
+          "link": "https://github.com/srijankulal/LED_Display",
           "imageUrl": "https://placehold.co/400",
           "details": "A versatile Arduino library that simplifies controlling 7-segment LED displays. The library supports displaying digits (0-9), the entire English alphabet (A-Z), and special characters. It features an intuitive API that allows developers to easily initialize and control the display with just a few lines of code. Built using object-oriented principles for clean implementation and memory efficiency."
         }
