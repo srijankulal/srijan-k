@@ -1,10 +1,21 @@
 import ProjectCard from "@/components/Project/ProjectsCard";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "../../../config/site";
+import { useEffect, useState } from "react";
+import { client } from "@/sanity/lib/client";
+import { projectsQuery } from "@/sanity/lib/queries";
 
 export default function Project() {
-    const projects = siteConfig.projects
+    const [projects, setProjects] = useState<any[]>([])
+
+    useEffect(() => {
+        const getProjects = async () => {
+            const data = await client.fetch(projectsQuery)
+            setProjects(data)
+        }
+        getProjects()
+    }, [])
+
     return (
         <div id="projects" className="w-full my-16 px-4 sm:px-6 lg:px-8 pb-10">
             <h2 className="text-5xl font-bold mb-8 text-left sm:pb-4">Projects</h2>

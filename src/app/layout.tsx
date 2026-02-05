@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { VT323  } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import TerminalMode from "@/components/Terminal/TerminalMode";
 
 
 // const poppins = Poppins({
@@ -34,6 +35,7 @@ export default function RootLayout({
         className={`${vt323.className} antialiased bg-neutral-900 text-neutral-100`}
       >
         {children}
+        <TerminalMode />
         <Toaster />
       </body>
     </html>

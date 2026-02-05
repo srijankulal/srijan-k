@@ -16,7 +16,7 @@ export default function Home() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   };
@@ -101,3 +101,4 @@ export default function Home() {
     </div>
   );
 }
+

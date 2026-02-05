@@ -20,6 +20,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ 
   title, 
   description, 
+  details,
   technologies, 
   link, 
   live,
@@ -32,6 +33,7 @@ export default function ProjectCard({
   const corner = "+"
   const horizontalLine = "───"
   const verticalLine = "│"
+
 
   return (
     <motion.div
@@ -72,6 +74,7 @@ export default function ProjectCard({
           style={{ minHeight: '200px', height: 'auto' }}
         >
           <Link href={live || '#'} target="_blank" rel="noopener noreferrer">
+          
             <Image
               src={imageUrl}
               alt={title}
@@ -81,7 +84,11 @@ export default function ProjectCard({
             />
           </Link>
         </motion.div>
-      ) : null}
+      ) : (
+        <div className="mb-4 w-full h-48 bg-gray-200 flex items-center justify-center">
+          <span className="text-gray-500">No Image Available</span>
+        </div>
+      )}
       
         <motion.h3 
           initial={{ y: 10, opacity: 0 }} 
@@ -114,8 +121,8 @@ export default function ProjectCard({
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
-                whileHover={{ y: -3, backgroundColor: "#f3f4f6" }}
-                className="px-2 py-0.5 bg-gray-100 text-gray-700 text-xs font-mono"
+                whileHover={{ y: -3, backgroundColor: "#fff", color: "#000" }}
+                className="px-2 py-0.5 border border-gray-600 text-gray-300 text-xs font-mono"
               >
                 {tech}
               </motion.span>
@@ -123,37 +130,42 @@ export default function ProjectCard({
           </div>
         </motion.div>
 
-        {/* Bottom ASCII decoration */}
-        <div className="flex items-center justify-between mt-auto">
-          <motion.div 
-            animate={{ x: isHovered ? 5 : 0, opacity: isHovered ? 0.8 : 0.4 }}
-            className="ascii-decoration font-mono text-sm"
-          >
-            {verticalLine} view live
-          </motion.div>
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href={live}
-            onClick={(e) => {
-              if (!link.trim()) {
-                e.preventDefault()
-                toast.warning("Link is not available!", {description: "This project link is not available yet."})
-                return
-              }
-            }}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="view-link text-white hover:text-amber-600 font-mono text-sm flex items-center group"
-          >
-            <span className="mr-2 transition-all duration-300 text-lg group-hover:mr-3">Open</span>
-            <motion.span 
-              animate={{ x: isHovered ? 5 : 0 }}
-              className="text-gray-400 group-hover:text-black transition-colors duration-300"
-            >
-              →
-            </motion.span>
-          </motion.a>
+        {details && (
+           <motion.div 
+             initial={{ opacity: 0 }} 
+             animate={{ opacity: 1 }}
+             className="mb-6 text-sm text-gray-400 font-mono border-l-2 border-amber-600 pl-3 italic"
+           >
+             {details}
+           </motion.div>
+        )}
+
+        <div className="flex items-center justify-between gap-4 mt-auto border-t border-gray-800 pt-4">
+           {live ? (
+             <a
+               href={live}
+               target="_blank"
+               rel="noopener noreferrer"
+               className="flex-1 text-center py-2 bg-neutral-800 hover:bg-neutral-700 border border-neutral-600 font-mono text-sm transition-colors text-white"
+             >
+               [ LIVE DEMO ]
+             </a>
+           ) : (
+             <span className="flex-1 text-center py-2 text-gray-600 border border-gray-800 font-mono text-sm cursor-not-allowed">
+               [ OFFLINE ]
+             </span>
+           )}
+           
+           {link && (
+             <a
+               href={link}
+               target="_blank"
+               rel="noopener noreferrer"
+               className="flex-1 text-center py-2 bg-amber-900/20 hover:bg-amber-900/40 border border-amber-800 text-amber-500 font-mono text-sm transition-colors"
+             >
+               &lt;CODE /&gt;
+             </a>
+           )}
         </div>
       </div>
     </motion.div>
