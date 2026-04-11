@@ -23,55 +23,65 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden w-full">
-      <main className="border border-gray-300 p-2 sm:p-4 my-4 w-full max-w-full overflow-x-hidden">
+      <main className="border border-neutral-600 dark:border-neutral-400 my-4 w-full max-w-full overflow-x-hidden">
         
         <Header whereAt="home" />
         
-        <div className="py-4 sm:py-8 text-center border-b border-gray-300 w-full overflow-hidden">
+        <div className="py-4 sm:py-8 text-center border-b border-neutral-600 dark:border-neutral-400 w-[calc(100%+2px)] -mx-px">
           {/* Hero Section */}
-          <motion.div 
-            className="border-b border-gray-300"
+          <div className="border-b border-neutral-600 dark:border-neutral-400 w-full">
+            <div className="px-2 sm:px-4 md:px-8">
+              <motion.div 
+                className=""
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={sectionVariants}
           >
             <Hero/>
-          </motion.div>
+              </motion.div>
+            </div>
+          </div>
 
           {/* Projects Section */}
           <motion.div 
-            className="pt-10 border-b border-gray-300 pb-24"
+            className="pt-10 border-b border-neutral-600 dark:border-neutral-400 pb-24 w-[calc(100%+2px)] -mx-px"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={sectionVariants}
           >
-            <Project />
+            <div className="px-2 sm:px-4 md:px-8">
+              <Project />
+            </div>
           </motion.div>
   
           {/* About Section */}
           <motion.div 
-            className="pt-14 border-b border-gray-300 pb-24"
+            className="pt-14 border-b border-neutral-600 dark:border-neutral-400 pb-24 w-[calc(100%+2px)] -mx-px"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={sectionVariants}
           >
-            <About />
+            <div className="px-2 sm:px-4 md:px-8">
+              <About />
+            </div>
           </motion.div>
   
 
   
           {/* Skills Section */}
           <motion.div 
-            className="lg:pt-20 lg:pb-24 border-b border-gray-300"
+            className="lg:pt-20 lg:pb-24 border-b border-neutral-600 dark:border-neutral-400 w-[calc(100%+2px)] -mx-px"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={sectionVariants}
           >
-            <Skills />
+            <div className="px-2 sm:px-4 md:px-8">
+              <Skills />
+            </div>
           </motion.div>
           
           {/* Contact Section */}
@@ -82,12 +92,15 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             variants={sectionVariants}
           >
-            <Contact id="contact" />
+            <div className="px-2 sm:px-4 md:px-8">
+              <Contact id="contact" />
+            </div>
           </motion.div>
         </div>
         
         {/* Footer */}
         <motion.div
+          className="px-2 sm:px-4 md:px-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}

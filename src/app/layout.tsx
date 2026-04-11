@@ -24,19 +24,28 @@ export const metadata: Metadata = {
   
 };
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${vt323.className} antialiased bg-neutral-900 text-neutral-100`}
+        className={`${vt323.className} antialiased bg-background text-foreground`}
       >
-        {children}
-        <TerminalMode />
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <TerminalMode />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 export default function Footer() {
   return (
     <motion.footer 
-      className="border-t border-gray-300 py-4 sm:py-6 overflow-hidden"
+      className="border-t border-neutral-600 dark:border-neutral-400 py-4 sm:py-6 overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-    <div className="container mx-auto px-2 sm:px-4">
-      <div className="flex flex-row  justify-between items-center">
+    <div className="container mx-auto px-0 sm:px-0">
+      <div className="flex flex-row justify-between items-center px-4 sm:px-6">
       <motion.div 
         className="mb-4 md:mb-0"
         initial={{ opacity: 0 }}
@@ -46,7 +46,7 @@ export default function Footer() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Link href={item.href} className="hover:text-gray-400 transition-colors">
+          <Link href={item.href} className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">
           <span className="sr-only">{item.label}</span>
           <svg 
             className="h-5 w-5 sm:h-6 sm:w-6" 

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from 'next-themes';
 import { X, Maximize2, Minimize2, Terminal as TerminalIcon } from 'lucide-react';
 import { client } from '@/sanity/lib/client';
 import { projectsQuery } from '@/sanity/lib/queries';
@@ -10,6 +11,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+
+import MatrixFire from './MatrixFire';
+import SnakeGame from './SnakeGame';
 
 // Define types for terminal lines
 type LineType = 'input' | 'output' | 'error';
@@ -26,6 +30,8 @@ const COMMANDS = [
   { cmd: 'projects', desc: 'List my projects' },
   { cmd: 'skills', desc: 'List my technical skills' },
   { cmd: 'contact', desc: 'Show contact details' },
+  { cmd: 'fire', desc: 'Toggle terminal fire mode' },
+  { cmd: 'snake', desc: 'Play classic terminal snake' },
   { cmd: 'clear', desc: 'Clear the terminal screen' },
   { cmd: 'exit', desc: 'Close terminal mode' },
 ];
@@ -40,6 +46,9 @@ export default function TerminalMode() {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isFireMode, setIsFireMode] = useState(false);
+  const [isSnakeActive, setIsSnakeActive] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -91,15 +100,37 @@ export default function TerminalMode() {
       case 'clear':
       case 'cls':
         setHistory([]);
+        setIsFireMode(false);
         setIsProcessing(false);
         return;
 
       case 'exit':
         setIsOpen(false);
+        setIsFireMode(false);
         setIsProcessing(false);
         return;
-      case '':
-        output = '';
+      case 'mode':
+      case 'theme':
+        setTheme(theme === 'dark' ? 'light' : 'dark');
+        output = `Toggled theme!`;
+        break;
+      case 'light':
+      case 'lightmode':
+        setTheme('light');
+        output = 'Switched to Light mode';
+        break;
+      case 'dark':
+      case 'darkmode':
+        setTheme('dark');
+        output = 'Switched to Dark mode';
+        break;
+      case 'fire':
+        setIsFireMode(prev => !prev);
+        output = 'Toggled terminal fire mode.';
+        break;
+      case 'snake':
+        setIsSnakeActive(true);
+        output = 'Starting Snake Game...';
         break;
       case 'about':
         output = (
@@ -249,8 +280,9 @@ export default function TerminalMode() {
             className={`fixed z-[100] bg-black/90 backdrop-blur-md text-green-500 font-mono shadow-2xl border border-gray-700 overflow-hidden flex flex-col ${isMaximized ? 'top-0 left-0 bottom-0 right-0' : 'bottom-10 right-10 max-w-[calc(100vw-40px)] max-h-[calc(100vh-40px)]'
               }`}
           >
+            {isFireMode && <MatrixFire fullContainer fontSize={14} />}
             {/* Header / Title Bar */}
-            <div className="flex items-center justify-between px-4 py-2 bg-[#1e1e1e] border-b border-gray-700 select-none">
+            <div className="relative z-10 flex items-center justify-between px-4 py-2 bg-[#1e1e1e] border-b border-gray-700 select-none">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500 cursor-pointer hover:bg-red-400" onClick={() => setIsOpen(false)}></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500 cursor-pointer hover:bg-yellow-400" onClick={() => setIsMaximized(!isMaximized)}></div>
@@ -270,38 +302,51 @@ export default function TerminalMode() {
             </div>
 
             {/* Terminal Content */}
-            <div className="flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent" onClick={() => inputRef.current?.focus()}>
-              {history.map((line) => (
-                <div key={line.id} className="mb-2 break-all">
-                  {line.type === 'input' ? (
-                    <div className="flex">
-                      <span className="text-blue-500 mr-2 font-bold">➜</span>
-                      <span className="text-pink-500 mr-2">~</span>
-                      <span className="text-gray-100">{line.content}</span>
-                    </div>
-                  ) : line.type === 'error' ? (
-                    <div className="text-red-500">{line.content}</div>
-                  ) : (
-                    <div className="text-gray-300 ml-6">{line.content}</div>
-                  )}
-                </div>
-              ))}
-
-              {/* Input Area */}
-              <div className="flex items-center mt-2 group">
-                <span className="text-blue-500 mr-2 font-bold">➜</span>
-                <span className="text-pink-500 mr-2">~</span>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={onKeyDown}
-                  className="bg-transparent border-none outline-none flex-1 text-gray-100 font-mono caret-green-500"
-                  autoFocus
-                  disabled={isProcessing}
+            <div className="relative z-10 flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent bg-transparent" onClick={() => !isSnakeActive && inputRef.current?.focus()}>
+              {isSnakeActive ? (
+                <SnakeGame 
+                  isMaximized={isMaximized} 
+                  onExit={(score) => {
+                    setIsSnakeActive(false);
+                    setHistory(prev => [...prev, { id: Date.now().toString(), type: 'output', content: `Game Ended. Final Score: ${score}` }]);
+                    setTimeout(() => inputRef.current?.focus(), 100);
+                  }} 
                 />
-              </div>
+              ) : (
+                <>
+                  {history.map((line) => (
+                    <div key={line.id} className="mb-2 break-all">
+                      {line.type === 'input' ? (
+                        <div className="flex">
+                          <span className="text-blue-500 mr-2 font-bold">➜</span>
+                          <span className="text-pink-500 mr-2">~</span>
+                          <span className="text-gray-100">{line.content}</span>
+                        </div>
+                      ) : line.type === 'error' ? (
+                        <div className="text-red-500">{line.content}</div>
+                      ) : (
+                        <div className="text-gray-300 ml-6">{line.content}</div>
+                      )}
+                    </div>
+                  ))}
+
+                  {/* Input Area */}
+                  <div className="flex items-center mt-2 group">
+                    <span className="text-blue-500 mr-2 font-bold">➜</span>
+                    <span className="text-pink-500 mr-2">~</span>
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      onKeyDown={onKeyDown}
+                      className="bg-transparent border-none outline-none flex-1 text-gray-100 font-mono caret-green-500"
+                      autoFocus
+                      disabled={isProcessing}
+                    />
+                  </div>
+                </>
+              )}
               <div ref={bottomRef} />
             </div>
           </motion.div>

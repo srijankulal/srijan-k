@@ -48,7 +48,7 @@ export default function Header({ whereAt }: { whereAt: string }) {
                 <Tooltip>
                     <TooltipTrigger>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-                            <Link href="/#about" className={`text-white text-2xl ${whereAt === 'about' ? 'font-bold' : ''}`}>
+                            <Link href="/#about" className={`text-black dark:text-white text-2xl ${whereAt === 'about' ? 'font-bold' : ''}`}>
                                 {/* <span className="text-amber-600"><u><b>A</b></u></span> */}
                                 <u className={whereAt === 'about' ? ' text-amber-600' : ''}>About</u>
                             </Link>
@@ -65,7 +65,7 @@ export default function Header({ whereAt }: { whereAt: string }) {
                 <Tooltip>
                     <TooltipTrigger>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-                            <Link href="/Projects" className={`text-white text-2xl ${whereAt === 'projects' ? 'font-bold' : ''}`}>
+                            <Link href="/Projects" className={`text-black dark:text-white text-2xl ${whereAt === 'projects' ? 'font-bold' : ''}`}>
                                 {/* <span className="text-amber-600"><u><b>P</b></u></span> */}
                                 <u className={whereAt === 'projects' ? 'text-amber-600' : ''}>Projects</u>
                             </Link>
@@ -81,7 +81,7 @@ export default function Header({ whereAt }: { whereAt: string }) {
                 <Tooltip>
                     <TooltipTrigger>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-                            <Link href="/#skills" className={`text-white text-2xl ${whereAt === 'skills' ? 'font-bold' : ''}`}>
+                            <Link href="/#skills" className={`text-black dark:text-white text-2xl ${whereAt === 'skills' ? 'font-bold' : ''}`}>
                                 {/* <span className="text-amber-600"><u><b>S</b></u></span> */}
                                 <u className={whereAt === 'skills' ? ' text-amber-600' : ''}>Skills</u>
                             </Link>
@@ -97,7 +97,7 @@ export default function Header({ whereAt }: { whereAt: string }) {
                 <Tooltip>
                     <TooltipTrigger>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-                            <Link href="/#contact" className={`text-white text-2xl ${whereAt === 'contact' ? 'font-bold' : ''}`}>
+                            <Link href="/#contact" className={`text-black dark:text-white text-2xl ${whereAt === 'contact' ? 'font-bold' : ''}`}>
                                 {/* <span className="text-amber-600"><u><b>C</b></u></span> */}
                                 <u className={whereAt === 'contact' ? '  text-amber-600' : ''}>Contact</u>
                             </Link>
@@ -117,17 +117,17 @@ export default function Header({ whereAt }: { whereAt: string }) {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="border-b border-gray-300 py-2 pb-4 w-full overflow-x-hidden"
+                className="border-b border-neutral-600 dark:border-neutral-400 py-4 w-[calc(100%+2px)] -mx-px"
             >
-                <div className="flex justify-between items-center max-w-full">
+                <div className="flex justify-between items-center max-w-full px-2 sm:px-4 md:px-8">
                     <motion.div 
                         className="flex items-center"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.2 }}
                     >
-                        <h1 className="text-4xl font-bold">|  </h1>
+                        
                         <Link href="/" >
-                            <h1 className="text-4xl font-bold pl-2"> Srijan K.</h1>
+                            <h1 className="text-4xl font-bold">Srijan K.</h1>
                         </Link>
                     </motion.div>
 
@@ -135,8 +135,6 @@ export default function Header({ whereAt }: { whereAt: string }) {
                     <div className="hidden md:flex ml-auto pr-4">
                         <NavLinks />
                     </div>
-                    
-                    <h1 className="text-4xl font-bold"> |</h1>
                 </div>
             </motion.header>
             
@@ -146,14 +144,14 @@ export default function Header({ whereAt }: { whereAt: string }) {
                     initial={{ y: 100 }}
                     animate={{ y: 0 }}
                     transition={{ duration: 0.3, type: "spring", stiffness: 260, damping: 20 }}
-                    className="fixed bottom-0 left-0 right-0 bg-background border border-white shadow-lg z-50 w-full"
+                    className="fixed bottom-0 left-0 right-0 bg-background border-t border-neutral-600 dark:border-neutral-400 shadow-lg z-50 w-full"
                 >
                     <div className="grid grid-cols-4 h-16 pt-4 ">
                         <motion.div whileTap={{ scale: 0.9 }} transition={{ duration: 0.2 }}>
-                            <Link href="/#about" className="flex flex-col items-center text-white px-2">
+                            <Link href="/#about" className="flex flex-col items-center text-black dark:text-white px-2">
                                 <motion.span 
                                     animate={{ scale: whereAt === 'about' ? 1.1 : 1 }}
-                                    className={`text-lg ${whereAt === 'about' ? 'text-amber-600' : 'text-gray-400'} `}
+                                    className={`text-lg ${whereAt === 'about' ? 'text-amber-600' : 'text-gray-600 dark:text-gray-400'} `}
                                 >
                                     &#62;_
                                 </motion.span>
@@ -162,10 +160,10 @@ export default function Header({ whereAt }: { whereAt: string }) {
                         </motion.div>
     
                         <motion.div whileTap={{ scale: 0.9 }} transition={{ duration: 0.2 }}>
-                            <Link href="/Projects" className="flex flex-col items-center text-white px-2">
+                            <Link href="/Projects" className="flex flex-col items-center text-black dark:text-white px-2">
                                 <motion.span 
                                     animate={{ scale: whereAt === 'projects' ? 1.1 : 1 }}
-                                    className={`text-base ${whereAt === 'projects' ? 'text-amber-600' : 'text-gray-400'}`}
+                                    className={`text-base ${whereAt === 'projects' ? 'text-amber-600' : 'text-gray-600 dark:text-gray-400'}`}
                                 >
                                     {`{}`}
                                 </motion.span>
@@ -174,10 +172,10 @@ export default function Header({ whereAt }: { whereAt: string }) {
                         </motion.div>
     
                         <motion.div whileTap={{ scale: 0.9 }} transition={{ duration: 0.2 }}>
-                            <Link href="/#skills" className="flex flex-col items-center text-white px-2">
+                            <Link href="/#skills" className="flex flex-col items-center text-black dark:text-white px-2">
                                 <motion.span 
                                     animate={{ scale: whereAt === 'skills' ? 1.1 : 1 }}
-                                    className={`text-base ${whereAt === 'skills' ? 'text-amber-600' : 'text-gray-400'}`}
+                                    className={`text-base ${whereAt === 'skills' ? 'text-amber-600' : 'text-gray-600 dark:text-gray-400'}`}
                                 >
                                     &#47;&#92;
                                 </motion.span>
@@ -186,10 +184,10 @@ export default function Header({ whereAt }: { whereAt: string }) {
                         </motion.div>
     
                         <motion.div whileTap={{ scale: 0.9 }} transition={{ duration: 0.2 }}>
-                            <Link href="/#contact" className="flex flex-col items-center text-white px-2">
+                            <Link href="/#contact" className="flex flex-col items-center text-black dark:text-white px-2">
                                 <motion.span 
                                     animate={{ scale: whereAt === 'contact' ? 1.1 : 1 }}
-                                    className={`text-base ${whereAt === 'contact' ? 'text-amber-600' : 'text-gray-400'}`}
+                                    className={`text-base ${whereAt === 'contact' ? 'text-amber-600' : 'text-gray-600 dark:text-gray-400'}`}
                                 >
                                     @_
                                 </motion.span>

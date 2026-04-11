@@ -41,7 +41,7 @@ export default function ProjectCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
-      className="project-card relative p-5 transition-all duration-300 bg-background border border-white"
+      className="project-card relative p-5 transition-all duration-300 bg-background border border-black dark:border-white"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
@@ -54,7 +54,7 @@ export default function ProjectCard({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="ascii-decoration text-white mb-3 font-mono text-lg flex justify-center items-center"
+        className="ascii-decoration text-black dark:text-white mb-3 font-mono text-lg flex justify-center items-center"
       >
         <motion.span animate={{ rotate: isHovered ? 90 : 0 }} transition={{ duration: 0.3 }}>
           {corner}
@@ -85,7 +85,7 @@ export default function ProjectCard({
           </Link>
         </motion.div>
       ) : (
-        <div className="mb-4 w-full h-48 bg-gray-200 flex items-center justify-center">
+        <div className="mb-4 w-full h-48 bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
           <span className="text-gray-500">No Image Available</span>
         </div>
       )}
@@ -122,7 +122,7 @@ export default function ProjectCard({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
                 whileHover={{ y: -3, backgroundColor: "#fff", color: "#000" }}
-                className="px-2 py-0.5 border border-gray-600 text-gray-300 text-xs font-mono"
+                className="px-2 py-0.5 border border-gray-400 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-xs font-mono"
               >
                 {tech}
               </motion.span>
@@ -134,24 +134,24 @@ export default function ProjectCard({
            <motion.div 
              initial={{ opacity: 0 }} 
              animate={{ opacity: 1 }}
-             className="mb-6 text-sm text-gray-400 font-mono border-l-2 border-amber-600 pl-3 italic"
+             className="mb-6 text-sm text-gray-600 dark:text-gray-400 font-mono border-l-2 border-amber-600 pl-3 italic"
            >
              {details}
            </motion.div>
         )}
 
-        <div className="flex items-center justify-between gap-4 mt-auto border-t border-gray-800 pt-4">
+        <div className="flex items-center justify-between gap-4 mt-auto border-t border-neutral-600 dark:border-neutral-400 pt-4">
            {live ? (
              <a
                href={live}
                target="_blank"
                rel="noopener noreferrer"
-               className="flex-1 text-center py-2 bg-neutral-800 hover:bg-neutral-700 border border-neutral-600 font-mono text-sm transition-colors text-white"
+               className="flex-1 text-center py-2 bg-neutral-200 hover:bg-neutral-300 border-neutral-400 dark:bg-neutral-800 dark:hover:bg-neutral-700 border dark:border-neutral-600 font-mono text-sm transition-colors text-black dark:text-white"
              >
                [ LIVE DEMO ]
              </a>
            ) : (
-             <span className="flex-1 text-center py-2 text-gray-600 border border-gray-800 font-mono text-sm cursor-not-allowed">
+             <span className="flex-1 text-center py-2 text-gray-500 border border-neutral-600 dark:border-neutral-400 font-mono text-sm cursor-not-allowed">
                [ OFFLINE ]
              </span>
            )}

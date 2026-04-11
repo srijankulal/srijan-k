@@ -68,7 +68,7 @@ export default function Contact({id}: {id: string}) {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="terminal-style-contact w-full max-w-6xl p-6 border-2 border-white bg-back bg-opacity-80 text-left"
+          className="terminal-style-contact w-full max-w-6xl p-6 border-2 border-neutral-700 bg-neutral-900 bg-opacity-90 text-left"
         >
             <div className="mb-4 border-b border-gray-700 pb-2">
             <span className="text-amber-600 font-mono text-lg">srijan@portfolio</span>
@@ -179,9 +179,9 @@ export default function Contact({id}: {id: string}) {
             <motion.a 
             whileHover={{ scale: 1.05 }}
             href="/Contact" 
-            className="text-gray-400 hover:text-green-600"
+            className="text-gray-400 hover:text-green-500"
             >
-            {" "}[<u className="text-blue-400 hover:text-green-600">click to send mail</u>]
+            {" "}[<u className="text-blue-400 hover:text-green-500">click to send mail</u>]
             </motion.a>
             <span className="animate-caret-blink"> _</span>
           </motion.div>

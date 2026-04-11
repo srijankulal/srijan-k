@@ -78,14 +78,14 @@ export default function Skills() {
           <motion.div 
             key={index}
             variants={cardVariants}
-            className="bg-background border border-white p-4 transition-all duration-300 hover:border-2 hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.7)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
+            className="bg-background border border-black dark:border-white p-4 transition-all duration-300 hover:border-2 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.7)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.7)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
           >
-            <h3 className="text-2xl font-medium mb-4 text-gray-200 flex items-center">
+            <h3 className="text-2xl font-medium mb-4 text-gray-800 dark:text-gray-200 flex items-center">
               <motion.span
                 whileHover="hover"
                 initial="initial"
                 variants={iconVariants}
-                className="mr-2 font-mono bg-background px-4 py-1 text-amber-600 border border-white inline-flex items-center"
+                className="mr-2 font-mono bg-background px-4 py-1 text-amber-600 border border-black dark:border-white inline-flex items-center"
               >
                 <span>{category.icon}</span>
               </motion.span>
@@ -95,14 +95,14 @@ export default function Skills() {
               {category.skills.map((skill, skillIndex) => (
                 <li key={skillIndex} className="space-y-1">
                   <div className="flex justify-between">
-                    <span className="text-gray-300">{skill.name}</span>
+                    <span className="text-gray-700 dark:text-gray-300">{skill.name}</span>
                   </div>
-                  <div className="w-full bg-gray-700 h-1">
+                  <div className="w-full bg-gray-300 dark:bg-gray-700 h-1">
                     <motion.div 
                       initial={{ width: 0 }}
                       animate={{ width: "100%" }}
                       transition={{ duration: 1, delay: 0.3 + index * 0.2 + skillIndex * 0.1 }}
-                      className="bg-gray-600 hover:bg-white h-1 transition-colors duration-500" 
+                      className="bg-gray-400 dark:bg-gray-600 hover:bg-black dark:hover:bg-white h-1 transition-colors duration-500" 
                     />
                   </div>
                 </li>

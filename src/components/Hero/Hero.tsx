@@ -66,7 +66,7 @@ export default function Hero() {
                         alt="Srijan K ASCII Art" 
                         width={600}
                         height={600}
-                        className="max-w-full h-auto w-auto object-contain rounded-sm filter contrast-125 hover:contrast-150 hover:scale-105 transition-all duration-500"
+                        className="max-w-full h-auto w-auto object-contain rounded-sm filter contrast-125 invert dark:invert-0 hover:contrast-150 hover:scale-105 transition-all duration-500"
                         priority
                     />
                 </div>
