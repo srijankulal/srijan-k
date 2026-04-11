@@ -40,7 +40,7 @@ export default function TerminalMode() {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [isProcessing, setIsProcessing] = useState(false);
-  
+
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -58,11 +58,11 @@ export default function TerminalMode() {
 
   const handleCommand = async (cmd: string) => {
     const trimmedCmd = cmd.trim().toLowerCase();
-    
+
     // Add command to history (visual)
     const newHistory = [...history, { id: Date.now().toString(), type: 'input' as const, content: cmd }];
     setHistory(newHistory);
-    
+
     // Add to command recall history
     if (trimmedCmd) {
       setCommandHistory(prev => [...prev, cmd]);
@@ -87,8 +87,9 @@ export default function TerminalMode() {
           </div>
         );
         break;
-      
+
       case 'clear':
+      case 'cls':
         setHistory([]);
         setIsProcessing(false);
         return;
@@ -97,7 +98,9 @@ export default function TerminalMode() {
         setIsOpen(false);
         setIsProcessing(false);
         return;
-
+      case '':
+        output = '';
+        break;
       case 'about':
         output = (
           <div>
@@ -109,23 +112,28 @@ export default function TerminalMode() {
 
       case 'skills':
         output = (
-           <div className="flex flex-wrap gap-2">
-             {['Python', 'Flutter', 'Next.js', 'React', 'TypeScript', 'Node.js', 'TailwindCSS', 'Git'].map(skill => (
-               <span key={skill} className="bg-gray-700 text-cyan-300 px-2 py-0.5 rounded text-xs">{skill}</span>
-             ))}
-           </div>
+          <div className="flex flex-wrap gap-2">
+            {['Python', 'Flutter', 'Next.js', 'React', 'TypeScript', 'Node.js', 'TailwindCSS', 'Git'].map(skill => (
+              <span key={skill} className="bg-gray-700 text-cyan-300 px-2 py-0.5 rounded text-xs">{skill}</span>
+            ))}
+          </div>
         );
         break;
-
-
+      case 'gaysex':
+        output = (
+          <div>
+            <p className="mb-2">Shut up jon.</p>
+          </div>
+        );
+        break;
       case 'projects':
         try {
           output = <div className='animate-pulse text-gray-400'>Fetching projects from Sanity CMS...</div>;
           // Optimistic update
           setHistory([...newHistory, { id: 'fetching', type: 'output', content: output }]);
-          
+
           const projects = await client.fetch(projectsQuery);
-          
+
           output = (
             <div className="flex flex-col gap-4 mt-2">
               {projects.map((p: any) => (
@@ -140,7 +148,7 @@ export default function TerminalMode() {
               ))}
             </div>
           );
-          
+
           // Remove the loading message and add result
           setHistory(prev => prev.filter(p => p.id !== 'fetching').concat({ id: Date.now().toString() + 'res', type: 'output', content: output }));
           setIsProcessing(false);
@@ -154,10 +162,10 @@ export default function TerminalMode() {
 
       case 'contact':
         output = (
-           <div>
-             <div>Email: <a href="mailto:srijankulal1010@gmail.com" className="text-blue-400 underline">srijankulal1010@gmail.com</a></div>
-             <div>GitHub: <a href="https://github.com/srijankulal" target="_blank" className="text-blue-400 underline">github.com/srijankulal</a></div>
-           </div>
+          <div>
+            <div>Email: <a href="mailto:srijankulal1010@gmail.com" className="text-blue-400 underline">srijankulal1010@gmail.com</a></div>
+            <div>GitHub: <a href="https://github.com/srijankulal" target="_blank" className="text-blue-400 underline">github.com/srijankulal</a></div>
+          </div>
         );
         break;
 
@@ -173,7 +181,7 @@ export default function TerminalMode() {
     if (output) {
       setHistory(prev => [...prev, { id: Date.now().toString() + 'res', type, content: output }]);
     }
-    
+
     setIsProcessing(false);
   };
 
@@ -229,18 +237,17 @@ export default function TerminalMode() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 100, scale: 0.9 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0, 
+            animate={{
+              opacity: 1,
+              y: 0,
               scale: 1,
               width: isMaximized ? '100vw' : '800px',
               height: isMaximized ? '100vh' : '600px',
               borderRadius: isMaximized ? 0 : '12px'
             }}
             exit={{ opacity: 0, y: 100, scale: 0.9 }}
-            className={`fixed z-[100] bg-black/90 backdrop-blur-md text-green-500 font-mono shadow-2xl border border-gray-700 overflow-hidden flex flex-col ${
-              isMaximized ? 'top-0 left-0 bottom-0 right-0' : 'bottom-10 right-10 max-w-[calc(100vw-40px)] max-h-[calc(100vh-40px)]'
-            }`}
+            className={`fixed z-[100] bg-black/90 backdrop-blur-md text-green-500 font-mono shadow-2xl border border-gray-700 overflow-hidden flex flex-col ${isMaximized ? 'top-0 left-0 bottom-0 right-0' : 'bottom-10 right-10 max-w-[calc(100vw-40px)] max-h-[calc(100vh-40px)]'
+              }`}
           >
             {/* Header / Title Bar */}
             <div className="flex items-center justify-between px-4 py-2 bg-[#1e1e1e] border-b border-gray-700 select-none">
@@ -279,7 +286,7 @@ export default function TerminalMode() {
                   )}
                 </div>
               ))}
-              
+
               {/* Input Area */}
               <div className="flex items-center mt-2 group">
                 <span className="text-blue-500 mr-2 font-bold">➜</span>
