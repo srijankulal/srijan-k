@@ -27,7 +27,7 @@ export default function Home() {
         
         <Header whereAt="home" />
         
-        <div className="py-4 sm:py-8 text-center border-b border-neutral-600 dark:border-neutral-400 w-[calc(100%+2px)] -mx-px">
+        <div className="py-4 sm:py-8 text-center border-b border-neutral-600 dark:border-neutral-400 w-full">
           {/* Hero Section */}
           <div className="border-b border-neutral-600 dark:border-neutral-400 w-full">
             <div className="px-2 sm:px-4 md:px-8">
@@ -45,7 +45,7 @@ export default function Home() {
 
           {/* Projects Section */}
           <motion.div 
-            className="pt-10 border-b border-neutral-600 dark:border-neutral-400 pb-24 w-[calc(100%+2px)] -mx-px"
+            className="pt-10 border-b border-neutral-600 dark:border-neutral-400 pb-24 w-full"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -58,7 +58,7 @@ export default function Home() {
   
           {/* About Section */}
           <motion.div 
-            className="pt-14 border-b border-neutral-600 dark:border-neutral-400 pb-24 w-[calc(100%+2px)] -mx-px"
+            className="pt-14 border-b border-neutral-600 dark:border-neutral-400 pb-24 w-full"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -73,7 +73,7 @@ export default function Home() {
   
           {/* Skills Section */}
           <motion.div 
-            className="lg:pt-20 lg:pb-24 border-b border-neutral-600 dark:border-neutral-400 w-[calc(100%+2px)] -mx-px"
+            className="lg:pt-20 lg:pb-24 border-b border-neutral-600 dark:border-neutral-400 w-full"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}

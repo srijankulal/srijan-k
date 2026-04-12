@@ -85,7 +85,7 @@ export default function Skills() {
                 whileHover="hover"
                 initial="initial"
                 variants={iconVariants}
-                className="mr-2 font-mono bg-background px-4 py-1 text-amber-600 border border-black dark:border-white inline-flex items-center"
+                className="mr-2 font-mono bg-background px-4 py-1 text-neon border border-black dark:border-white inline-flex items-center"
               >
                 <span>{category.icon}</span>
               </motion.span>

@@ -26,7 +26,7 @@ export default function Hero() {
                         transform transition-all duration-700 delay-300 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                     >
                         I&apos;m&nbsp;<Link href="https://www.linkedin.com/in/srijan-kulal"> 
-                            <span className="hover:text-amber-600 transition-colors duration-300">
+                            <span className="hover:text-neon transition-colors duration-300">
                                 <u className="mx-1 hover:scale-105 inline-block transition-transform"> Srijan</u>&nbsp;
                                 <u className="hover:scale-105 inline-block transition-transform">K</u>
                             </span>
@@ -45,13 +45,13 @@ export default function Hero() {
                     >
                         <Link href="/#projects">
                             <Button variant="outline" className="py-1 text-sm sm:text-base md:text-lg font-medium h-9 sm:h-10 md:h-12 px-3 sm:px-6 md:px-8 
-                                hover:scale-105 transition-transform duration-300 hover:bg-amber-600 hover:text-white hover:border-amber-600">
+                                hover:scale-105 transition-transform duration-300 hover:bg-neon hover:text-white hover:border-neon">
                                 Projects
                             </Button>
                         </Link>
                         <Link href="/#contact">
                             <Button variant="outline" className="py-1 text-sm sm:text-base md:text-lg font-medium h-9 sm:h-10 md:h-12 px-3 sm:px-6 md:px-8
-                                hover:scale-105 transition-transform duration-300 hover:bg-amber-600 hover:text-white hover:border-amber-600">
+                                hover:scale-105 transition-transform duration-300 hover:bg-neon hover:text-white hover:border-neon">
                                 Contact
                             </Button>
                         </Link>
@@ -61,14 +61,17 @@ export default function Hero() {
                     className={`hidden w-full lg:w-2/5 lg:flex md:w-2/5 md:flex items-center justify-center px-4
                     transform transition-all duration-1000 ${isLoaded ? 'translate-x-0 opacity-90 rotate-0' : 'translate-x-10 opacity-0 rotate-6'}`}
                 >
-                    <Image
-                        src={me.src} 
-                        alt="Srijan K ASCII Art" 
-                        width={600}
-                        height={600}
-                        className="max-w-full h-auto w-auto object-contain rounded-sm filter contrast-125 invert dark:invert-0 hover:contrast-150 hover:scale-105 transition-all duration-500"
-                        priority
-                    />
+                    {/* Dark backdrop so the ASCII art always looks crisp regardless of theme */}
+                    <div className="relative rounded-sm overflow-hidden p-1 bg-black shadow-[0_0_30px_rgba(113,252,123,0.08)] border border-neon/10 hover:shadow-[0_0_40px_rgba(113,252,123,0.15)] hover:border-neon/25 transition-all duration-500 hover:scale-105">
+                        <Image
+                            src={me.src} 
+                            alt="Srijan K ASCII Art" 
+                            width={600}
+                            height={600}
+                            className="max-w-full h-auto w-auto object-contain contrast-125 hover:contrast-150 transition-all duration-500"
+                            priority
+                        />
+                    </div>
                 </div>
             </div>
         </div>

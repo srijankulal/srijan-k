@@ -71,7 +71,7 @@ export default function Contact({id}: {id: string}) {
           className="terminal-style-contact w-full max-w-6xl p-6 border-2 border-neutral-700 bg-neutral-900 bg-opacity-90 text-left"
         >
             <div className="mb-4 border-b border-gray-700 pb-2">
-            <span className="text-amber-600 font-mono text-lg">srijan@portfolio</span>
+            <span className="text-neon font-mono text-lg">srijan@portfolio</span>
             <span className="text-blue-400 font-mono"> ~</span>
             <br></br>
             <span className="text-white font-mono"> {displayedCommand1}<span className={showCursor ? "animate-caret-blink" : ""}>{displayedCommand1.length === command1.length ? "" : "_"}</span></span>
@@ -82,7 +82,7 @@ export default function Contact({id}: {id: string}) {
             animate={{ opacity: displayedCommand1.length === command1.length ? 1 : 0 }}
             className="mb-4 border-b border-gray-700 pb-2"
             >
-            <span className="text-amber-600 font-mono text-lg">srijan@portfolio</span>
+            <span className="text-neon font-mono text-lg">srijan@portfolio</span>
             <span className="text-blue-400 font-mono"> ~/contacts</span><br></br>
             <span className="text-white font-mono">{displayedCommand2}<span className={showCursor ? "animate-caret-blink" : ""}>{displayedCommand2.length === command2.length ? "" : "_"}</span></span>
             </motion.div>
@@ -174,7 +174,7 @@ export default function Contact({id}: {id: string}) {
             transition={{ delay: 1.5 }}
             className="mt-6"
           >
-            <span className="text-amber-600 font-mono">$ </span>
+            <span className="text-neon font-mono">$ </span>
             contact
             <motion.a 
             whileHover={{ scale: 1.05 }}

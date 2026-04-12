@@ -134,7 +134,7 @@ export default function ProjectCard({
            <motion.div 
              initial={{ opacity: 0 }} 
              animate={{ opacity: 1 }}
-             className="mb-6 text-sm text-gray-600 dark:text-gray-400 font-mono border-l-2 border-amber-600 pl-3 italic"
+             className="mb-6 text-sm text-gray-600 dark:text-gray-400 font-mono border-l-2 border-neon pl-3 italic"
            >
              {details}
            </motion.div>
@@ -161,7 +161,7 @@ export default function ProjectCard({
                href={link}
                target="_blank"
                rel="noopener noreferrer"
-               className="flex-1 text-center py-2 bg-amber-900/20 hover:bg-amber-900/40 border border-amber-800 text-amber-500 font-mono text-sm transition-colors"
+               className="flex-1 text-center py-2 bg-neon/10 hover:bg-neon/20 border border-neon/50 text-neon font-mono text-sm transition-colors"
              >
                &lt;CODE /&gt;
              </a>

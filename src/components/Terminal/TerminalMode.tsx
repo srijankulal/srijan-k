@@ -14,6 +14,8 @@ import {
 
 import MatrixFire from './MatrixFire';
 import SnakeGame from './SnakeGame';
+import EndlessRunner from './EndlessRunner';
+import Tetris from './Tetris';
 
 // Define types for terminal lines
 type LineType = 'input' | 'output' | 'error';
@@ -31,7 +33,7 @@ const COMMANDS = [
   { cmd: 'skills', desc: 'List my technical skills' },
   { cmd: 'contact', desc: 'Show contact details' },
   { cmd: 'fire', desc: 'Toggle terminal fire mode' },
-  { cmd: 'snake', desc: 'Play classic terminal snake' },
+  { cmd: 'runner', desc: 'Play endless runner game' },
   { cmd: 'clear', desc: 'Clear the terminal screen' },
   { cmd: 'exit', desc: 'Close terminal mode' },
 ];
@@ -47,7 +49,9 @@ export default function TerminalMode() {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isFireMode, setIsFireMode] = useState(false);
-  const [isSnakeActive, setIsSnakeActive] = useState(false);
+  const [isRunnerActive, setIsRunnerActive] = useState(false);
+  const [isTetrisActive, setIsTetrisActive] = useState(false);
+  const [easterEggCount, setEasterEggCount] = useState(0);
   const { theme, setTheme } = useTheme();
 
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -129,8 +133,12 @@ export default function TerminalMode() {
         output = 'Toggled terminal fire mode.';
         break;
       case 'snake':
-        setIsSnakeActive(true);
-        output = 'Starting Snake Game...';
+        output = 'Snake is disabled. Try "runner" for the new game!';
+        break;
+      case 'runner':
+      case 'game':
+        setIsRunnerActive(true);
+        output = 'Starting Runner Game...';
         break;
       case 'about':
         output = (
@@ -150,13 +158,29 @@ export default function TerminalMode() {
           </div>
         );
         break;
-      case 'gaysex':
-        output = (
-          <div>
-            <p className="mb-2">Shut up jon.</p>
-          </div>
-        );
+      case 'gaysex': {
+        const newCount = easterEggCount + 1;
+        setEasterEggCount(newCount);
+        if (newCount >= 10) {
+          setEasterEggCount(0);
+          output = (
+            <div className="text-neon font-bold animate-pulse">
+              😏 Take here u go...
+            </div>
+          );
+          setTimeout(() => {
+            setIsTetrisActive(true);
+          }, 800);
+        } else {
+          output = (
+            <div>
+              <p className="mb-1 text-yellow-400">Shut up jon. </p>
+              {newCount >= 7 && <p className="text-neon/60 text-xs">...you&apos;re getting close to something 👀</p>}
+            </div>
+          );
+        }
         break;
+      }
       case 'projects':
         try {
           output = <div className='animate-pulse text-gray-400'>Fetching projects from Sanity CMS...</div>;
@@ -302,15 +326,14 @@ export default function TerminalMode() {
             </div>
 
             {/* Terminal Content */}
-            <div className="relative z-10 flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent bg-transparent" onClick={() => !isSnakeActive && inputRef.current?.focus()}>
-              {isSnakeActive ? (
-                <SnakeGame 
-                  isMaximized={isMaximized} 
+            <div className="relative z-10 flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent bg-transparent" onClick={() => !isRunnerActive && inputRef.current?.focus()}>
+              {isRunnerActive ? (
+                <EndlessRunner
                   onExit={(score) => {
-                    setIsSnakeActive(false);
-                    setHistory(prev => [...prev, { id: Date.now().toString(), type: 'output', content: `Game Ended. Final Score: ${score}` }]);
+                    setIsRunnerActive(false);
+                    setHistory(prev => [...prev, { id: Date.now().toString(), type: 'output', content: `Run Ended. Distance covered: ${score}m` }]);
                     setTimeout(() => inputRef.current?.focus(), 100);
-                  }} 
+                  }}
                 />
               ) : (
                 <>
@@ -348,6 +371,39 @@ export default function TerminalMode() {
                 </>
               )}
               <div ref={bottomRef} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Tetris modal — fullscreen popup above everything */}
+      <AnimatePresence>
+        {isTetrisActive && (
+          <motion.div
+            key="tetris-modal"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-2 sm:p-4"
+          >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+              onClick={() => {
+                setIsTetrisActive(false);
+                setHistory(prev => [...prev, { id: Date.now().toString(), type: 'output', content: `🎮 Tetris ended.` }]);
+              }}
+            />
+            {/* Modal card */}
+            <div className="relative z-10 w-fit max-w-[95vw] max-h-[95vh] overflow-y-auto rounded-lg bg-[#0a0a0a] border border-neon/30 shadow-[0_0_60px_rgba(113,252,123,0.15)] flex flex-col">
+              <Tetris
+                onExit={(score) => {
+                  setIsTetrisActive(false);
+                  setHistory(prev => [...prev, { id: Date.now().toString(), type: 'output', content: `🎮 Tetris ended. Final score: ${score}` }]);
+                  setTimeout(() => inputRef.current?.focus(), 100);
+                }}
+              />
             </div>
           </motion.div>
         )}
