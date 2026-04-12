@@ -16,6 +16,7 @@ import MatrixFire from './MatrixFire';
 import SnakeGame from './SnakeGame';
 import EndlessRunner from './EndlessRunner';
 import Tetris from './Tetris';
+import { fetchHighScores, type ScoreEntry } from './useHighScores';
 
 // Define types for terminal lines
 type LineType = 'input' | 'output' | 'error';
@@ -34,6 +35,7 @@ const COMMANDS = [
   { cmd: 'contact', desc: 'Show contact details' },
   { cmd: 'fire', desc: 'Toggle terminal fire mode' },
   { cmd: 'runner', desc: 'Play endless runner game' },
+  { cmd: 'highscores', desc: 'Show top-5 leaderboards for all games' },
   { cmd: 'clear', desc: 'Clear the terminal screen' },
   { cmd: 'exit', desc: 'Close terminal mode' },
 ];
@@ -140,6 +142,52 @@ export default function TerminalMode() {
         setIsRunnerActive(true);
         output = 'Starting Runner Game...';
         break;
+
+      case 'highscores':
+      case 'leaderboard': {
+        const loadingContent = <span className="animate-pulse text-gray-400">Connecting to global databank...</span>;
+        setHistory([...newHistory, { id: 'fetching-scores', type: 'output', content: loadingContent }]);
+
+        try {
+          const [runnerBoard, tetrisBoard] = await Promise.all([
+            fetchHighScores('runner'),
+            fetchHighScores('tetris')
+          ]);
+
+          const medal = ['🥇', '🥈', '🥉', '4.', '5.'];
+          const renderBoard = (board: ScoreEntry[]) =>
+            board.length === 0
+              ? <span className="text-gray-500 text-xs">No scores yet</span>
+              : board.map((e, i) => (
+                <div key={i} className="flex gap-4 font-mono text-xs">
+                  <span>{medal[i]}</span>
+                  <span className="text-yellow-300 w-28">{e.name.toUpperCase()}</span>
+                  <span className="text-green-400">{e.score.toString().padStart(6, '0')}</span>
+                  <span className="text-gray-500">{e.date}</span>
+                </div>
+              ));
+          output = (
+            <div className="flex flex-col gap-3 mt-1">
+              <div>
+                <div className="text-neon font-bold tracking-widest text-xs mb-1">🏃 ENDLESS RUNNER</div>
+                {renderBoard(runnerBoard)}
+              </div>
+              <div>
+                <div className="text-neon font-bold tracking-widest text-xs mb-1">🧱 TETRIS</div>
+                {renderBoard(tetrisBoard)}
+              </div>
+            </div>
+          );
+        } catch (error) {
+          type = 'error';
+          output = 'Failed to fetch global high scores from edge config.';
+        }
+
+        // Remove loading state and show result
+        setHistory(prev => prev.filter(p => p.id !== 'fetching-scores').concat({ id: Date.now().toString() + 'res', type, content: output }));
+        setIsProcessing(false);
+        return;
+      }
       case 'about':
         output = (
           <div>
@@ -157,6 +205,9 @@ export default function TerminalMode() {
             ))}
           </div>
         );
+        break;
+      case 'gaysex 67':
+        setIsTetrisActive(true);
         break;
       case 'gaysex': {
         const newCount = easterEggCount + 1;

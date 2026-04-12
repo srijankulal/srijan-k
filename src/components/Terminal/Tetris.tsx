@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react';
+import HighScoreModal from './HighScoreModal';
 
 // ─── Board ────────────────────────────────────────────────────────────────────
 const COLS = 10;
@@ -87,6 +88,8 @@ export default function Tetris({ onExit, className = '' }: TetrisProps) {
   const [isDead,   setIsDead]   = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [hiScore,  setHiScore]  = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [hasSubmittedScore, setHasSubmittedScore] = useState(false);
 
   // ── Render helpers ──────────────────────────────────────────────────────
   const renderBoard = useCallback(() => {
@@ -157,6 +160,7 @@ export default function Tetris({ onExit, className = '' }: TetrisProps) {
       Object.assign(s,{board,current:s.next,score:ns,lines:nl,level:nv,dead:true});
       if(ns>hiRef.current){hiRef.current=ns;try{localStorage.setItem('tetris_hi',String(ns));}catch(_){}}
       setScore(ns); setLines(nl); setLevel(nv); setIsDead(true); setHiScore(hiRef.current);
+      setTimeout(() => setShowModal(true), 400);
       renderBoard(); return;
     }
     Object.assign(s,{board,current:s.next,next:randomPiece(),score:ns,lines:nl,level:nv});
@@ -180,7 +184,7 @@ export default function Tetris({ onExit, className = '' }: TetrisProps) {
   const resetGame = useCallback(()=>{
     if(dropTimer.current) clearTimeout(dropTimer.current);
     stateRef.current={board:emptyBoard(),current:randomPiece(),next:randomPiece(),score:0,lines:0,level:1,dead:false,paused:false};
-    setScore(0);setLines(0);setLevel(1);setIsDead(false);setIsPaused(false);
+    setScore(0);setLines(0);setLevel(1);setIsDead(false);setIsPaused(false);setShowModal(false);setHasSubmittedScore(false);
     renderBoard();renderNext();scheduleDrop();
   },[renderBoard,renderNext,scheduleDrop]);
 
@@ -292,6 +296,10 @@ export default function Tetris({ onExit, className = '' }: TetrisProps) {
                       className="px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase bg-neon/10 hover:bg-neon/20 border border-neon/40 text-neon rounded-sm transition-colors active:scale-95">
                 ↺ RESTART
               </button>
+              <button onClick={() => setShowModal(true)}
+                      className="px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase bg-neon/5 hover:bg-neon/15 border border-neon/25 text-neon/60 rounded-sm transition-colors active:scale-95">
+                🏆 SCORES
+              </button>
               {onExit&&(
                 <button onClick={()=>onExit(score)}
                         className="px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase bg-red-500/10 hover:bg-red-500/20 border border-red-500/40 text-red-400 rounded-sm transition-colors active:scale-95">
@@ -356,6 +364,18 @@ export default function Tetris({ onExit, className = '' }: TetrisProps) {
       </div>
 
       <style>{`@keyframes tet-blink{0%,100%{opacity:1}50%{opacity:0.2}}`}</style>
+
+      {showModal && (
+        <HighScoreModal
+          game="tetris"
+          score={score}
+          scoreLabel={`SCORE: ${pad(score,6)}  ·  LEVEL: ${pad(level,2)}`}
+          isReadOnly={hasSubmittedScore}
+          onSubmitted={() => setHasSubmittedScore(true)}
+          onClose={() => setShowModal(false)}
+          onRestart={resetGame}
+        />
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import HighScoreModal from './HighScoreModal';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const COLS = 42;
@@ -68,6 +69,8 @@ export default function EndlessRunner({ onExit, className = '' }: EndlessRunnerP
   const [isDead, setIsDead] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
   const [finalStreak, setFinalStreak] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [hasSubmittedScore, setHasSubmittedScore] = useState(false);
   const [comboText, setComboText] = useState('');
   const [comboVisible, setComboVisible] = useState(false);
 
@@ -238,6 +241,7 @@ export default function EndlessRunner({ onExit, className = '' }: EndlessRunnerP
       setFinalScore(gs.score);
       setFinalStreak(gs.streak);
       setIsDead(true);
+      setTimeout(() => setShowModal(true), 400);
       return;
     }
 
@@ -257,6 +261,8 @@ export default function EndlessRunner({ onExit, className = '' }: EndlessRunnerP
     gsRef.current = initState();
     lastTRef.current = 0;
     setIsDead(false);
+    setShowModal(false);
+    setHasSubmittedScore(false);
     setHudScore('00000'); setHudSpd('x1.0'); setHudStreak('0');
     setHudHi(pad(hiRef.current, 5));
     rafRef.current = requestAnimationFrame(loop);
@@ -393,6 +399,12 @@ export default function EndlessRunner({ onExit, className = '' }: EndlessRunnerP
                 >
                   ↺ RESTART [SPACE]
                 </button>
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase bg-neon/5 hover:bg-neon/15 border border-neon/30 text-neon/70 rounded-sm transition-colors active:scale-95"
+                >
+                  🏆 SCORES
+                </button>
                 {onExit && (
                   <button
                     onClick={() => onExit(finalScore)}
@@ -422,6 +434,18 @@ export default function EndlessRunner({ onExit, className = '' }: EndlessRunnerP
         </div>
 
       </div>
+
+      {showModal && (
+        <HighScoreModal
+          game="runner"
+          score={finalScore}
+          scoreLabel={`DISTANCE: ${pad(finalScore, 5)}m  ·  STREAK: ${finalStreak}`}
+          isReadOnly={hasSubmittedScore}
+          onSubmitted={() => setHasSubmittedScore(true)}
+          onClose={() => setShowModal(false)}
+          onRestart={resetGame}
+        />
+      )}
 
       <style>{`
         @keyframes runner-blink {
