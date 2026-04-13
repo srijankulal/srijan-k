@@ -121,11 +121,19 @@ export default function TerminalMode() {
         output = `Toggled theme!`;
         break;
       case 'light':
+      case 'mode light':
+      case 'theme light':
+      case 'light mode':
+      case 'light theme':
       case 'lightmode':
         setTheme('light');
         output = 'Switched to Light mode';
         break;
       case 'dark':
+      case 'mode dark':
+      case 'theme dark':
+      case 'dark mode':
+      case 'dark theme':
       case 'darkmode':
         setTheme('dark');
         output = 'Switched to Dark mode';
@@ -135,7 +143,7 @@ export default function TerminalMode() {
         output = 'Toggled terminal fire mode.';
         break;
       case 'snake':
-        output = 'Snake is disabled. Try "runner" for the new game!';
+        output = 'Snake is disabled. Try "runner" for the new game!(Who is snake ?? Me huh??)';
         break;
       case 'runner':
       case 'game':

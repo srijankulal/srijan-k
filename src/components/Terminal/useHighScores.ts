@@ -9,18 +9,25 @@ export interface ScoreEntry {
 }
 
 const MAX_ENTRIES = 5;
+const boardCache: Partial<Record<GameId, ScoreEntry[]>> = {};
 
 /** Fetch the top-5 leaderboard for a game from Edge Config via API. */
 export async function fetchHighScores(game: GameId): Promise<ScoreEntry[]> {
+  const cached = boardCache[game];
   try {
-    const res = await fetch(`/api/highscores?game=${game}`, { cache: 'no-store' });
+    const res = await fetch(`/api/highscores?game=${game}&_=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
-      return await res.json();
+      const scores = await res.json();
+      if (Array.isArray(scores)) {
+        boardCache[game] = scores;
+        return scores;
+      }
     }
   } catch (error) {
     console.error('Failed to fetch high scores', error);
   }
-  return [];
+
+  return cached ?? [];
 }
 
 /**
@@ -32,6 +39,7 @@ export async function submitHighScore(
   name: string,
   score: number
 ): Promise<{ board: ScoreEntry[]; rank: number | null }> {
+  const cached = boardCache[game] ?? [];
   try {
     const res = await fetch('/api/highscores', {
       method: 'POST',
@@ -40,7 +48,11 @@ export async function submitHighScore(
     });
     
     if (res.ok) {
-      return await res.json();
+      const result = await res.json();
+      if (Array.isArray(result?.board)) {
+        boardCache[game] = result.board;
+      }
+      return result;
     } else {
       console.error('High score submission failed:', await res.text());
     }
@@ -48,8 +60,8 @@ export async function submitHighScore(
     console.error('Failed to submit high score', error);
   }
   
-  // Return empty/null on error so it safely handles failure
-  return { board: [], rank: null };
+  // Return cached board on error so UI still shows the latest known entries.
+  return { board: cached, rank: null };
 }
 
 /** Utility to check if a score qualifies locally given an existing board. */

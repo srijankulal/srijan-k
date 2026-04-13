@@ -78,9 +78,10 @@ export default function HighScoreModal({
     // 2. Fire and forget the actual backend request so the user doesn't wait!
     submitHighScore(game, name, score)
       .then((res) => {
-        // Optionally reconcile with true backend state if needed
-        // setBoard(res.board); 
-        // setPlayerRank(res.rank);
+        if (Array.isArray(res.board) && res.board.length > 0) {
+          setBoard(res.board);
+          setPlayerRank(res.rank);
+        }
       })
       .catch((e) => console.error('Background save failed:', e));
   };
