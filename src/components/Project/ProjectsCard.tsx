@@ -43,7 +43,7 @@ export default function ProjectCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
-      className="project-card relative p-5 transition-all duration-300 bg-background border border-black dark:border-white"
+      className="project-card relative flex h-full flex-col p-5 transition-all duration-300 bg-background border border-black dark:border-white"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
@@ -68,12 +68,11 @@ export default function ProjectCard({
       </motion.div>
 
       {/* Content */}
-      <div className="flex flex-col">
+      <div className="flex min-h-0 flex-1 flex-col">
       {imageUrl ? (
         <motion.div 
           whileHover={{ scale: 1.03 }}
-          className="mb-4 overflow-hidden relative w-full" 
-          style={{ minHeight: '200px', height: 'auto' }}
+          className="relative mb-4 aspect-video w-full overflow-hidden" 
         >
           <Link href={live || '#'} target="_blank" rel="noopener noreferrer">
           

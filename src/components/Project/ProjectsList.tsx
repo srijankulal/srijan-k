@@ -29,10 +29,10 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                             <span className="ml-1 inline-block w-4 h-8 animate-caret-blink">_</span>
                         </h2>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 w-full max-w-7xl px-4">
+                        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-4 mt-8 md:grid-cols-2 lg:grid-cols-3">
                             {projects.map((project, index) => (
                                 <div key={index} 
-                                    className="transition-all duration-500 w-full"
+                                    className="flex w-full transition-all duration-500"
                                     style={{ 
                                         opacity: isVisible ? 1 : 0,
                                         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',

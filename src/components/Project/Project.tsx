@@ -22,7 +22,7 @@ export default function Project() {
       
             <div className="grid grid-cols-1 sm:grid-cols-2 pt-4 sm:pt-6 md:pt-10 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6 w-full">
               {projects.slice(0, 4).map((project, index) => (
-            <ProjectCard
+              <ProjectCard
               key={index}
               title={project.title}
               description={project.description}
