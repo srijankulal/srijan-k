@@ -6,6 +6,7 @@ export const projectsQuery = groq`*[_type == "project"] {
   "slug": slug.current,
   "imageUrl": mainImage.asset->url,
   description,
+  "isFreelance": coalesce(isFreelance, false),
   technologies,
   "link": linkToCode,
   "live": linkToLive,

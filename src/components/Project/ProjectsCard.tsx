@@ -12,6 +12,7 @@ interface ProjectCardProps {
   technologies: string[]
   link: string
   imageUrl?: string
+  isFreelance?: boolean
   onClick?: () => void
   details?: string 
   live: string | undefined
@@ -25,6 +26,7 @@ export default function ProjectCard({
   link, 
   live,
   imageUrl,
+  isFreelance = false,
   onClick 
 }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
@@ -98,6 +100,12 @@ export default function ProjectCard({
         >
           <u>{title}</u>
         </motion.h3>
+
+        {isFreelance && (
+          <span className="mb-2 w-fit border border-neon/50 bg-neon/10 px-2 py-0.5 font-mono text-xs text-neon">
+            Freelance
+          </span>
+        )}
 
         <motion.p 
           initial={{ y: 10, opacity: 0 }} 

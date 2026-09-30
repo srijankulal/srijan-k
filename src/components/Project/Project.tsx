@@ -30,6 +30,7 @@ export default function Project() {
               live={project.live}
               link={project.link}
               imageUrl={project.imageUrl}
+              isFreelance={project.isFreelance}
             />
               ))}
             </div>

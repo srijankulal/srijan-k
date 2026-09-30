@@ -35,6 +35,7 @@ const COMMANDS = [
   { cmd: 'contact', desc: 'Show contact details' },
   { cmd: 'fire', desc: 'Toggle terminal fire mode' },
   { cmd: 'runner', desc: 'Play endless runner game' },
+  { cmd: 'tetris', desc: 'Play Tetris' },
   { cmd: 'highscores', desc: 'Show top-5 leaderboards for all games' },
   { cmd: 'clear', desc: 'Clear the terminal screen' },
   { cmd: 'exit', desc: 'Close terminal mode' },
@@ -149,6 +150,10 @@ export default function TerminalMode() {
       case 'game':
         setIsRunnerActive(true);
         output = 'Starting Runner Game...';
+        break;
+      case 'tetris':
+        setIsTetrisActive(true);
+        output = 'Starting Tetris...';
         break;
 
       case 'highscores':

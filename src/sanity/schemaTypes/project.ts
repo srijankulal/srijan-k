@@ -42,6 +42,12 @@ export default defineType({
       description: 'Short summary of the project',
     }),
     defineField({
+      name: 'isFreelance',
+      title: 'Is Freelance',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'technologies',
       title: 'Technologies',
       type: 'array',
