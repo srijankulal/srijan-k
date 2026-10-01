@@ -142,7 +142,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
               </div>
 
               {project.imageUrl ? (
-                <div className="relative w-full aspect-video max-h-[550px] overflow-hidden bg-black/60 mt-3 border border-border/40">
+                <div className="relative w-full aspect-video max-h-137.5 overflow-hidden bg-black/60 mt-3 border border-border/40">
                   <Image
                     src={project.imageUrl}
                     alt={project.title}

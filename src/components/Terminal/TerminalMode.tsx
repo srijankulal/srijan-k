@@ -36,7 +36,6 @@ const COMMANDS = [
   { cmd: 'skills', desc: 'List technical skills & stack' },
   { cmd: 'resume', desc: 'View IEEE technical resume & download link' },
   { cmd: 'iot', desc: 'Show IoT & embedded systems projects' },
-  { cmd: 'sync', desc: 'Run automated LinkedIn to Sanity synchronization' },
   { cmd: 'contact', desc: 'Show contact info & links' },
   { cmd: 'runner', desc: 'Play 8-bit endless runner game' },
   { cmd: 'tetris', desc: 'Play classic Tetris mini-game' },
@@ -334,37 +333,20 @@ export default function TerminalMode() {
         );
         break;
 
-      case 'sync':
-      case 'sync-linkedin':
       case 'linkedin':
-        try {
-          output = <div className='animate-pulse text-yellow-400'>Triggering automated LinkedIn synchronization...</div>;
-          setHistory([...newHistory, { id: 'fetching-sync', type: 'output', content: output }]);
-
-          const res = await fetch('/api/cron/sync-linkedin', { method: 'POST' });
-          const json = await res.json();
-
-          output = (
-            <div className="space-y-1 text-xs">
-              <p className="text-neon font-bold">✓ LinkedIn Sync Status: {json.message || 'Success'}</p>
-              <p className="text-gray-400">Timestamp: {json.timestamp || new Date().toISOString()}</p>
-              {json.summary && (
-                <div className="text-gray-300">
-                  <p>• Education: {json.summary.education.added} added, {json.summary.education.updated} updated, {json.summary.education.unchanged} unchanged</p>
-                  <p>• Experience: {json.summary.experience.added} added, {json.summary.experience.updated} updated, {json.summary.experience.unchanged} unchanged</p>
-                </div>
-              )}
-              <p className="text-gray-500 text-[10px] mt-1">Automatic nightly cron scheduled at 00:00 Midnight IST.</p>
-            </div>
-          );
-
-          setHistory(prev => prev.filter(p => p.id !== 'fetching-sync').concat({ id: Date.now().toString() + 'res', type: 'output', content: output }));
-          setIsProcessing(false);
-          return;
-        } catch {
-          type = 'error';
-          output = 'Failed to execute LinkedIn sync.';
-        }
+        output = (
+          <div className="space-y-1 text-xs">
+            <span className="text-neon font-bold">LinkedIn Profile: </span>
+            <a 
+              href="https://linkedin.com/in/srijan-kulal" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-cyan-400 underline hover:text-neon"
+            >
+              https://linkedin.com/in/srijan-kulal
+            </a>
+          </div>
+        );
         break;
 
       case 'iot':
