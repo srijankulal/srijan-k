@@ -47,7 +47,7 @@ async function buildPdf() {
   }
 
   const defaultSummary =
-    "I am a software developer currently pursuing my B.C.A. at St. Aloysius University. I have experience leading an engineering team of eight to build secure Linux environments and have worked on digital forensics projects involving Windows registry analysis. My technical background includes building applications with Python, Java, Next.js, and Flutter, along with hands-on experience in embedded systems.";
+    "As an MCA student at MIT Manipal, I am deeply passionate about technology and continuous learning. My primary expertise spans Artificial Intelligence, software engineering, and full-stack web development, and I am currently expanding my technical horizons by actively exploring IoT and embedded systems. I thrive in collaborative, fast-paced environments and actively participate in technical events, collegiate competitions, and hackathons to build practical solutions and challenge myself alongside my peers.";
 
   const summaryText = sanitize(summaryDoc?.summary || defaultSummary);
 
@@ -125,39 +125,109 @@ async function buildPdf() {
     y -= 10;
   }
 
+  // Embed profile photo if available
+  const photoPath = path.join(process.cwd(), 'public', 'srijanLin.png');
+  let photoImg = null;
+  if (fs.existsSync(photoPath)) {
+    try {
+      const photoBytes = fs.readFileSync(photoPath);
+      photoImg = await pdfDoc.embedPng(photoBytes);
+      console.log('📷 Successfully embedded srijanLin.png in PDF');
+    } catch (e) {
+      console.warn('⚠️ Could not embed srijanLin.png:', e.message);
+    }
+  }
+
   // --- HEADER ---
-  const name = "Srijan K";
-  const nameWidth = fontBold.widthOfTextAtSize(name, 20);
-  currentPage.drawText(name, {
-    x: (pageWidth - nameWidth) / 2,
-    y,
-    size: 20,
-    font: fontBold,
-    color: rgb(0, 0, 0),
-  });
-  y -= 16;
+  if (photoImg) {
+    const photoSize = 54;
+    const photoX = pageWidth - margin - photoSize;
+    const photoY = y - photoSize;
 
-  const subtitle = "Software Developer | Mangalore, Karnataka, India";
-  const subWidth = fontBold.widthOfTextAtSize(subtitle, 9.5);
-  currentPage.drawText(subtitle, {
-    x: (pageWidth - subWidth) / 2,
-    y,
-    size: 9.5,
-    font: fontBold,
-    color: rgb(0.1, 0.1, 0.1),
-  });
-  y -= 14;
+    currentPage.drawImage(photoImg, {
+      x: photoX,
+      y: photoY,
+      width: photoSize,
+      height: photoSize,
+    });
 
-  const contactRow = "srijankulal1010@gmail.com | +91 8762471304 | srijan-k.me | github.com/srijankulal | linkedin.com/in/srijan-kulal";
-  const contactWidth = fontRegular.widthOfTextAtSize(contactRow, 8);
-  currentPage.drawText(contactRow, {
-    x: (pageWidth - contactWidth) / 2,
-    y,
-    size: 8,
-    font: fontRegular,
-    color: rgb(0.2, 0.2, 0.2),
-  });
-  y -= 8;
+    currentPage.drawRectangle({
+      x: photoX,
+      y: photoY,
+      width: photoSize,
+      height: photoSize,
+      borderWidth: 1,
+      borderColor: rgb(0.2, 0.2, 0.2),
+    });
+
+    // Header text on left
+    currentPage.drawText("Srijan K", {
+      x: margin,
+      y: y - 2,
+      size: 18,
+      font: fontBold,
+      color: rgb(0, 0, 0),
+    });
+
+    currentPage.drawText("Software Developer | Mangalore / Manipal, Karnataka, India", {
+      x: margin,
+      y: y - 18,
+      size: 9,
+      font: fontBold,
+      color: rgb(0.1, 0.1, 0.1),
+    });
+
+    currentPage.drawText("srijankulal1010@gmail.com | +91 8762471304 | srijan-k.me", {
+      x: margin,
+      y: y - 31,
+      size: 8,
+      font: fontRegular,
+      color: rgb(0.2, 0.2, 0.2),
+    });
+
+    currentPage.drawText("github.com/srijankulal | linkedin.com/in/srijan-kulal", {
+      x: margin,
+      y: y - 43,
+      size: 8,
+      font: fontRegular,
+      color: rgb(0.2, 0.2, 0.2),
+    });
+
+    y -= 58;
+  } else {
+    const name = "Srijan K";
+    const nameWidth = fontBold.widthOfTextAtSize(name, 20);
+    currentPage.drawText(name, {
+      x: (pageWidth - nameWidth) / 2,
+      y,
+      size: 20,
+      font: fontBold,
+      color: rgb(0, 0, 0),
+    });
+    y -= 16;
+
+    const subtitle = "Software Developer | Mangalore / Manipal, Karnataka, India";
+    const subWidth = fontBold.widthOfTextAtSize(subtitle, 9.5);
+    currentPage.drawText(subtitle, {
+      x: (pageWidth - subWidth) / 2,
+      y,
+      size: 9.5,
+      font: fontBold,
+      color: rgb(0.1, 0.1, 0.1),
+    });
+    y -= 14;
+
+    const contactRow = "srijankulal1010@gmail.com | +91 8762471304 | srijan-k.me | github.com/srijankulal | linkedin.com/in/srijan-kulal";
+    const contactWidth = fontRegular.widthOfTextAtSize(contactRow, 8);
+    currentPage.drawText(contactRow, {
+      x: (pageWidth - contactWidth) / 2,
+      y,
+      size: 8,
+      font: fontRegular,
+      color: rgb(0.2, 0.2, 0.2),
+    });
+    y -= 8;
+  }
 
   currentPage.drawLine({
     start: { x: margin, y },
@@ -176,13 +246,23 @@ async function buildPdf() {
   drawSectionHeader("Education");
   const eduItems = education.length > 0 ? education.slice(0, 3) : [
     {
-      degree: "Bachelor of Computer Applications (B.C.A)",
-      institution: "St. Aloysius University",
-      location: "Mangalore, Karnataka, India",
-      startDate: "2023",
+      degree: "Master of Computer Applications (M.C.A)",
+      institution: "Manipal Institute of Technology (MIT)",
+      location: "Manipal, Karnataka, India",
+      startDate: "2026",
       endDate: "Present",
       current: true,
       gpa: "In Progress",
+      description: "Specializing in Artificial Intelligence, Distributed Systems, Cloud Architecture, and Software Engineering."
+    },
+    {
+      degree: "Bachelor of Computer Applications (B.C.A)",
+      institution: "St. Aloysius College / University",
+      location: "Mangalore, Karnataka, India",
+      startDate: "2023",
+      endDate: "2026",
+      current: false,
+      gpa: "Graduated",
       description: "Coursework in Data Structures, Algorithms, DBMS (PostgreSQL/MySQL), OOP (Java/C++), and Web Technologies."
     }
   ];

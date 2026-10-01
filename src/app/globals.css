@@ -53,47 +53,47 @@
 :root {
   --radius: 0.625rem;
 
-  /* Warm off-white — easy on eyes, not blinding */
-  --background: #eeeae3;
-  /* Near-black for strong readability */
-  --foreground: #1a1a1a;
-  /* Visible borders on light bg */
-  --border: #b8b3aa;
-  --ring: #8a8480;
+  /* Modern, high-clarity warm paper tone */
+  --background: #f5f2eb;
+  /* Deep, high-contrast obsidian-charcoal foreground */
+  --foreground: #11151a;
+  /* Crisp visible borders on light bg */
+  --border: #bfb8ad;
+  --ring: #78716c;
 
-  /* Neon green is too washed on light bg — use a darker forest green */
-  --neon: #1a8c28;
-  --neon-accent: #157321;
-  --neon-dim: rgba(26, 140, 40, 0.12);
-  --neon-glow: rgba(26, 140, 40, 0.3);
+  /* High-contrast WCAG-compliant emerald green for light mode */
+  --neon: #0f8228;
+  --neon-accent: #0b681f;
+  --neon-dim: rgba(15, 130, 40, 0.12);
+  --neon-glow: rgba(15, 130, 40, 0.25);
 
-  --card: oklch(0.97 0.004 95);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(0.97 0.004 95);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.92 0.008 95);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.92 0.008 95);
-  --muted-foreground: oklch(0.45 0.02 285.938);
-  --accent: oklch(0.92 0.008 95);
-  --accent-foreground: oklch(0.21 0.006 285.885);
+  --card: #ede8df;
+  --card-foreground: #11151a;
+  --popover: #ede8df;
+  --popover-foreground: #11151a;
+  --primary: #11151a;
+  --primary-foreground: #ffffff;
+  --secondary: #e4dfd5;
+  --secondary-foreground: #11151a;
+  --muted: #e4dfd5;
+  --muted-foreground: #374151;
+  --accent: #e4dfd5;
+  --accent-foreground: #11151a;
   --destructive: oklch(0.577 0.245 27.325);
-  --input: oklch(0.88 0.01 95);
+  --input: #ded8cd;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.95 0.006 95);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.92 0.008 95);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.85 0.01 95);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
+  --sidebar: #ede8df;
+  --sidebar-foreground: #11151a;
+  --sidebar-primary: #11151a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e4dfd5;
+  --sidebar-accent-foreground: #11151a;
+  --sidebar-border: #bfb8ad;
+  --sidebar-ring: #78716c;
 }
 
 /* ── DARK MODE ── */
@@ -147,7 +147,80 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+}
+
+/* ── LIGHT MODE FONT ENHANCEMENTS & CONTRAST BOOST ── */
+html:not(.dark) body {
+  font-weight: 500;
+  letter-spacing: 0.012em;
+  color: #11151a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3,
+html:not(.dark) h4,
+html:not(.dark) h5,
+html:not(.dark) h6 {
+  color: #11151a;
+  font-weight: 700;
+}
+
+html:not(.dark) p,
+html:not(.dark) span,
+html:not(.dark) li,
+html:not(.dark) a {
+  text-rendering: optimizeLegibility;
+}
+
+/* Eliminate washed-out faded text in light mode */
+html:not(.dark) .text-foreground\/20,
+html:not(.dark) .text-foreground\/25 {
+  color: rgba(17, 21, 26, 0.55) !important;
+}
+
+html:not(.dark) .text-foreground\/30,
+html:not(.dark) .text-foreground\/35 {
+  color: rgba(17, 21, 26, 0.65) !important;
+}
+
+html:not(.dark) .text-foreground\/40,
+html:not(.dark) .text-foreground\/50 {
+  color: rgba(17, 21, 26, 0.78) !important;
+}
+
+html:not(.dark) .text-foreground\/60,
+html:not(.dark) .text-foreground\/70 {
+  color: rgba(17, 21, 26, 0.88) !important;
+}
+
+html:not(.dark) .text-foreground\/75,
+html:not(.dark) .text-foreground\/80,
+html:not(.dark) .text-foreground\/85,
+html:not(.dark) .text-foreground\/90 {
+  color: #11151a !important;
+}
+
+html:not(.dark) .text-gray-400 {
+  color: #374151 !important;
+}
+
+html:not(.dark) .text-gray-500 {
+  color: #1f2937 !important;
+}
+
+/* Ensure VT323 pixel font remains crisp and legible in light mode */
+html:not(.dark) .font-vt323 {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #11151a;
+  text-shadow: 0 0 0.5px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== LED BLINK ===== */
@@ -294,6 +367,18 @@
   #resume-document a {
     color: #000000 !important;
     text-decoration: none !important;
+  }
+
+  #resume-document img {
+    display: block !important;
+    visibility: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    filter: grayscale(100%) contrast(110%) !important;
+    border: 1px solid #000000 !important;
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: cover !important;
   }
 
   @page {

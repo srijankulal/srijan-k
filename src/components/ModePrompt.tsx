@@ -122,12 +122,18 @@ export default function ModePrompt() {
                                     ))}
                                 </div>
 
-                                <button
-                                    onClick={handleSkip}
-                                    className="mt-4 w-full font-mono text-xs text-foreground/30 hover:text-foreground/60 transition-colors py-1"
-                                >
-                                    skip — use default portfolio view
-                                </button>
+                                <div className="mt-4 pt-3 border-t border-border/40 flex flex-col gap-2">
+                                    <p className="font-mono text-[11px] text-neon/80 flex items-center gap-1.5 justify-center">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-neon led-blink" />
+                                        <span>// dark mode preferred for optimal cyber aesthetics</span>
+                                    </p>
+                                    <button
+                                        onClick={handleSkip}
+                                        className="w-full font-mono text-xs text-foreground/40 hover:text-foreground transition-colors py-1"
+                                    >
+                                        skip — use default portfolio view
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </motion.div>

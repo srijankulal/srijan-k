@@ -15,9 +15,9 @@ export default function Hero() {
     }, []);
 
     const statusItems = [
-        { label: "STATUS", value: "ONLINE", color: "text-neon" },
-        { label: "LOCATION", value: "MNG, IN", color: "text-blue-400" },
-        { label: "ROLE", value: "DEV", color: "text-yellow-400" },
+        { label: "STATUS", value: "ONLINE", color: "text-neon font-semibold" },
+        { label: "LOCATION", value: "MNG, IN", color: "text-blue-700 dark:text-blue-400 font-semibold" },
+        { label: "ROLE", value: "DEV", color: "text-amber-700 dark:text-yellow-400 font-semibold" },
     ];
 
     return (
@@ -32,11 +32,11 @@ export default function Hero() {
                 <div className="text-left w-full md:w-3/5 pb-24 px-2 sm:px-4 md:px-8 lg:px-12 lg:pb-34 lg:pt-20">
                     
                     {/* Chip-style status bar */}
-                    <div className={`flex items-center gap-3 mb-6 pl-1 md:pl-5 transform transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                    <div className={`flex items-center gap-2 sm:gap-3 mb-6 pl-1 md:pl-5 transform transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                         {statusItems.map((item, i) => (
-                            <div key={i} className="flex items-center gap-1.5 border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-xs">
+                            <div key={i} className="flex items-center gap-1.5 border border-border/80 bg-foreground/5 dark:border-white/10 dark:bg-white/5 px-2 py-0.5 font-mono text-xs shadow-xs">
                                 <span className="w-1.5 h-1.5 rounded-full bg-neon led-blink" style={{ animationDelay: `${i * 0.5}s` }} />
-                                <span className="text-white/40">{item.label}:</span>
+                                <span className="text-foreground/60 dark:text-white/40">{item.label}:</span>
                                 <span className={item.color}>{item.value}</span>
                             </div>
                         ))}
@@ -52,12 +52,18 @@ export default function Hero() {
                         className={`text-3xl sm:text-4xl md:text-6xl font-bold mb-3 sm:mb-4 text-left pl-3 sm:pl-6 md:pl-11 flex flex-wrap items-center
                         transform transition-all duration-700 delay-300 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                     >
-                        I&apos;m&nbsp;<Link href="https://www.linkedin.com/in/srijan-kulal"> 
-                            <span className="hover:text-neon transition-colors duration-300">
-                                <u className="mx-1 hover:scale-105 inline-block transition-transform"> Srijan</u>&nbsp;
-                                <u className="hover:scale-105 inline-block transition-transform">K</u>
+                        <span>I&apos;m&nbsp;</span>
+                        <Link 
+                            href="https://www.linkedin.com/in/srijan-kulal"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-block"
+                        > 
+                            <span className="inline-block transition-all duration-300 group-hover:scale-105 group-hover:text-neon underline decoration-neon/50 underline-offset-6 group-hover:decoration-neon">
+                                Srijan K
                             </span>
-                        </Link> !
+                        </Link>
+                        <span>&nbsp;!</span>
                         <span className="ml-1 inline-block w-2 sm:w-3 md:w-4 h-5 sm:h-6 md:h-8 animate-caret-blink">_</span>
                     </h2>
                     <p 
@@ -85,7 +91,7 @@ export default function Hero() {
                         <Link href="/resume">
                             <Button variant="outline" className="py-1 text-sm sm:text-base md:text-lg font-medium h-9 sm:h-10 md:h-12 px-3 sm:px-6 md:px-8 
                                 border-neon/50 text-neon bg-neon/5 hover:scale-105 transition-all duration-300 hover:bg-neon hover:text-black hover:border-neon hover:shadow-[0_0_20px_rgba(113,252,123,0.3)]">
-                                📄 Resume
+                                Resume
                             </Button>
                         </Link>
                         <Link href="/#contact">

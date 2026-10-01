@@ -97,14 +97,14 @@ export default function Contact({id}: {id: string}) {
   return (
     <div className="w-full my-16 px-4 sm:px-6 lg:px-8 pb-10" id={id}>
         {/* Section header */}
-        <div className="mb-8">
+        <div className="mb-8 text-left">
           <motion.p 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="section-label mb-1"
+            className="section-label mb-1 text-left"
           >
-            // 04. contact
+            // 05. contact
           </motion.p>
           <motion.h2 
             initial={{ x: -20, opacity: 0 }}
@@ -121,7 +121,7 @@ export default function Contact({id}: {id: string}) {
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="relative w-full max-w-3xl border border-border bg-black/60 text-left"
+          className="relative w-full max-w-3xl border border-border bg-card/85 dark:bg-black/60 text-left shadow-lg"
         >
             {/* Terminal chrome */}
             <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border/60 bg-white/5">

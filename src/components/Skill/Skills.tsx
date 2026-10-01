@@ -27,8 +27,8 @@ export default function Skills() {
       title: "Frontend",
       icon: "</>",
       label: "UI_LAYER",
-      color: "text-blue-400",
-      borderColor: "border-blue-400/20",
+      color: "text-blue-700 dark:text-blue-400",
+      borderColor: "border-blue-500/30 dark:border-blue-400/20",
       skills: [
         { name: "React / Next.js" },
         { name: "TypeScript" },
@@ -40,8 +40,8 @@ export default function Skills() {
       title: "Backend",
       icon: "{;}",
       label: "SRV_LAYER",
-      color: "text-yellow-400",
-      borderColor: "border-yellow-400/20",
+      color: "text-amber-700 dark:text-yellow-400",
+      borderColor: "border-amber-500/30 dark:border-yellow-400/20",
       skills: [
         { name: "Python / Flask" },
         { name: "Node.js" },
@@ -54,7 +54,7 @@ export default function Skills() {
       icon: "~/",
       label: "SYS_LAYER",
       color: "text-neon",
-      borderColor: "border-neon/20",
+      borderColor: "border-neon/30 dark:border-neon/20",
       skills: [
         { name: "IoT & Embedded" },
         { name: "Machine Learning" },
@@ -66,14 +66,14 @@ export default function Skills() {
   return (
     <div className="w-full my-16 px-4 sm:px-6 lg:px-8 pb-10" id="skills" ref={ref}>
       {/* Section header */}
-      <div className="mb-8">
+      <div className="mb-8 text-left">
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.4 }}
-          className="section-label mb-1"
+          className="section-label mb-1 text-left"
         >
-          // 03. skills
+          // 04. skills
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
@@ -95,7 +95,7 @@ export default function Skills() {
           <motion.div 
             key={index}
             variants={cardVariants}
-            className={`relative bg-background border ${category.borderColor} p-5 transition-all duration-300 
+            className={`relative bg-card/60 dark:bg-background border ${category.borderColor} p-5 transition-all duration-300 
               hover:border-opacity-60 hover:shadow-[0_0_20px_rgba(113,252,123,0.05)] group`}
           >
             {/* Corner accents */}

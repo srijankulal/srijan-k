@@ -93,7 +93,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="text-center w-full"
+              className="text-left w-full"
             >
               {/* Hero Section */}
               <div className="border-b border-border w-full">
@@ -108,6 +108,19 @@ export default function Home() {
                   </motion.div>
                 </div>
               </div>
+
+              {/* About Section */}
+              <motion.div 
+                className="border-b border-border w-full"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={sectionVariants}
+              >
+                <div className="px-2 sm:px-4 md:px-8">
+                  <About />
+                </div>
+              </motion.div>
 
               {/* Projects Section */}
               <motion.div 
@@ -132,19 +145,6 @@ export default function Home() {
               >
                 <div className="px-2 sm:px-4 md:px-8">
                   <Experience />
-                </div>
-              </motion.div>
-
-              {/* About Section */}
-              <motion.div 
-                className="border-b border-border w-full"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                variants={sectionVariants}
-              >
-                <div className="px-2 sm:px-4 md:px-8">
-                  <About />
                 </div>
               </motion.div>
 

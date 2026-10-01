@@ -20,8 +20,8 @@ export default function Project() {
     return (
         <div id="projects" className="w-full my-16 px-4 sm:px-6 lg:px-8 pb-10">
             {/* Section header */}
-            <div className="mb-8">
-                <p className="section-label mb-1">// 02. work</p>
+            <div className="mb-8 text-left">
+                <p className="section-label mb-1 text-left">// 02. work</p>
                 <h2 className="text-4xl sm:text-5xl font-bold text-left">Projects</h2>
             </div>
   

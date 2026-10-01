@@ -19,11 +19,15 @@ export default function Footer() {
         >
           <div className="flex items-center gap-2 mb-1">
             <span className="w-1.5 h-1.5 rounded-full bg-neon led-blink" />
-            <p className="text-xs sm:text-sm font-mono text-foreground/50">
+            <p className="text-xs sm:text-sm font-mono text-foreground/70">
               © {new Date().getFullYear()} Srijan K.
             </p>
           </div>
-          <p className="text-xs font-mono text-foreground/30 pl-3.5">MNG, IN</p>
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-foreground/40 pl-3.5">
+            <span>MNG, IN</span>
+            <span>•</span>
+            <span className="text-neon/80 font-mono">[dark mode preferred]</span>
+          </div>
         </motion.div>
 
         <div className="flex items-center gap-4 sm:gap-5">

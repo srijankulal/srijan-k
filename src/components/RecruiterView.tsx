@@ -7,15 +7,16 @@ import { client } from "@/sanity/lib/client";
 import { educationQuery, experienceQuery, profileSummaryQuery } from "@/sanity/lib/queries";
 
 const staticData = {
-    name: "Srijan Kulal",
+    name: "Srijan K",
     title: "Software Developer",
-    location: "Mangalore, India",
+    location: "Mangalore / Manipal, India",
     email: "srijankulal1010@gmail.com",
     website: "srijan-k.me",
     github: "github.com/srijankulal",
     linkedin: "linkedin.com/in/srijan-kulal",
-    summary: "Backend-focused developer (B.C.A 2023–2026) specializing in Python/Flask, Next.js, and Flutter. Builds secure, scalable applications with real-time features. Also exploring IoT & embedded systems.",
+    summary: "As an MCA student at MIT Manipal, I am deeply passionate about technology and continuous learning. My primary expertise spans Artificial Intelligence, software engineering, and full-stack web development, and I am currently expanding my technical horizons by actively exploring IoT and embedded systems. I thrive in collaborative, fast-paced environments and actively participate in technical events, collegiate competitions, and hackathons to build practical solutions and challenge myself alongside my peers.",
     highlights: [
+        "MCA Student at MIT Manipal focusing on AI and Software Engineering",
         "Full-stack web development with React/Next.js + Python Flask",
         "Mobile development with Flutter/Dart",
         "Database design with PostgreSQL & MySQL",

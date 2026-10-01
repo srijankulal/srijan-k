@@ -185,18 +185,32 @@ export default function Header({ whereAt }: { whereAt: string }) {
                             </div>
                         )}
 
+                        {/* Dark mode preferred badge when in light mode */}
+                        {mounted && !isDark && (
+                            <motion.button
+                                whileHover={{ scale: 1.04 }}
+                                whileTap={{ scale: 0.96 }}
+                                onClick={() => setTheme("dark")}
+                                className="hidden lg:flex items-center gap-1.5 border border-neon/50 bg-neon/10 px-2 py-1 font-mono text-[11px] text-neon hover:bg-neon/20 transition-all duration-200"
+                                title="Switch to dark mode for optimal cyber aesthetics"
+                            >
+                                <span className="w-1.5 h-1.5 rounded-full bg-neon led-blink" />
+                                <span>[dark mode preferred]</span>
+                            </motion.button>
+                        )}
+
                         {/* Theme toggle */}
                         {mounted && (
                             <motion.button
                                 whileHover={{ scale: 1.07 }}
                                 whileTap={{ scale: 0.93 }}
                                 onClick={() => setTheme(isDark ? "light" : "dark")}
-                                className="flex items-center justify-center w-8 h-8 border border-border/50 text-foreground/50 hover:text-neon hover:border-neon/40 transition-all duration-200"
+                                className="flex items-center justify-center w-8 h-8 border border-border/50 text-foreground/80 hover:text-neon hover:border-neon/40 transition-all duration-200 font-mono text-xs"
                                 aria-label="Toggle theme"
-                                title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+                                title={isDark ? "Switch to light mode" : "Switch to dark mode (Dark mode preferred)"}
                             >
-                                <span className="text-base leading-none">
-                                    {isDark ? "☀" : "◑"}
+                                <span className="text-sm leading-none">
+                                    {isDark ? "◐" : "◑"}
                                 </span>
                             </motion.button>
                         )}

@@ -77,15 +77,15 @@ export default function About() {
       className="flex flex-col w-full"
     >
       {/* Section header */}
-      <motion.div variants={itemVariants} className="mb-8">
-        <p className="section-label mb-1">// 01. about</p>
+      <motion.div variants={itemVariants} className="mb-8 text-left">
+        <p className="section-label mb-1 text-left">// 01. about</p>
         <h2 className="text-4xl sm:text-5xl font-bold text-left">About Me</h2>
       </motion.div>
       
       <div className="flex flex-col justify-center items-start w-full md:flex-row gap-8 md:gap-12">
         {/* Terminal-style about info */}
         <motion.div variants={itemVariants} className="w-full md:w-1/2">
-          <div className="border border-border bg-black/30 p-5 relative">
+          <div className="border border-border bg-card/70 dark:bg-black/30 backdrop-blur-xs p-5 relative shadow-xs">
             {/* Chip corner accents */}
             <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon/50" />
             <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon/50" />

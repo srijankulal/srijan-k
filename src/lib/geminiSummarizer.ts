@@ -29,16 +29,16 @@ export interface ProfileContext {
 
 const DEFAULT_PROFILE_SUMMARY: SummarizedProfileSummary = {
   title: "Software Developer",
-  summary: "I am a software developer currently pursuing my B.C.A. at St. Aloysius University. I have experience leading an engineering team of eight to build secure Linux environments and have worked on digital forensics projects involving Windows registry analysis. My technical background includes building applications with Python, Java, Next.js, and Flutter, along with hands-on experience in embedded systems.",
-  shortSummary: "Software developer with experience in Linux systems security, digital forensics, full-stack development, and embedded systems.",
+  summary: "As an MCA student at MIT Manipal, I am deeply passionate about technology and continuous learning. My primary expertise spans Artificial Intelligence, software engineering, and full-stack web development, and I am currently expanding my technical horizons by actively exploring IoT and embedded systems. I thrive in collaborative, fast-paced environments and actively participate in technical events, collegiate competitions, and hackathons to build practical solutions and challenge myself alongside my peers.",
+  shortSummary: "MCA student at MIT Manipal specializing in AI, full-stack software engineering, and embedded IoT systems.",
   highlights: [
-    "Security & Systems Architecture: Architected secure Linux environments by integrating Risk Management Framework (RMF) controls and network monitoring tools (Wireshark, Tripwire, Iftop).",
-    "Engineering Leadership: Led a cross-functional engineering team of 8 as Project Lead, ensuring high-quality milestone delivery and task execution.",
-    "Digital Forensics: Applied advanced digital forensic methodologies to analyze Windows registry artifacts and extract critical system insights in real-world scenarios.",
-    "Full-Stack & IoT: Development proficiency in Python (Flask), Java (Spring Boot), and Next.js, with hands-on experience in IoT embedded systems using C++ and Arduino.",
-    "Professional Recognition: Named a top performer at Mindler for excellence in project execution and cross-disciplinary delivery."
+    "Academic & Specialization: MCA student at MIT Manipal focusing on Artificial Intelligence, distributed architectures, and modern software engineering.",
+    "Full-Stack & Web Engineering: Built scalable web applications and RESTful APIs using Next.js, Python (Flask), Java (Spring Boot), TypeScript, and PostgreSQL.",
+    "IoT & Embedded Systems: Practical prototyping experience with microcontrollers, Arduino (C++), and hardware-level telemetry.",
+    "Technical Leadership & Hackathons: Active participant and top achiever in competitive collegiate hackathons, technical fests, and cross-functional team projects.",
+    "Systems & Digital Forensics: Real-world internship background in Linux security controls and Windows digital forensics analysis."
   ],
-  source: "Verified Profile Baseline"
+  source: "MIT Manipal Profile Alignment"
 };
 
 const DEFAULT_LEADERSHIP_ACTIVITIES: SummarizedLeadershipActivity[] = [
@@ -92,24 +92,25 @@ export async function summarizeProfileWithGemini(
   const skillsText = (context.skills || []).map((s: any) => (typeof s === 'string' ? s : s.name)).filter(Boolean).join(', ');
 
   const prompt = `
-You are writing a resume summary for developer ${context.name || 'Srijan Kulal'}.
+You are writing a resume summary for developer ${context.name || 'Srijan K'}.
 Instruction:
 "Write a summary for my resume based on my details below. Write it exactly how I would write it myself: direct, simple, and grounded. Keep it professional enough for a resume, but don't make it overly polished or formal, and don't use buzzwords or big words I wouldn't normally use. No fluff, no exaggeration, and don't add anything I didn't tell you. Keep it short, 3 to 4 sentences."
 
 Details:
-- Role & Education: Software Developer pursuing a Bachelor of Computer Applications (B.C.A) at St. Aloysius University, Mangalore.
+- Role & Current Education: MCA (Master of Computer Applications) student at MIT Manipal (Manipal Institute of Technology), focusing on Artificial Intelligence, software engineering, and embedded IoT systems.
+- Prior Education: Bachelor of Computer Applications (B.C.A) from St. Aloysius University.
 - Headline & About: ${context.headline || ''} | ${context.about || ''}
 - Verified Professional Experience:
 ${expText}
-- Key Skills: ${skillsText || 'Python, Flask, Java, Spring Boot, Next.js, React, TypeScript, Flutter, PostgreSQL, MySQL, C++, Arduino'}
+- Key Skills: ${skillsText || 'Python, Flask, Java, Spring Boot, Next.js, React, TypeScript, Flutter, PostgreSQL, MySQL, C++, Arduino, IoT'}
 - LinkedIn Posts & Technical Updates:
 ${postsText || 'Built full-stack web applications, image steganography utilities (PixelCypher), cross-platform apps (zeroUI Player), and embedded microcontroller libraries.'}
 
 Generate an updated Professional Summary JSON object:
 1. "title": "Software Developer"
-2. "summary": Exactly 3 to 4 sentences written strictly in the user's requested style: direct, simple, grounded, no buzzwords, no exaggeration, professional.
-3. "shortSummary": 1 to 2 direct sentences summarizing their background for quick recruiter scan.
-4. "highlights": 4 to 5 grounded bullet points representing verified competencies (Security & Systems Architecture, Engineering Leadership, Digital Forensics, Full-Stack & IoT, Professional Recognition).
+2. "summary": Exactly 3 to 4 sentences written strictly in the user's requested style: direct, simple, grounded, no buzzwords, no exaggeration, professional. Mention current MCA pursuit at MIT Manipal and core focus on AI, full-stack web dev, and IoT.
+3. "shortSummary": 1 to 2 direct sentences summarizing background for quick recruiter scan.
+4. "highlights": 4 to 5 grounded bullet points representing verified competencies (Academic & Specialization, Full-Stack & Web Engineering, IoT & Embedded Systems, Technical Leadership & Hackathons, Systems & Forensics).
 
 Return ONLY a valid JSON object matching this schema:
 {

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Header from "@/components/HeaderFooter/Header";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { educationQuery, experienceQuery, leadershipQuery, profileSummaryQuery } from "@/sanity/lib/queries";
@@ -55,14 +56,14 @@ interface ProfileSummaryItem {
 const defaultResume = {
   name: "Srijan K",
   title: "Software Developer",
-  location: "Mangalore, Karnataka, India",
+  location: "Mangalore / Manipal, Karnataka, India",
   email: "srijankulal1010@gmail.com",
   phone: "+91 8762471304",
   github: "github.com/srijankulal",
   linkedin: "linkedin.com/in/srijan-kulal",
   website: "srijan-k.me",
   summary:
-    "Backend-focused Software Developer with solid experience designing and deploying scalable RESTful APIs, full-stack web applications, and cross-platform mobile solutions. Proficient in Python (Flask), Next.js, TypeScript, Java (Spring Boot), Flutter, and PostgreSQL. Demonstrates strong problem-solving skills, solid understanding of software architecture, and a passion for embedded systems and IoT prototyping.",
+    "As an MCA student at MIT Manipal, I am deeply passionate about technology and continuous learning. My primary expertise spans Artificial Intelligence, software engineering, and full-stack web development, and I am currently expanding my technical horizons by actively exploring IoT and embedded systems. I thrive in collaborative, fast-paced environments and actively participate in technical events, collegiate competitions, and hackathons to build practical solutions and challenge myself alongside my peers.",
   skills: {
     "Programming Languages": "Python, TypeScript, JavaScript, Java, C++, C#, Dart, SQL (PostgreSQL, MySQL)",
     "Frameworks & Web Tech": "Next.js, React, Flask, Spring Boot, Flutter, Node.js, Tailwind CSS, HTML5/CSS3",
@@ -73,11 +74,20 @@ const defaultResume = {
   },
   education: [
     {
-      degree: "Bachelor of Computer Applications (B.C.A)",
-      institution: "St. Aloysius University",
-      location: "Mangalore, Karnataka, India",
-      period: "2023 – Present",
+      degree: "Master of Computer Applications (M.C.A)",
+      institution: "Manipal Institute of Technology (MIT)",
+      location: "Manipal, Karnataka, India",
+      period: "2026 – Present",
       gpa: "In Progress",
+      coursework:
+        "Specializing in Artificial Intelligence, Distributed Systems, Cloud Architecture, and Software Engineering."
+    },
+    {
+      degree: "Bachelor of Computer Applications (B.C.A)",
+      institution: "St. Aloysius College / University",
+      location: "Mangalore, Karnataka, India",
+      period: "2023 – 2026",
+      gpa: "Graduated",
       coursework:
         "Coursework in Data Structures, Algorithms, DBMS (PostgreSQL/MySQL), OOP (Java/C++), and Web Technologies."
     }
@@ -190,23 +200,23 @@ export default function ResumePage() {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 border border-neon/40 bg-neon/10 text-neon font-mono text-xs px-3.5 py-2 hover:bg-neon hover:text-black transition-all duration-200 cursor-pointer"
+              className="flex items-center gap-1.5 border border-neon/50 bg-neon/10 text-neon font-mono text-xs px-3.5 py-2 hover:bg-neon hover:text-black transition-all duration-200 cursor-pointer"
             >
-              ⎙ Print / Save as PDF
+              <span>[Print / PDF]</span>
             </button>
             <a
               href="/api/resume/pdf"
               download="Srijan_Kulal_Resume.pdf"
-              className="flex items-center gap-1.5 border border-border/70 bg-foreground/5 text-foreground/80 font-mono text-xs px-3.5 py-2 hover:text-neon hover:border-neon/40 transition-all duration-200 cursor-pointer"
-              title="Download IEEE Resume PDF"
+              className="flex items-center gap-1.5 border border-border/80 bg-foreground/5 text-foreground/80 font-mono text-xs px-3.5 py-2 hover:text-neon hover:border-neon/40 transition-all duration-200 cursor-pointer"
+              title="Download Technical Resume PDF"
             >
-              ↓ Direct PDF
+              <span>[Direct PDF]</span>
             </a>
             <Link
               href="/"
-              className="flex items-center gap-1.5 border border-border/50 text-foreground/50 font-mono text-xs px-3.5 py-2 hover:text-foreground hover:border-border transition-all duration-200"
+              className="flex items-center gap-1.5 border border-border/60 text-foreground/60 font-mono text-xs px-3.5 py-2 hover:text-foreground hover:border-border transition-all duration-200"
             >
-              ← Portfolio
+              <span>[← Portfolio]</span>
             </Link>
           </div>
         </div>
@@ -216,49 +226,69 @@ export default function ResumePage() {
           id="resume-document"
           className="max-w-4xl mx-auto my-8 sm:my-12 p-6 sm:p-10 border border-border/70 bg-black/20 text-foreground shadow-xl print:shadow-none print:border-none print:p-0 print:m-0 print:bg-white print:text-black"
         >
-          {/* IEEE HEADER: Centered Full Name and Contact Row */}
-          <header className="text-center pb-4 border-b-2 border-foreground/80 print:border-black">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider font-mono mb-2 text-foreground print:text-black">
-              {defaultResume.name}
-            </h1>
-            <p className="font-mono text-xs sm:text-sm text-neon print:text-black font-semibold mb-2">
-              {defaultResume.title} • {defaultResume.location}
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-x-2.5 gap-y-1 font-mono text-xs text-foreground/75 print:text-black">
-              <a href={`mailto:${defaultResume.email}`} className="hover:text-neon hover:underline print:no-underline">
-                {defaultResume.email}
-              </a>
-              <span className="text-foreground/30 print:text-black">•</span>
-              <a href={`tel:${defaultResume.phone}`} className="hover:text-neon hover:underline print:no-underline">
-                {defaultResume.phone}
-              </a>
-              <span className="text-foreground/30 print:text-black">•</span>
-              <a
-                href={`https://${defaultResume.website}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-neon hover:underline print:no-underline"
-              >
-                {defaultResume.website}
-              </a>
-              <span className="text-foreground/30 print:text-black">•</span>
-              <a
-                href={`https://${defaultResume.github}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-neon hover:underline print:no-underline"
-              >
-                {defaultResume.github}
-              </a>
-              <span className="text-foreground/30 print:text-black">•</span>
-              <a
-                href={`https://${defaultResume.linkedin}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-neon hover:underline print:no-underline"
-              >
-                {defaultResume.linkedin}
-              </a>
+          {/* IEEE HEADER: Name, Contact Details, and Grayscale Cyber Portrait */}
+          <header className="pb-5 border-b-2 border-foreground/80 print:border-black">
+            <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start justify-between gap-5">
+              <div className="text-center sm:text-left flex-1">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider font-mono mb-1.5 text-foreground print:text-black">
+                  {defaultResume.name}
+                </h1>
+                <p className="font-mono text-xs sm:text-sm text-neon print:text-black font-semibold mb-2">
+                  {defaultResume.title} • {defaultResume.location}
+                </p>
+                <div className="flex flex-wrap justify-center sm:justify-start items-center gap-x-2.5 gap-y-1 font-mono text-xs text-foreground/75 print:text-black">
+                  <a href={`mailto:${defaultResume.email}`} className="hover:text-neon hover:underline print:no-underline">
+                    {defaultResume.email}
+                  </a>
+                  <span className="text-foreground/30 print:text-black">•</span>
+                  <a href={`tel:${defaultResume.phone}`} className="hover:text-neon hover:underline print:no-underline">
+                    {defaultResume.phone}
+                  </a>
+                  <span className="text-foreground/30 print:text-black">•</span>
+                  <a
+                    href={`https://${defaultResume.website}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-neon hover:underline print:no-underline"
+                  >
+                    {defaultResume.website}
+                  </a>
+                  <span className="text-foreground/30 print:text-black">•</span>
+                  <a
+                    href={`https://${defaultResume.github}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-neon hover:underline print:no-underline"
+                  >
+                    {defaultResume.github}
+                  </a>
+                  <span className="text-foreground/30 print:text-black">•</span>
+                  <a
+                    href={`https://${defaultResume.linkedin}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-neon hover:underline print:no-underline"
+                  >
+                    {defaultResume.linkedin}
+                  </a>
+                </div>
+              </div>
+
+              {/* Grayscale Cyber Photo */}
+              <div className="relative shrink-0 group">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 relative overflow-hidden border-2 border-border/80 group-hover:border-neon/60 transition-colors bg-card/60">
+                  <Image
+                    src="/srijanLin.png"
+                    alt="Srijan K Resume Photo"
+                    fill
+                    sizes="96px"
+                    priority
+                    className="object-cover grayscale contrast-115 brightness-95 group-hover:contrast-105 transition-all duration-300"
+                  />
+                </div>
+                <span className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-neon" />
+                <span className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-neon" />
+              </div>
             </div>
           </header>
 

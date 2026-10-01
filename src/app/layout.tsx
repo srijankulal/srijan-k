@@ -15,19 +15,26 @@ const vt323 = VT323({
 
 export const metadata: Metadata = {
   title: "Srijan K | Software Developer Portfolio",
-  description: "Srijan Kulal — Backend-focused software developer skilled in Python (Flask), Next.js, Flutter, PostgreSQL, and IoT. B.C.A student at St. Aloysius University, Mangalore. Explore projects, skills, and contact info.",
-  keywords: ["Srijan Kulal", "software developer", "portfolio", "Next.js", "Python", "Flask", "Flutter", "IoT", "backend developer", "Mangalore", "India"],
-  authors: [{ name: "Srijan Kulal", url: "https://srijan-k.me" }],
+  description: "Srijan Kulal — MCA student at MIT Manipal. Passionate software developer specializing in AI, backend engineering, Next.js, Python, Flutter, and IoT embedded systems.",
+  keywords: ["Srijan Kulal", "Srijan K", "software developer", "portfolio", "MIT Manipal", "MCA", "Next.js", "Python", "Flask", "Flutter", "IoT", "backend developer", "Mangalore", "Manipal", "India"],
+  authors: [{ name: "Srijan K", url: "https://srijan-k.me" }],
   openGraph: {
     title: "Srijan K | Software Developer",
-    description: "Backend-focused developer. Python, Next.js, Flutter, IoT. Based in Mangalore, India.",
+    description: "MCA student at MIT Manipal. AI, full-stack web development, and IoT embedded systems.",
     type: "website",
     url: "https://srijan-k.me",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

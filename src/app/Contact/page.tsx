@@ -101,17 +101,17 @@ export default function Contact() {
                 <div className="flex justify-center items-start w-full pb-32">
                 
                 <motion.div 
-                    className="relative w-full max-w-2xl border border-border bg-black/40"
+                    className="relative w-full max-w-2xl border border-border bg-card/85 dark:bg-black/40 shadow-lg"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
                 >
                     {/* Terminal chrome */}
-                    <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border/60 bg-white/5">
+                    <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border/60 bg-foreground/5">
                         <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
                         <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
                         <span className="w-2.5 h-2.5 rounded-full bg-neon/60" />
-                        <span className="ml-3 font-mono text-xs text-foreground/30">send_message.sh</span>
+                        <span className="ml-3 font-mono text-xs text-foreground/40">send_message.sh</span>
                         <span className="ml-auto flex items-center gap-1">
                             <span className="w-1.5 h-1.5 rounded-full bg-neon led-blink" />
                         </span>
@@ -119,9 +119,9 @@ export default function Contact() {
 
                     <div className="p-5 sm:p-6">
                         {/* Prompt header */}
-                        <motion.div variants={itemVariants} className="font-mono text-sm mb-5 text-foreground/50">
+                        <motion.div variants={itemVariants} className="font-mono text-sm mb-5 text-foreground/60">
                             <span className="text-neon">srijan@portfolio</span>
-                            <span className="text-blue-400"> ~/contacts</span>
+                            <span className="text-blue-700 dark:text-blue-400"> ~/contacts</span>
                             <span className="text-foreground/40"> $ </span>
                             <span>./send_message.sh</span>
                         </motion.div>
@@ -135,24 +135,24 @@ export default function Contact() {
                                 className="flex flex-col sm:flex-row items-start justify-start w-full gap-4"
                             >
                                 <div className="w-full sm:w-1/2">
-                                    <label className="block mb-1.5 font-mono text-xs text-foreground/50">
-                                        <span className="text-neon/60">&gt;</span> name:
+                                    <label className="block mb-1.5 font-mono text-xs text-foreground/60">
+                                        <span className="text-neon/70">&gt;</span> name:
                                     </label>
                                     <Input
                                         placeholder="Your name"
-                                        className="w-full bg-white/5 border-border/50 font-mono text-sm text-foreground placeholder:text-foreground/20 focus:border-neon/40 focus:ring-0 rounded-none"
+                                        className="w-full bg-background/80 dark:bg-white/5 border-border font-mono text-sm text-foreground placeholder:text-foreground/40 focus:border-neon/60 focus:ring-0 rounded-none"
                                         required
                                         {...register("name")}
                                     />
                                 </div>
 
                                 <div className="w-full sm:w-1/2">
-                                    <label className="block mb-1.5 font-mono text-xs text-foreground/50">
-                                        <span className="text-neon/60">&gt;</span> email:
+                                    <label className="block mb-1.5 font-mono text-xs text-foreground/60">
+                                        <span className="text-neon/70">&gt;</span> email:
                                     </label>
                                     <Input
                                         placeholder="you@example.com"
-                                        className="w-full bg-white/5 border-border/50 font-mono text-sm text-foreground placeholder:text-foreground/20 focus:border-neon/40 focus:ring-0 rounded-none"
+                                        className="w-full bg-background/80 dark:bg-white/5 border-border font-mono text-sm text-foreground placeholder:text-foreground/40 focus:border-neon/60 focus:ring-0 rounded-none"
                                         required
                                         type="email"
                                         {...register("email")}
@@ -161,12 +161,12 @@ export default function Contact() {
                             </motion.div>
 
                             <motion.div variants={itemVariants}>
-                                <label className="block mb-1.5 font-mono text-xs text-foreground/50">
-                                    <span className="text-neon/60">&gt;</span> message:
+                                <label className="block mb-1.5 font-mono text-xs text-foreground/60">
+                                    <span className="text-neon/70">&gt;</span> message:
                                 </label>
                                 <Textarea
                                     placeholder="Hello there!"
-                                    className="w-full bg-white/5 border-border/50 font-mono text-sm text-foreground placeholder:text-foreground/20 focus:border-neon/40 focus:ring-0 rounded-none resize-none"
+                                    className="w-full bg-background/80 dark:bg-white/5 border-border font-mono text-sm text-foreground placeholder:text-foreground/40 focus:border-neon/60 focus:ring-0 rounded-none resize-none"
                                     required
                                     rows={5}
                                     {...register("message")}
