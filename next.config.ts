@@ -29,6 +29,18 @@ const nextConfig: NextConfig = {
       
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/projects',
+        destination: '/Projects',
+      },
+      {
+        source: '/projects/:slug*',
+        destination: '/Projects/:slug*',
+      },
+    ];
+  },
   /* config options here */
 };
 

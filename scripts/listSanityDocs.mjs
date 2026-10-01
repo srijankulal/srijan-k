@@ -19,15 +19,11 @@ const client = createClient({
 async function listDocs() {
   const experiences = await client.fetch('*[_type == "experience"]');
   const educations = await client.fetch('*[_type == "education"]');
+  const projects = await client.fetch('*[_type == "project"]{ _id, title, "slug": slug.current, "hasDetails": defined(details) }');
 
-  console.log('\n--- SANITY EXPERIENCES ---');
-  experiences.forEach((e) => {
-    console.log(`ID: ${e._id} | Role: ${e.role} | Company: ${e.company} | Type: ${e.type}`);
-  });
-
-  console.log('\n--- SANITY EDUCATIONS ---');
-  educations.forEach((edu) => {
-    console.log(`ID: ${edu._id} | Degree: ${edu.degree} | School: ${edu.institution}`);
+  console.log('\n--- SANITY PROJECTS ---');
+  projects.forEach((p) => {
+    console.log(`ID: ${p._id} | Title: ${p.title} | Slug: ${p.slug} | HasDetails: ${p.hasDetails}`);
   });
 }
 

@@ -10,7 +10,24 @@ export const projectsQuery = groq`*[_type == "project"] | order(_createdAt desc)
   technologies,
   "link": linkToCode,
   "live": linkToLive,
-  "details": pt::text(details)
+  "details": pt::text(details),
+  "hasDetails": defined(details) && count(details) > 0,
+  details
+}`
+
+export const projectBySlugQuery = groq`*[_type == "project" && (slug.current == $slug || _id == $slug)][0] {
+  _id,
+  title,
+  "slug": slug.current,
+  "imageUrl": mainImage.asset->url,
+  description,
+  "isFreelance": coalesce(isFreelance, false),
+  technologies,
+  "link": linkToCode,
+  "live": linkToLive,
+  details,
+  "detailsText": pt::text(details),
+  _createdAt
 }`
 
 export const educationQuery = groq`*[_type == "education"] | order(order asc, startDate desc) {

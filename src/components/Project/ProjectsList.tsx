@@ -38,13 +38,18 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
                         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-4 mt-8 md:grid-cols-2 lg:grid-cols-3">
                             {projects.map((project, index) => (
                                 <motion.div 
-                                    key={index}
+                                    key={project._id || index}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
                                     transition={{ duration: 0.5, delay: index * 0.08 }}
                                     className="flex w-full"
                                 >
-                                    <ProjectCard {...project} live={project.live} />
+                                    <ProjectCard 
+                                        {...project} 
+                                        slug={project.slug} 
+                                        details={project.details} 
+                                        live={project.live} 
+                                    />
                                 </motion.div>
                             ))}
                         </div>
