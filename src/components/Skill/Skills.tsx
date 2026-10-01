@@ -12,102 +12,132 @@ export default function Skills() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.15
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } }
   };
 
-  const iconVariants = {
-    initial: { scale: 1 },
-    hover: { scale: 1.2, rotateY: 180, transition: { duration: 0.3 } }
-  };
+  const categories = [
+    {
+      title: "Frontend",
+      icon: "</>",
+      label: "UI_LAYER",
+      color: "text-blue-400",
+      borderColor: "border-blue-400/20",
+      skills: [
+        { name: "React / Next.js" },
+        { name: "TypeScript" },
+        { name: "Tailwind CSS" },
+        { name: "Flutter" }
+      ]
+    },
+    {
+      title: "Backend",
+      icon: "{;}",
+      label: "SRV_LAYER",
+      color: "text-yellow-400",
+      borderColor: "border-yellow-400/20",
+      skills: [
+        { name: "Python / Flask" },
+        { name: "Node.js" },
+        { name: "PostgreSQL" },
+        { name: "RESTful APIs" }
+      ]
+    },
+    {
+      title: "Other",
+      icon: "~/",
+      label: "SYS_LAYER",
+      color: "text-neon",
+      borderColor: "border-neon/20",
+      skills: [
+        { name: "IoT & Embedded" },
+        { name: "Machine Learning" },
+        { name: "Computer Vision" }
+      ]
+    }
+  ];
 
   return (
     <div className="w-full my-16 px-4 sm:px-6 lg:px-8 pb-10" id="skills" ref={ref}>
-      <motion.h2
-        initial={{ opacity: 0, x: -20 }}
-        animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-        transition={{ duration: 0.5 }}
-        className="text-5xl font-bold mb-8 text-left sm:pb-4"
-      >
-        Skills
-      </motion.h2>
+      {/* Section header */}
+      <div className="mb-8">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="section-label mb-1"
+        >
+          // 03. skills
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, x: -20 }}
+          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl sm:text-5xl font-bold text-left"
+        >
+          Skills
+        </motion.h2>
+      </div>
       
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full"
       >
-        {[
-          {
-            title: "Frontend",
-            icon: "</>",
-            skills: [
-              { name: "React/Next.js"},
-              { name: "TypeScript" },
-              { name: "Tailwind CSS"},
-              { name: "Flutter"}
-            ]
-          },
-          {
-            title: "Backend",
-            icon: "  ;  ",
-            skills: [
-              { name: "Python/Flask" },
-              { name: "Node.js" },
-              { name: "PostgreSQL" },
-              { name: "RESTful APIs" }
-            ]
-          },
-          {
-            title: "Other",
-            icon: "~/",
-            skills: [
-              { name: "IOT" },
-              { name: "Machine Learning" },
-              { name: "Computer Vision"}
-            ]
-          }
-        ].map((category, index) => (
+        {categories.map((category, index) => (
           <motion.div 
             key={index}
             variants={cardVariants}
-            className="bg-background border border-black dark:border-white p-4 transition-all duration-300 hover:border-2 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.7)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.7)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
+            className={`relative bg-background border ${category.borderColor} p-5 transition-all duration-300 
+              hover:border-opacity-60 hover:shadow-[0_0_20px_rgba(113,252,123,0.05)] group`}
           >
-            <h3 className="text-2xl font-medium mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-              <motion.span
-                whileHover="hover"
-                initial="initial"
-                variants={iconVariants}
-                className="mr-2 font-mono bg-background px-4 py-1 text-neon border border-black dark:border-white inline-flex items-center"
-              >
-                <span>{category.icon}</span>
-              </motion.span>
-              <u>{category.title}</u>
-            </h3>
-            <ul className="space-y-4">
+            {/* Corner accents */}
+            <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-neon/30" />
+            <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-neon/30" />
+
+            {/* Card header */}
+            <div className="flex items-center gap-3 mb-5">
+              <span className={`font-mono text-sm bg-background border border-border px-2 py-0.5 ${category.color} group-hover:border-neon/30 transition-colors`}>
+                {category.icon}
+              </span>
+              <div>
+                <h3 className="text-lg font-bold leading-none">{category.title}</h3>
+                <p className={`font-mono text-[10px] ${category.color} opacity-60 mt-0.5`}>{category.label}</p>
+              </div>
+            </div>
+
+            {/* Skills list */}
+            <ul className="space-y-3">
               {category.skills.map((skill, skillIndex) => (
-                <li key={skillIndex} className="space-y-1">
-                  <div className="flex justify-between">
-                    <span className="text-gray-700 dark:text-gray-300">{skill.name}</span>
+                <li key={skillIndex} className="space-y-1.5">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-foreground/80 font-mono">{skill.name}</span>
                   </div>
-                  <div className="w-full bg-gray-300 dark:bg-gray-700 h-1">
+                  <div className="w-full bg-border/30 h-px relative overflow-hidden">
                     <motion.div 
                       initial={{ width: 0 }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: 1, delay: 0.3 + index * 0.2 + skillIndex * 0.1 }}
-                      className="bg-gray-400 dark:bg-gray-600 hover:bg-black dark:hover:bg-white h-1 transition-colors duration-500" 
+                      animate={inView ? { width: "100%" } : { width: 0 }}
+                      transition={{ duration: 1.2, delay: 0.3 + index * 0.2 + skillIndex * 0.1, ease: "easeOut" }}
+                      className="bg-neon/40 group-hover:bg-neon/70 h-px transition-colors duration-500" 
                     />
                   </div>
                 </li>
               ))}
             </ul>
+
+            {/* Chip pin decoration at bottom */}
+            <div className="flex justify-center gap-2 mt-5 pt-3 border-t border-border/30">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className={`w-1 h-2 ${i === 2 ? 'bg-neon/50' : 'bg-border/50'} transition-colors group-hover:bg-neon/${i === 2 ? '80' : '20'}`} />
+              ))}
+            </div>
           </motion.div>
         ))}
       </motion.div>

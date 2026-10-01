@@ -60,127 +60,147 @@ export default function Contact() {
         reset();
     }
     
-    // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: { 
             opacity: 1,
             transition: { 
                 duration: 0.6,
-                when: "beforeChildren",
-                staggerChildren: 0.2
+                when: "beforeChildren" as const,
+                staggerChildren: 0.15
             }
         }
     };
 
     const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
+        hidden: { y: 16, opacity: 0 },
         visible: { y: 0, opacity: 1, transition: { duration: 0.4 } }
     };
     
     return (
         <motion.div 
-            className="border border-neutral-600 dark:border-neutral-400 my-4"
+            className="border border-border my-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
         >
             <Header whereAt='contact'/>
             <div className="px-2 sm:px-4 md:px-8">
-                <div className="text-center mb-6">
-                    <motion.pre 
-                        className="text-xs lg:text-lg text-black dark:text-white"
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.7, type: "spring" }}
-                    >
-                        {`
-       _____            _             _   
-      / ____|          | |           | |  
-     | |     ___  _ __ | |_ __ _  ___| |_ 
-     | |    / _ \\| '_ \\| __/ _\\ |/ __| __|
-     | |___| (_) | | | | || (_| | (__| |_ 
-      \\_____\\___/|_| |_|\\__\\__,_|\\___|\\___|
-                                          
-                                           
-                                                      
-                        `}
-                    </motion.pre>
-                    <motion.h2 
-                        className="text-xl font-bold text-black dark:text-white"
-                        initial={{ y: -20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.3, duration: 0.5 }}
-                    >[CONTACT FORM]</motion.h2>
+                {/* Page header */}
+                <div className="pt-24 pb-8 px-4">
+                    <p className="section-label mb-1">// send message</p>
+                    <h2 className="text-4xl sm:text-5xl font-bold">
+                        <span className="text-neon">&gt;</span>CONTACT
+                        <span className="ml-1 inline-block w-4 h-8 animate-caret-blink">_</span>
+                    </h2>
+                    <p className="font-mono text-sm text-foreground/40 mt-2">
+                        Fill in the form below and I&apos;ll get back to you.
+                    </p>
                 </div>
-                <div className="flex justify-center items-center w-full snap-start sm:snap-align-none pb-54">
+
+                <div className="flex justify-center items-start w-full pb-32">
                 
                 <motion.div 
-                    className="bg-background text-black dark:text-white p-4 border-2 border-black dark:border-white shadow-lg w-full md:w-1/2"
+                    className="relative w-full max-w-2xl border border-border bg-black/40"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
                 >
-                    <form
-                        className="flex flex-col w-full gap-3"
-                        onSubmit={handleSubmit(onSubmit)}
-                    >
-                        <motion.div 
-                            variants={itemVariants}
-                            className="flex flex-col items-start justify-start w-full gap-2 md:flex-row"
-                        >
-                            <div className="w-full md:w-1/2">
-                                <label className="block mb-1 text-lg">&gt; name:</label>
-                                <Input
-                                    placeholder="Nash Dan"
-                                    className="w-full bg-background border-black dark:border-white text-black dark:text-white focus:border-black dark:focus:border-white"
-                                    required
-                                    {...register("name")}
-                                />
-                            </div>
+                    {/* Terminal chrome */}
+                    <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border/60 bg-white/5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-neon/60" />
+                        <span className="ml-3 font-mono text-xs text-foreground/30">send_message.sh</span>
+                        <span className="ml-auto flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-neon led-blink" />
+                        </span>
+                    </div>
 
-                            <div className="w-full md:w-1/2">
-                                <label className="block mb-1 text-lg">&gt; email:</label>
-                                <Input
-                                    placeholder="youremail@gmail.com"
-                                    className="w-full font-mono bg-background border-black dark:border-white text-black dark:text-white focus:border-black dark:focus:border-white"
-                                    required
-                                    type="email"
-                                    {...register("email")}
-                                />
-                            </div>
+                    <div className="p-5 sm:p-6">
+                        {/* Prompt header */}
+                        <motion.div variants={itemVariants} className="font-mono text-sm mb-5 text-foreground/50">
+                            <span className="text-neon">srijan@portfolio</span>
+                            <span className="text-blue-400"> ~/contacts</span>
+                            <span className="text-foreground/40"> $ </span>
+                            <span>./send_message.sh</span>
                         </motion.div>
-                        <motion.div variants={itemVariants}>
-                            <label className="block mb-1 text-lg">&gt; message:</label>
-                            <Textarea
-                                placeholder="Hello there!"
-                                className="w-full font-mono bg-background border-black dark:border-white text-black dark:text-white focus:border-black dark:focus:border-white"
-                                required
-                                rows={5}
-                                {...register("message")}
-                            />
-                        </motion.div>
-                        <motion.div 
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+
+                        <form
+                            className="flex flex-col w-full gap-4"
+                            onSubmit={handleSubmit(onSubmit)}
                         >
-                            <Button
-                                disabled={loading || isSubmitting}
-                                type="submit"
-                                className="w-full font-mono border-2 border-black dark:border-white bg-background text-black dark:text-white hover:bg-green-700 dark:hover:bg-green-900 disabled:opacity-50 mt-2"
+                            <motion.div 
+                                variants={itemVariants}
+                                className="flex flex-col sm:flex-row items-start justify-start w-full gap-4"
                             >
-                                {loading ? <LoaderIcon className="animate-spin" /> : "> EXECUTE SEND_MESSAGE.sh"}
-                            </Button>
-                        </motion.div>
-                        <motion.div 
-                            className="text-sm opacity-80 mt-2"
-                            animate={{ opacity: loading ? 1 : 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            {loading && "Processing request... Please wait..."}
-                        </motion.div>
-                    </form>
+                                <div className="w-full sm:w-1/2">
+                                    <label className="block mb-1.5 font-mono text-xs text-foreground/50">
+                                        <span className="text-neon/60">&gt;</span> name:
+                                    </label>
+                                    <Input
+                                        placeholder="Your name"
+                                        className="w-full bg-white/5 border-border/50 font-mono text-sm text-foreground placeholder:text-foreground/20 focus:border-neon/40 focus:ring-0 rounded-none"
+                                        required
+                                        {...register("name")}
+                                    />
+                                </div>
+
+                                <div className="w-full sm:w-1/2">
+                                    <label className="block mb-1.5 font-mono text-xs text-foreground/50">
+                                        <span className="text-neon/60">&gt;</span> email:
+                                    </label>
+                                    <Input
+                                        placeholder="you@example.com"
+                                        className="w-full bg-white/5 border-border/50 font-mono text-sm text-foreground placeholder:text-foreground/20 focus:border-neon/40 focus:ring-0 rounded-none"
+                                        required
+                                        type="email"
+                                        {...register("email")}
+                                    />
+                                </div>
+                            </motion.div>
+
+                            <motion.div variants={itemVariants}>
+                                <label className="block mb-1.5 font-mono text-xs text-foreground/50">
+                                    <span className="text-neon/60">&gt;</span> message:
+                                </label>
+                                <Textarea
+                                    placeholder="Hello there!"
+                                    className="w-full bg-white/5 border-border/50 font-mono text-sm text-foreground placeholder:text-foreground/20 focus:border-neon/40 focus:ring-0 rounded-none resize-none"
+                                    required
+                                    rows={5}
+                                    {...register("message")}
+                                />
+                            </motion.div>
+
+                            <motion.div 
+                                variants={itemVariants}
+                                whileHover={{ scale: 1.01 }}
+                                whileTap={{ scale: 0.99 }}
+                            >
+                                <Button
+                                    disabled={loading || isSubmitting}
+                                    type="submit"
+                                    className="w-full font-mono text-sm border border-neon/30 bg-neon/5 text-neon hover:bg-neon hover:text-black hover:border-neon hover:shadow-[0_0_20px_rgba(113,252,123,0.25)] disabled:opacity-40 mt-1 rounded-none transition-all duration-300"
+                                >
+                                    {loading 
+                                        ? <span className="flex items-center gap-2"><LoaderIcon className="animate-spin h-4 w-4" /> Sending...</span>
+                                        : "$ EXECUTE send_message.sh"
+                                    }
+                                </Button>
+                            </motion.div>
+
+                            {loading && (
+                                <motion.div 
+                                    className="text-xs font-mono text-neon/50"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                >
+                                    Processing request... please wait...
+                                </motion.div>
+                            )}
+                        </form>
+                    </div>
                 </motion.div>
                 </div>
             </div>

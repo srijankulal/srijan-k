@@ -1,0 +1,21 @@
+name: Nightly LinkedIn to Sanity Sync
+
+on:
+  schedule:
+    # Runs every night at 18:30 UTC (00:00 midnight IST)
+    - cron: '30 18 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger LinkedIn Sync API Endpoint
+        env:
+          SITE_URL: ${{ secrets.SITE_URL || 'https://srijan-k.me' }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          echo "Triggering LinkedIn nightly sync on $SITE_URL..."
+          curl -s -X POST "$SITE_URL/api/cron/sync-linkedin" \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            -H "Content-Type: application/json"

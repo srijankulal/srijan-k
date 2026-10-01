@@ -3,17 +3,15 @@
 
 @plugins tailwindcss-animate;
 
-
-
-
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-neon: #71FC7B;
-  --color-neon-accent: #5ae065;
+  --color-neon: var(--neon);
+  --color-neon-accent: var(--neon-accent);
+  --color-neon-dim: var(--neon-dim);
+  --color-neon-glow: var(--neon-glow);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -51,45 +49,66 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* ── LIGHT MODE ── */
 :root {
   --radius: 0.625rem;
-  --background: #ffffff;
-  --foreground: #171717;
-  --border: #525252; /* neutral-600 */
-  --ring: #737373; /* neutral-500 */
-  --card: oklch(1 0 0);
+
+  /* Warm off-white — easy on eyes, not blinding */
+  --background: #eeeae3;
+  /* Near-black for strong readability */
+  --foreground: #1a1a1a;
+  /* Visible borders on light bg */
+  --border: #b8b3aa;
+  --ring: #8a8480;
+
+  /* Neon green is too washed on light bg — use a darker forest green */
+  --neon: #1a8c28;
+  --neon-accent: #157321;
+  --neon-dim: rgba(26, 140, 40, 0.12);
+  --neon-glow: rgba(26, 140, 40, 0.3);
+
+  --card: oklch(0.97 0.004 95);
   --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.97 0.004 95);
   --popover-foreground: oklch(0.141 0.005 285.823);
   --primary: oklch(0.21 0.006 285.885);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
+  --secondary: oklch(0.92 0.008 95);
   --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
+  --muted: oklch(0.92 0.008 95);
+  --muted-foreground: oklch(0.45 0.02 285.938);
+  --accent: oklch(0.92 0.008 95);
   --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
+  --input: oklch(0.88 0.01 95);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(0.95 0.006 95);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.21 0.006 285.885);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent: oklch(0.92 0.008 95);
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-border: oklch(0.85 0.01 95);
   --sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
+/* ── DARK MODE ── */
 .dark {
-  --background: #171717; /* This is already neutral-900 */
-  --foreground: #ffffff; 
+  --background: #0a0a0a;
+  --foreground: #e8e8e8;
+
+  --neon: #71FC7B;
+  --neon-accent: #5ae065;
+  --neon-dim: rgba(113, 252, 123, 0.15);
+  --neon-glow: rgba(113, 252, 123, 0.4);
+
+  --border: #2a2a2a;
+  --ring: oklch(0.552 0.016 285.938);
+
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
@@ -103,9 +122,7 @@
   --accent: oklch(0.274 0.006 286.033);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: #a3a3a3; /* neutral-400 */
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.552 0.016 285.938);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -132,3 +149,156 @@
     color: var(--foreground);
   }
 }
+
+/* ===== LED BLINK ===== */
+@keyframes led-blink {
+  0%, 90%, 100% { opacity: 1; box-shadow: 0 0 6px var(--neon); }
+  95% { opacity: 0.2; box-shadow: none; }
+}
+.led-blink {
+  animation: led-blink 3s ease-in-out infinite;
+}
+
+/* ===== SIGNAL PULSE ===== */
+@keyframes signal-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.95); }
+}
+.signal-pulse {
+  animation: signal-pulse 2s ease-in-out infinite;
+}
+
+/* ===== CHIP FLICKER ===== */
+@keyframes chip-flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97% { opacity: 0.4; }
+  99% { opacity: 0.8; }
+}
+.chip-flicker {
+  animation: chip-flicker 8s ease-in-out infinite;
+}
+
+/* ===== SECTION LABELS ===== */
+.section-label {
+  font-family: monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--neon);
+  opacity: 0.75;
+}
+
+/* ===== IOT DIVIDER ===== */
+.iot-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--neon);
+  opacity: 0.4;
+  font-family: monospace;
+  font-size: 0.7rem;
+}
+.iot-divider::before,
+.iot-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-dim), transparent);
+}
+
+/* ===== NEON TEXT ===== */
+.neon-text {
+  color: var(--neon);
+}
+.dark .neon-text {
+  text-shadow: 0 0 10px rgba(113, 252, 123, 0.5), 0 0 20px rgba(113, 252, 123, 0.25);
+}
+
+/* ===== LIGHT MODE TERMINAL OVERRIDE ===== */
+/* Terminals in light mode: use dark bg always for readability */
+.terminal-block {
+  background: #1a1a1a !important;
+  color: #e8e8e8 !important;
+  border-color: #333 !important;
+}
+
+/* ===== RESUME PRINT OPTIMIZATION ===== */
+@media print {
+  /* Aggressively hide all interactive floating UI, toolbars, buttons, terminal buttons, and toasts */
+  .print\:hidden,
+  .fixed,
+  nav,
+  header.print-hide,
+  button,
+  [data-sonner-toaster],
+  [role="dialog"],
+  [role="tooltip"] {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Force clean crisp white background and pure black typography */
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10.5pt !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Remove outer frame borders and shadows */
+  .border,
+  .border-border,
+  .shadow-xl,
+  .shadow-2xl,
+  .shadow-md {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  #resume-document {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  #resume-document header {
+    border-bottom: 2px solid #000000 !important;
+    padding-bottom: 8px !important;
+  }
+
+  #resume-document section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-top: 14px !important;
+  }
+
+  #resume-document h1,
+  #resume-document h2,
+  #resume-document p,
+  #resume-document span,
+  #resume-document li {
+    color: #000000 !important;
+  }
+
+  #resume-document h2 {
+    border-bottom: 1px solid #000000 !important;
+    padding-bottom: 2px !important;
+  }
+
+  #resume-document a {
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
+
+  @page {
+    margin: 1.2cm 1.5cm;
+    size: A4 portrait;
+  }
+}
+

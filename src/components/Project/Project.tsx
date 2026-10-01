@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { projectsQuery } from "@/sanity/lib/queries";
+import { motion } from "framer-motion";
 
 export default function Project() {
     const [projects, setProjects] = useState<any[]>([])
@@ -18,9 +19,13 @@ export default function Project() {
 
     return (
         <div id="projects" className="w-full my-16 px-4 sm:px-6 lg:px-8 pb-10">
-            <h2 className="text-5xl font-bold mb-8 text-left sm:pb-4">Projects</h2>
-      
-            <div className="grid grid-cols-1 sm:grid-cols-2 pt-4 sm:pt-6 md:pt-10 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6 w-full">
+            {/* Section header */}
+            <div className="mb-8">
+                <p className="section-label mb-1">// 02. work</p>
+                <h2 className="text-4xl sm:text-5xl font-bold text-left">Projects</h2>
+            </div>
+  
+            <div className="grid grid-cols-1 sm:grid-cols-2 pt-4 sm:pt-6 md:pt-8 lg:grid-cols-4 gap-4 md:gap-5 w-full">
               {projects.slice(0, 4).map((project, index) => (
               <ProjectCard
               key={index}
@@ -34,11 +39,14 @@ export default function Project() {
             />
               ))}
             </div>
-            <div className="w-full flex justify-center mt-6 sm:mt-8 md:mt-10">
+            <div className="w-full flex justify-center mt-8 md:mt-10">
               <Link href="/Projects">
-            <Button variant="outline" className="py-1 text-sm sm:text-base md:text-lg font-medium h-9 sm:h-10 md:h-12 px-3 sm:px-6 md:px-8">
-              View More Projects
-            </Button>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <Button variant="outline" className="font-mono text-sm sm:text-base h-10 md:h-11 px-6 md:px-8 
+                    hover:bg-neon hover:text-black hover:border-neon hover:shadow-[0_0_20px_rgba(113,252,123,0.25)] transition-all duration-300">
+                    View All Projects →
+                  </Button>
+                </motion.div>
               </Link>
             </div>
           </div>

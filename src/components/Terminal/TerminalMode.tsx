@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { X, Maximize2, Minimize2, Terminal as TerminalIcon } from 'lucide-react';
 import { client } from '@/sanity/lib/client';
-import { projectsQuery } from '@/sanity/lib/queries';
+import { projectsQuery, educationQuery, experienceQuery } from '@/sanity/lib/queries';
 import {
   Tooltip,
   TooltipContent,
@@ -29,14 +29,20 @@ interface TerminalLine {
 
 const COMMANDS = [
   { cmd: 'help', desc: 'List available commands' },
-  { cmd: 'about', desc: 'Display user information' },
-  { cmd: 'projects', desc: 'List my projects' },
-  { cmd: 'skills', desc: 'List my technical skills' },
-  { cmd: 'contact', desc: 'Show contact details' },
-  { cmd: 'fire', desc: 'Toggle terminal fire mode' },
-  { cmd: 'runner', desc: 'Play endless runner game' },
-  { cmd: 'tetris', desc: 'Play Tetris' },
-  { cmd: 'highscores', desc: 'Show top-5 leaderboards for all games' },
+  { cmd: 'about', desc: 'Display user information & bio' },
+  { cmd: 'experience', desc: 'List professional experience & internships' },
+  { cmd: 'education', desc: 'Show education & academic background' },
+  { cmd: 'projects', desc: 'List featured software projects' },
+  { cmd: 'skills', desc: 'List technical skills & stack' },
+  { cmd: 'resume', desc: 'View IEEE technical resume & download link' },
+  { cmd: 'iot', desc: 'Show IoT & embedded systems projects' },
+  { cmd: 'sync', desc: 'Run automated LinkedIn to Sanity synchronization' },
+  { cmd: 'contact', desc: 'Show contact info & links' },
+  { cmd: 'runner', desc: 'Play 8-bit endless runner game' },
+  { cmd: 'tetris', desc: 'Play classic Tetris mini-game' },
+  { cmd: 'highscores', desc: 'Show leaderboards for all games' },
+  { cmd: 'fire', desc: 'Toggle matrix fire mode' },
+  { cmd: 'theme', desc: 'Toggle dark/light visual theme' },
   { cmd: 'clear', desc: 'Clear the terminal screen' },
   { cmd: 'exit', desc: 'Close terminal mode' },
 ];
@@ -204,18 +210,201 @@ export default function TerminalMode() {
       case 'about':
         output = (
           <div>
-            <p className="mb-2">Hello! I'm Srijan K, a passionate software developer.</p>
-            <p>I specialize in Python, Flutter, and Next.js, building scalable and interactive applications.</p>
+            <p className="mb-2 text-neon font-bold">Srijan Kulal — Software Developer</p>
+            <p className="mb-2 text-gray-300">Backend-focused developer pursuing B.C.A at St. Aloysius University (2023–2026). Experienced in Python (Flask), Next.js, Flutter, Java, and PostgreSQL.</p>
+            <p className="text-gray-400 text-xs">Exploring embedded systems, microcontrollers (Arduino/C++), and IoT.</p>
+          </div>
+        );
+        break;
+
+      case 'experience':
+      case 'exp':
+      case 'internships':
+      case 'internship':
+        try {
+          output = <div className='animate-pulse text-gray-400'>Fetching experience from Sanity CMS...</div>;
+          setHistory([...newHistory, { id: 'fetching-exp', type: 'output', content: output }]);
+
+          const experiences = await client.fetch(experienceQuery);
+
+          if (experiences && experiences.length > 0) {
+            output = (
+              <div className="flex flex-col gap-3 mt-2">
+                {experiences.map((e: any) => (
+                  <div key={e._id} className="border-l-2 border-neon pl-3 py-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-neon font-bold">{e.role}</span>
+                      <span className="text-yellow-400 text-xs">@{e.company}</span>
+                      <span className="text-gray-400 text-[10px] border border-gray-700 px-1">[{e.type}]</span>
+                    </div>
+                    <div className="text-gray-400 text-xs mt-0.5">
+                      {e.startDate} – {e.current ? 'Present' : e.endDate || 'Present'} {e.location ? `• ${e.location}` : ''}
+                    </div>
+                    {e.summary && <p className="text-gray-300 text-xs mt-1">{e.summary}</p>}
+                    {e.highlights && e.highlights.length > 0 && (
+                      <ul className="mt-1 space-y-0.5">
+                        {e.highlights.map((h: string, i: number) => (
+                          <li key={i} className="text-xs text-gray-300">▸ {h}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {e.technologies && (
+                      <div className="flex flex-wrap gap-1 mt-1.5">
+                        {e.technologies.map((t: string) => (
+                          <span key={t} className="bg-neutral-800 text-neutral-300 px-1.5 py-0.2 text-[10px] rounded">{t}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            );
+          } else {
+            output = (
+              <div className="text-gray-300 text-xs">
+                <p className="text-yellow-400 font-bold">Independent Software Developer (2023–Present)</p>
+                <p>Building full-stack web apps, REST APIs, and embedded systems drivers.</p>
+              </div>
+            );
+          }
+
+          setHistory(prev => prev.filter(p => p.id !== 'fetching-exp').concat({ id: Date.now().toString() + 'res', type: 'output', content: output }));
+          setIsProcessing(false);
+          return;
+        } catch {
+          type = 'error';
+          output = 'Failed to fetch experience records.';
+        }
+        break;
+
+      case 'education':
+      case 'edu':
+      case 'studies':
+        try {
+          output = <div className='animate-pulse text-gray-400'>Fetching education records from Sanity CMS...</div>;
+          setHistory([...newHistory, { id: 'fetching-edu', type: 'output', content: output }]);
+
+          const education = await client.fetch(educationQuery);
+
+          if (education && education.length > 0) {
+            output = (
+              <div className="flex flex-col gap-3 mt-2">
+                {education.map((edu: any) => (
+                  <div key={edu._id} className="border-l-2 border-blue-400 pl-3 py-1">
+                    <div className="text-blue-300 font-bold">{edu.degree}</div>
+                    <div className="text-gray-300 text-xs">{edu.institution} {edu.location ? `• ${edu.location}` : ''}</div>
+                    <div className="text-gray-400 text-xs font-mono mt-0.5">
+                      {edu.startDate} – {edu.current ? 'Present' : edu.endDate || 'Present'} {edu.gpa ? `| GPA: ${edu.gpa}` : ''}
+                    </div>
+                    {edu.description && <p className="text-gray-300 text-xs mt-1">{edu.description}</p>}
+                  </div>
+                ))}
+              </div>
+            );
+          } else {
+            output = (
+              <div className="text-gray-300 text-xs border-l-2 border-blue-400 pl-3">
+                <div className="text-blue-300 font-bold">Bachelor of Computer Applications (B.C.A)</div>
+                <div>St. Aloysius University, Mangalore (2023–2026)</div>
+                <div className="text-neon/80">Status: In Progress</div>
+              </div>
+            );
+          }
+
+          setHistory(prev => prev.filter(p => p.id !== 'fetching-edu').concat({ id: Date.now().toString() + 'res', type: 'output', content: output }));
+          setIsProcessing(false);
+          return;
+        } catch {
+          type = 'error';
+          output = 'Failed to fetch education records.';
+        }
+        break;
+
+      case 'resume':
+      case 'cv':
+        output = (
+          <div className="space-y-2 text-xs">
+            <p className="text-neon font-bold">📄 IEEE Standard Technical Resume</p>
+            <p className="text-gray-300">Formatted for software engineering &amp; technical recruiters.</p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <a href="/resume" target="_blank" className="text-cyan-400 underline hover:text-neon">[Open Resume Page ↗]</a>
+              <a href="/Srijan_Kulal_Resume.pdf" download className="text-yellow-400 underline hover:text-neon">[Download Direct PDF ↓]</a>
+            </div>
+          </div>
+        );
+        break;
+
+      case 'sync':
+      case 'sync-linkedin':
+      case 'linkedin':
+        try {
+          output = <div className='animate-pulse text-yellow-400'>Triggering automated LinkedIn synchronization...</div>;
+          setHistory([...newHistory, { id: 'fetching-sync', type: 'output', content: output }]);
+
+          const res = await fetch('/api/cron/sync-linkedin', { method: 'POST' });
+          const json = await res.json();
+
+          output = (
+            <div className="space-y-1 text-xs">
+              <p className="text-neon font-bold">✓ LinkedIn Sync Status: {json.message || 'Success'}</p>
+              <p className="text-gray-400">Timestamp: {json.timestamp || new Date().toISOString()}</p>
+              {json.summary && (
+                <div className="text-gray-300">
+                  <p>• Education: {json.summary.education.added} added, {json.summary.education.updated} updated, {json.summary.education.unchanged} unchanged</p>
+                  <p>• Experience: {json.summary.experience.added} added, {json.summary.experience.updated} updated, {json.summary.experience.unchanged} unchanged</p>
+                </div>
+              )}
+              <p className="text-gray-500 text-[10px] mt-1">Automatic nightly cron scheduled at 00:00 Midnight IST.</p>
+            </div>
+          );
+
+          setHistory(prev => prev.filter(p => p.id !== 'fetching-sync').concat({ id: Date.now().toString() + 'res', type: 'output', content: output }));
+          setIsProcessing(false);
+          return;
+        } catch {
+          type = 'error';
+          output = 'Failed to execute LinkedIn sync.';
+        }
+        break;
+
+      case 'iot':
+      case 'hardware':
+      case 'electronics':
+        output = (
+          <div className="space-y-2 text-xs">
+            <p className="text-neon font-bold">⚡ IoT &amp; Embedded Systems</p>
+            <div className="border-l-2 border-yellow-400 pl-3 py-1">
+              <p className="text-yellow-300 font-bold">LED Display Driver Library (C++ / Arduino)</p>
+              <p className="text-gray-300">Alphanumeric 7-segment display driver for Arduino &amp; PlatformIO.</p>
+              <a href="https://github.com/srijankulal/LED_Display" target="_blank" className="text-blue-400 underline">[GitHub Repo ↗]</a>
+            </div>
+            <div className="border-l-2 border-yellow-400 pl-3 py-1">
+              <p className="text-yellow-300 font-bold">Hardware Interfacing &amp; Prototyping</p>
+              <p className="text-gray-300">Sensor telemetry, microcontrollers, and low-level communication protocols.</p>
+            </div>
           </div>
         );
         break;
 
       case 'skills':
         output = (
-          <div className="flex flex-wrap gap-2">
-            {['Python', 'Flutter', 'Next.js', 'React', 'TypeScript', 'Node.js', 'TailwindCSS', 'Git'].map(skill => (
-              <span key={skill} className="bg-gray-700 text-cyan-300 px-2 py-0.5 rounded text-xs">{skill}</span>
-            ))}
+          <div className="space-y-2 text-xs">
+            <div>
+              <span className="text-neon font-bold">Languages: </span>
+              <span className="text-gray-300">Python, TypeScript, JavaScript, Java, C++, C#, Dart, SQL</span>
+            </div>
+            <div>
+              <span className="text-neon font-bold">Frameworks &amp; Web: </span>
+              <span className="text-gray-300">Next.js, React, Flask, Spring Boot, Flutter, Node.js, Tailwind CSS</span>
+            </div>
+            <div>
+              <span className="text-neon font-bold">Databases: </span>
+              <span className="text-gray-300">PostgreSQL, MySQL, Sanity CMS</span>
+            </div>
+            <div>
+              <span className="text-neon font-bold">IoT &amp; Hardware: </span>
+              <span className="text-gray-300">Arduino, PlatformIO, Microcontrollers, 7-Segment Drivers</span>
+            </div>
           </div>
         );
         break;
@@ -340,13 +529,13 @@ export default function TerminalMode() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(true)}
-              className="fixed bottom-6 right-6 z-50 p-3 bg-neutral-900 border border-neutral-700 hover:border-neutral-500 rounded-lg shadow-lg text-neutral-400 hover:text-white transition-all duration-300 group"
+              className="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-40 p-2.5 sm:p-3 bg-neutral-900/90 backdrop-blur-sm border border-neutral-700 hover:border-neon/50 rounded-lg shadow-lg text-neutral-400 hover:text-neon transition-all duration-300 group print:hidden"
             >
               <TerminalIcon size={20} />
             </motion.button>
           </TooltipTrigger>
-          <TooltipContent side="left" sideOffset={10} className="bg-neutral-800 border-neutral-700 text-neutral-200">
-            <p>Terminal Mode</p>
+          <TooltipContent side="left" sideOffset={10} className="bg-neutral-800 border-neutral-700 text-neutral-200 font-mono text-xs print:hidden">
+            <p>&gt; Terminal Mode</p>
           </TooltipContent>
         </Tooltip>
       )}
@@ -365,7 +554,7 @@ export default function TerminalMode() {
               borderRadius: isMaximized ? 0 : '12px'
             }}
             exit={{ opacity: 0, y: 100, scale: 0.9 }}
-            className={`fixed z-[100] bg-black/90 backdrop-blur-md text-green-500 font-mono shadow-2xl border border-gray-700 overflow-hidden flex flex-col ${isMaximized ? 'top-0 left-0 bottom-0 right-0' : 'bottom-10 right-10 max-w-[calc(100vw-40px)] max-h-[calc(100vh-40px)]'
+            className={`fixed z-100 print:hidden bg-black/90 backdrop-blur-md text-green-500 font-mono shadow-2xl border border-gray-700 overflow-hidden flex flex-col ${isMaximized ? 'top-0 left-0 bottom-0 right-0' : 'bottom-10 right-10 max-w-[calc(100vw-40px)] max-h-[calc(100vh-40px)]'
               }`}
           >
             {isFireMode && <MatrixFire fullContainer fontSize={14} />}
@@ -449,7 +638,7 @@ export default function TerminalMode() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center p-2 sm:p-4"
+            className="fixed inset-0 z-200 flex items-center justify-center p-2 sm:p-4 print:hidden"
           >
             {/* Backdrop */}
             <div
